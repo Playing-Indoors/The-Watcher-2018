@@ -1,0 +1,33 @@
+.grid {
+	display: grid;
+	grid-column-gap: 1rem;
+	grid-row-gap: 1rem;
+
+	& > * {
+		// min-width: 0;
+		margin: 0;
+	}
+}
+
+.grid-contents > * {
+	display: contents;
+
+	& > * {
+		margin: 0;
+	}
+}
+
+// @include breakpoint(m) {
+.grid-x-x {
+	grid-template-columns: 1fr 1fr;
+}
+.grid-x-x-x {
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+@for $item from 1 through 10 {
+	.span-#{$item} {
+		grid-column: span #{$item};
+	}
+}
+// }
