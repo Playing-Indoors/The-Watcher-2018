@@ -1,64 +1,91 @@
+<docs>
+Improvement
+- Allow anonymous
+- Allow Email Link auth
+- https://console.firebase.google.com/u/0/project/the-watcher-b3ddf/authentication/providers
+
+</docs>
+
 <template>
-  <div>
-		<br />
-    <img src="../assets/logo.png">
-		Email
-		<input type="email" v-model="email" />
-		<br />
-		Password
-		<input type="password" v-model="password" />
-		<br />
-		<button type="submit" @click="register">Register</button>
-		<button type="submit" @click="login">Login</button>
-		<button type="submit" @click="logout">logout</button>
-		<button type="submit" @click="getUser">user</button>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+	<form class="self-center py-8" @submit.prevent="login()">
+		<div class="text-center mb-8">
+			<logo-mark class="text-white w-32" />
+		</div>
+		<label for="email" class="block mb-2">Log in to The Watcher</label>
+		<core-input
+			v-model="email"
+			placeholder="Enter your email..."
+			autoFocus
+			require
+		/>
+		<core-input
+			v-model="password"
+			placeholder="Enter your password..."
+			require
+		/>
+		<div
+			v-if="error"
+			class="bg-red p-4 mb-4"
+		>{{message}}</div>
+		<core-button submit>Login</core-button>
+		<div class="flex justify-between mt-4">
+			<core-button color="text" @click="forgot()">Forgot Password</core-button>
+			<core-button color="text" @click="register()">Create Account</core-button>
+		</div>
+	</form>
 </template>
 
 <script>
 // @ is an alias to /src
 import firebase from 'firebase';
-import HelloWorld from '@/components/HelloWorld.vue';
+import CoreButton from '@/components/CoreButton';
+import CoreInput from '@/components/CoreInput';
+import LogoMark from '@/assets/logo-mark';
 
 export default {
-	name: 'home',
 	components: {
-		HelloWorld,
+		CoreButton,
+		CoreInput,
+		LogoMark,
 	},
 	data() {
 		return {
+			message: '',
+			error: false,
 			email: '',
 			password: '',
 		};
 	},
 	methods: {
-		getUser() {
-			if (firebase.auth().currentUser) {
-				console.log(firebase.auth().currentUser.email);
-			} else {
-				console.log('not logged');
-			}
+		handleSuccess(message = '') {
+			this.error = false;
+			this.message = message;
+		},
+		handleError(message = '') {
+			this.error = true;
+			this.message = message;
+		},
+		forgot() {
+			firebase
+				.auth()
+				.sendPasswordResetEmail(this.email)
+				.then(res => this.handleSuccess(res))
+				.catch(error => this.handleError(error.message));
 		},
 		register() {
-			console.warn('register clicked');
 			firebase
 				.auth()
 				.createUserWithEmailAndPassword(this.email, this.password)
-				.then(res => console.log('success', res))
+				.then(res => this.handleSuccess(res))
 				.catch(error => {
-					// Handle Errors here.
-					var errorCode = error.code;
-					var errorMessage = error.message;
-					if (errorCode === 'auth/weak-password') {
-						alert('The password is too weak.');
-					} else if (errorCode === 'auth/email-already-in-use') {
-						alert('User already exists... logging in');
+					if (error.code === 'auth/weak-password') {
+						this.handleError('The password is too weak.');
+					} else if (error.code === 'auth/email-already-in-use') {
+						this.handleSuccess('User already exists... trying to log in');
 						this.login();
 					} else {
-						alert(errorMessage);
+						this.handleError(error.message);
 					}
-					console.log(error);
 				});
 		},
 		login() {
@@ -71,33 +98,23 @@ export default {
 					// if a user forgets to sign out.
 					// ...
 					// New sign-in will be persisted with session persistence.
-					this.handleLogin();
+					this.loginAttempt();
 				})
-				.catch(function(error) {
-					// Handle Errors here.
-					// var errorCode = error.code;
-					// var errorMessage = error.message;
-					// alert(errorMessage);
-					console.log(error);
-				});
+				.catch(error => this.handleError(error));
 		},
-		handleLogin() {
+		loginAttempt() {
 			firebase
 				.auth()
 				.signInAndRetrieveDataWithEmailAndPassword(this.email, this.password)
-				.then(res => {
-					console.log('success', res);
+				.then(() => {
+					this.handleSuccess();
 				})
-				.catch(function(error) {
-					// Handle Errors here.
-					var errorCode = error.code;
-					var errorMessage = error.message;
-					if (errorCode === 'auth/wrong-password') {
-						alert('Wrong password.');
+				.catch(error => {
+					if (error.code === 'auth/wrong-password') {
+						this.handleError('The password is too weak.');
 					} else {
-						alert(errorMessage);
+						this.handleError(error.message);
 					}
-					console.log(error);
 				});
 		},
 		logout() {
@@ -105,7 +122,7 @@ export default {
 				.auth()
 				.signOut()
 				.then(res => {
-					console.log('success', res);
+					this.handleSuccess(res);
 				});
 		},
 	},

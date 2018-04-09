@@ -6,7 +6,7 @@ import SettlementsNew from '@/views/Settlement/Settlement-New';
 import SettlementsEdit from '@/views/Settlement/Settlement';
 import SurvivorNew from '@/views/Survivor/Survivor-New';
 import SurvivorManage from '@/views/Survivor/Survivor';
-import Home from './views/Home.vue';
+import Login from './views/Login.vue';
 import About from './views/About.vue';
 import Survivors from './views/Survivors';
 // import SurvivorsNew from './views/Survivors-New';
@@ -24,8 +24,11 @@ const router = new Router({
 		},
 		{
 			path: '/',
-			name: 'home',
-			component: Home,
+			name: 'Login',
+			component: Login,
+			meta: {
+				requiresNoAuth: true,
+			},
 		},
 		{
 			path: '/settlements',
@@ -130,6 +133,15 @@ router.beforeEach((to, from, next) => {
 			next({
 				path: '/login',
 				query: { redirect: to.fullPath },
+			});
+		} else {
+			next();
+		}
+	} else if (to.matched.some(record => record.meta.requiresNoAuth)) {
+		const isUser = firebase.auth().currentUser;
+		if (isUser) {
+			next({
+				path: '/settlements',
 			});
 		} else {
 			next();

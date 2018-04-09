@@ -11,8 +11,7 @@ Vue.use(VueFire);
 
 Vue.config.productionTip = false;
 
-firebase.auth().onAuthStateChanged(user => {
-	console.log('user', user.email);
+firebase.auth().onAuthStateChanged(() => {
 	const app = new Vue({
 		router,
 		store,

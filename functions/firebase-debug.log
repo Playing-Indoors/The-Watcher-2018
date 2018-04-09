@@ -1,0 +1,119 @@
+[debug] [2018-04-07T21:58:13.586Z] ----------------------------------------------------------------------
+[debug] [2018-04-07T21:58:13.589Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\CalebKester\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy --only functions
+[debug] [2018-04-07T21:58:13.590Z] CLI Version:   3.18.2
+[debug] [2018-04-07T21:58:13.590Z] Platform:      win32
+[debug] [2018-04-07T21:58:13.590Z] Node Version:  v8.10.0
+[debug] [2018-04-07T21:58:13.591Z] Time:          Sat Apr 07 2018 16:58:13 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-07T21:58:13.591Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-04-07T21:58:13.615Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-04-07T21:58:13.617Z] > authorizing via signed-in user
+[debug] [2018-04-07T21:58:13.621Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/the-watcher-b3ddf  
+  
+ Sat Apr 07 2018 16:58:13 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-07T21:58:14.071Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-07T21:58:14.072Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/the-watcher-b3ddf/tokens  
+  
+ Sat Apr 07 2018 16:58:14 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-07T21:58:14.450Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'the-watcher-b3ddf'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] +  functions: Finished running predeploy script.
+[debug] [2018-04-07T21:58:25.871Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "firebase-admin": "~5.12.0",
+    "firebase-functions": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.12.0",
+    "eslint-plugin-promise": "^3.6.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2018-04-07T21:58:25.873Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/the-watcher-b3ddf?view=CONSUMER_VIEW  
+  
+ Sat Apr 07 2018 16:58:25 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-07T21:58:25.874Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/the-watcher-b3ddf?view=CONSUMER_VIEW  
+  
+ Sat Apr 07 2018 16:58:25 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-07T21:58:26.537Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-07T21:58:26.581Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2018-04-07T21:58:26.583Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/the-watcher-b3ddf  
+  
+ Sat Apr 07 2018 16:58:26 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-07T21:58:26.943Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-07T21:58:26.943Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1075845017475:getServerAppConfig  
+  
+ Sat Apr 07 2018 16:58:26 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-07T21:58:27.353Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2018-04-07T21:58:27.357Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/the-watcher-b3ddf/configs  
+  
+ Sat Apr 07 2018 16:58:27 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-07T21:58:27.908Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (39.45 KB) for uploading
+[debug] [2018-04-07T21:58:28.660Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/the-watcher-b3ddf/locations/us-central1/functions:generateUploadUrl  
+  
+ Sat Apr 07 2018 16:58:28 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-07T21:58:59.686Z] <<< HTTP RESPONSE 503
+[debug] [2018-04-07T21:58:59.686Z] <<< HTTP RESPONSE BODY {
+  "error": {
+    "code": 503,
+    "message": "The service is currently unavailable.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+[debug] [2018-04-07T21:58:59.688Z] TypeError: Cannot create property 'error' on string '{
+  "error": {
+    "code": 503,
+    "message": "The service is currently unavailable.",
+    "status": "UNAVAILABLE"
+  }
+}
+'
+    at module.exports (C:\Users\CalebKester\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:11:16)
+    at Request._callback (C:\Users\CalebKester\AppData\Roaming\npm\node_modules\firebase-tools\lib\api.js:45:25)
+    at Request.self.callback (C:\Users\CalebKester\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:186:22)
+    at emitTwo (events.js:126:13)
+    at Request.emit (events.js:214:7)
+    at Request.<anonymous> (C:\Users\CalebKester\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:1163:10)
+    at emitOne (events.js:116:13)
+    at Request.emit (events.js:211:7)
+    at IncomingMessage.<anonymous> (C:\Users\CalebKester\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:1085:12)
+    at Object.onceWrapper (events.js:313:30)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2018-04-07T21:59:22.358Z] ----------------------------------------------------------------------
+[debug] [2018-04-07T21:59:22.362Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\CalebKester\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy --only functions
+[debug] [2018-04-07T21:59:22.363Z] CLI Version:   3.18.2
+[debug] [2018-04-07T21:59:22.363Z] Platform:      win32
+[debug] [2018-04-07T21:59:22.363Z] Node Version:  v8.10.0
+[debug] [2018-04-07T21:59:22.364Z] Time:          Sat Apr 07 2018 16:59:22 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-07T21:59:22.364Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-04-07T21:59:22.387Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-04-07T21:59:22.389Z] > authorizing via signed-in user
+[debug] [2018-04-07T21:59:22.392Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/the-watcher-b3ddf  
+  
+ Sat Apr 07 2018 16:59:22 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-07T21:59:22.757Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-07T21:59:22.758Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/the-watcher-b3ddf/tokens  
+  
+ Sat Apr 07 2018 16:59:22 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-07T21:59:23.380Z] <<< HTTP RESPONSE 200
