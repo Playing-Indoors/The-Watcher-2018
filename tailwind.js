@@ -192,6 +192,7 @@ module.exports = {
 
 	fonts: {
 		sans: [
+			'Ruda',
 			'system-ui',
 			'BlinkMacSystemFont',
 			'-apple-system',

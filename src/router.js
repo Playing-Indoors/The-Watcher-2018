@@ -6,12 +6,13 @@ import SettlementsNew from '@/views/Settlement/Settlement-New';
 import SettlementsEdit from '@/views/Settlement/Settlement';
 import SurvivorNew from '@/views/Survivor/Survivor-New';
 import SurvivorManage from '@/views/Survivor/Survivor';
-import Login from './views/Login.vue';
-import About from './views/About.vue';
-import Survivors from './views/Survivors';
-// import SurvivorsNew from './views/Survivors-New';
-import SurvivorsDetail from './views/Survivors-Detail';
-import SurvivorsGroup from './views/Survivors-Group';
+import Login from '@/views/Login.vue';
+import Logout from '@/views/Logout.vue';
+import About from '@/views/About.vue';
+import Survivors from '@/views/Survivors';
+// import SurvivorsNew from '@/views/Survivors-New';
+import SurvivorsDetail from '@/views/Survivors-Detail';
+import SurvivorsGroup from '@/views/Survivors-Group';
 
 Vue.use(Router);
 
@@ -28,6 +29,14 @@ const router = new Router({
 			component: Login,
 			meta: {
 				requiresNoAuth: true,
+			},
+		},
+		{
+			path: '/logout',
+			name: 'Logout',
+			component: Logout,
+			meta: {
+				requiresAuth: true,
 			},
 		},
 		{

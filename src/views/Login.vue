@@ -7,7 +7,7 @@ Improvement
 </docs>
 
 <template>
-	<form class="self-center py-8" @submit.prevent="login()">
+	<form class="self-center py-8 px-4" @submit.prevent="login()">
 		<div class="text-center mb-8">
 			<logo-mark class="text-white w-32" />
 		</div>
@@ -20,6 +20,7 @@ Improvement
 		/>
 		<core-input
 			v-model="password"
+			type="password"
 			placeholder="Enter your password..."
 			require
 		/>
@@ -38,8 +39,8 @@ Improvement
 <script>
 // @ is an alias to /src
 import firebase from 'firebase';
-import CoreButton from '@/components/CoreButton';
-import CoreInput from '@/components/CoreInput';
+import CoreButton from '@/components/CoreButton/CoreButton';
+import CoreInput from '@/components/CoreInput/CoreInput';
 import LogoMark from '@/assets/logo-mark';
 
 export default {
@@ -108,6 +109,7 @@ export default {
 				.signInAndRetrieveDataWithEmailAndPassword(this.email, this.password)
 				.then(() => {
 					this.handleSuccess();
+					this.$router.push({ name: 'Settlements' });
 				})
 				.catch(error => {
 					if (error.code === 'auth/wrong-password') {
