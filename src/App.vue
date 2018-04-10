@@ -9,9 +9,10 @@
 				<router-link to="/survivors/new">Survivors Add</router-link>
 			</div>
 		</header> -->
-		<div class="flex min-h-screen mx-auto max-w-sm w-full">
+		<!-- <div class="flex min-h-screen mx-auto max-w-sm w-full">
 	    <router-view class="w-full" />
-		</div>
+		</div> -->
+		<router-view />
   </div>
 </template>
 

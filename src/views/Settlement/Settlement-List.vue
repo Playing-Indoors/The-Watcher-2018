@@ -1,42 +1,52 @@
 <template>
-  <div
-		:class="$style.layout"
-	>
-    <h1 class="span-6">
+  <div>
+		<top-bar>
 			Settlements
 			<router-link
+				slot="right"
+				class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
 				:to="{ name: 'Settlements-New' }"
 			>
-				[+]
+				+
 			</router-link>
-		</h1>
-		<article
-			v-for="settlement in settlements"
-			:key="settlement.id"
-			class="bg-grey span-6 p-4"
-		>
-			<router-link
-				:to="{
-					name: 'Settlement',
-					params: {
-						settlementId: settlement.id
-					}
-				}"
-				class="block text-white no-underline"
-			>
-				<strong>{{settlement.name}}</strong> <br />
-				Last Accessed: {{settlement.dateModified}} <br />
-				Created On: {{settlement.dateCreated}} <br />
-				Population: {{settlement.population}}
-			</router-link>
-		</article>
+		</top-bar>
+		<layout-grid class="grid-contents">
+			<transition-group tag="div" name="transition-list">
+				<router-link
+					v-for="settlement in settlements"
+					:key="settlement.id"
+					:to="{
+						name: 'Settlement',
+						params: {
+							settlementId: settlement.id
+						}
+					}"
+					class="shadow hover:shadow-lg bg-grey-dark span-6 p-4 flex w-full text-white no-underline"
+				>
+					<div class="flex-1">
+						<div>{{settlement.name}}</div>
+						<div class="text-grey text-xs">Last Accessed*: {{settlement.dateModified}}</div>
+						<div class="text-grey text-xs">Created On: {{settlement.dateCreated}}</div>
+					</div>
+					<div class="text-grey text-xs">
+						Population*: <span class="text-white">{{settlement.population}}</span>
+					</div>
+				</router-link>
+			</transition-group>
+		</layout-grid>
   </div>
 </template>
 
 <script>
 import db from '@/firebase';
+import TopBar from '@/components/TopBar/TopBar';
+import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
 
 export default {
+	components: {
+		TopBar,
+		LayoutGrid,
+	},
 	data() {
 		return {
 			settlements: [],
@@ -51,15 +61,6 @@ export default {
 };
 </script>
 
-<style lang="scss" module>
-.layout {
-	display: grid;
-	grid-column-gap: 1rem;
-	grid-row-gap: 1rem;
-	grid-template-columns: repeat(6, 1fr);
+<style lang="scss">
 
-	> * {
-		grid-column-end: span 2;
-	}
-}
 </style>

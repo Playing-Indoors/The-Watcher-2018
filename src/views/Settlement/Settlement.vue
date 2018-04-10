@@ -2,38 +2,55 @@
 </docs>
 
 <template>
-  <div
-		class="p-4 relative"
-		:class="$style.layout"
-		v-if="settlement"
-	>
-    <h1 class="span-6 text-center">{{settlement.name}}</h1>
-    <h2 class="span-6 text-center">survivors</h2>
-		<div v-if="!survivors || survivors.length === 0">Sorry no survivors</div>
-		<article
-			v-for="survivor in survivors"
-			:key="survivor.id"
-			class="bg-grey span-6 p-4"
-		>
+	<div v-if="settlement">
+		<top-bar>
+			{{settlement.name}}'s Survivors
 			<router-link
-				:to="{
-					name: 'Survivor',
-					params: {
-						survivorId: survivor.id
-					}
-				}"
-				class="block text-white no-underline"
+				slot="left"
+				class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
+				:to="{ name: 'Settlements' }"
 			>
-				<strong>{{survivor.name}}</strong> <br />
-				Last Accessed: {{survivor.dateModified}} <br />
-				Created On: {{survivor.dateCreated}}
+				&lt;
 			</router-link>
-		</article>
-		<router-link
-			:to="{ name: 'Survivor-New' }"
-		>Create</router-link>
+			<router-link
+				slot="right"
+				class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
+				:to="{ name: 'Survivor-New' }"
+			>
+				+
+			</router-link>
+		</top-bar>
+		<layout-grid class="grid-contents">
+			<!-- <div v-if="survivors && survivors.length === 0">
+				<div class="bg-red p-4 span-6">Sorry no survivors</div>
+			</div> -->
+			<transition-group tag="div" name="transition-list">
+				<router-link
+					v-for="survivor in survivors"
+					:key="survivor.id"
+					:to="{
+						name: 'Survivor',
+						params: {
+							survivorId: survivor.id
+						}
+					}"
+					class="shadow hover:shadow-lg bg-grey-dark span-6 p-4 flex w-full text-white no-underline"
+				>
+					<div class="flex-1">
+						<div>{{survivor.name}}</div>
+						<div class="text-grey text-xs">Last Accessed*: {{survivor.dateModified}}</div>
+						<div class="text-grey text-xs">Created On: {{survivor.dateCreated}}</div>
+					</div>
+					<div class="text-grey text-xs">
+						Stat*: <span class="text-white">0</span>
+					</div>
+				</router-link>
+			</transition-group>
+		</layout-grid>
+  </div>
+</template>
 
-		<br />
+		<!-- <br />
 		<br />
 		<br />
 		<br />
@@ -49,13 +66,18 @@
 			<div>Population: {{settlement.population}}</div>
 			<button type="submit" class="bg-yellow" @click="handleSave">Save</button>
 		</div>
-  </div>
-</template>
+  </div> -->
 
 <script>
 import db from '@/firebase';
+import TopBar from '@/components/TopBar/TopBar';
+import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
 
 export default {
+	components: {
+		TopBar,
+		LayoutGrid,
+	},
 	props: {
 		settlementId: {
 			type: String,
@@ -64,7 +86,7 @@ export default {
 	},
 	data() {
 		return {
-			settlement: {},
+			settlement: null,
 			survivors: [],
 		};
 	},

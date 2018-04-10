@@ -16,77 +16,89 @@
 </docs>
 
 <template>
-  <div
-		v-if="survivor"
-		class="p-4 relative"
-		:class="$style.layout"
-	>
-    <h1 class="span-6 text-center">{{survivor.name}}</h1>
-		<box-widget name="Survival" stat="survival">
-			<stat-number horizontal :number="survivor.survival" />
-			<stat-adjust
-				slot="modal"
-				stat="survival"
-				slot-scope="{item, updateTempObject}"
-				:item="item"
-				:updateTempObject="updateTempObject"
-				v-model="survivor.survival"
-			/>
-		</box-widget>
-		<box-widget name="Bleeding">
-			<stat-number horizontal :number="survivor.bleeding" />
-		</box-widget>
-		<box-widget name="Hunt XP">
-			<stat-number horizontal :number="survivor.huntXP" />
-		</box-widget>
-		<box-widget name="Courage">
-			<stat-number horizontal :number="survivor.courage" />
-		</box-widget>
-		<box-widget name="Understanding">
-			<stat-number horizontal :number="survivor.Understanding" />
-		</box-widget>
-		<box-widget name="Weapon Proficiency">
-			<stat-number horizontal :number="survivor.weaponXP" />
-		</box-widget>
-		<box-widget name="Stats" class="span-6">
-			<stat-number name="Movement" :number="survivor.movement" />
-			<stat-number name="Accuracy" :number="survivor.accuracy" />
-			<stat-number name="Strength" :number="survivor.strength" />
-			<stat-number name="Evasion" :number="survivor.evasion" />
-			<stat-number name="Luck" :number="survivor.luck" />
-			<stat-number name="Speed" :number="survivor.speed" />
-		</box-widget>
-		<box-widget name="Armor" class="span-6" v-if="survivor.armor">
-			<stat-number name="Insanity" :number="survivor.armor.insanity" />
-			<stat-number name="Head" :number="survivor.armor.head" />
-			<stat-number name="Arms" :number="survivor.armor.arms" />
-			<stat-number name="Body" :number="survivor.armor.body" />
-			<stat-number name="Waist" :number="survivor.armor.waist" />
-			<stat-number name="Legs" :number="survivor.armor.legs" />
-		</box-widget>
-		<box-widget name="Fighting Arts" class="span-6">
-			None
-		</box-widget>
-		<box-widget name="Disorders" class="span-6">
-			None
-		</box-widget>
-		<box-widget name="Abilities" class="span-6">
-			None
-		</box-widget>
+	<div>
+		<top-bar>
+			{{survivor.name}}
+			<router-link
+				slot="left"
+				class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
+				:to="{ name: 'Settlement' }"
+			>
+				&lt;
+			</router-link>
+		</top-bar>
+		<layout-grid>
+			<h1 class="span-6 text-center">{{survivor.name}}</h1>
+			<box-widget name="Survival" stat="survival">
+				<stat-number horizontal :number="survivor.survival" />
+				<stat-adjust
+					slot="modal"
+					stat="survival"
+					slot-scope="{item, updateTempObject}"
+					:item="item"
+					:updateTempObject="updateTempObject"
+					v-model="survivor.survival"
+				/>
+			</box-widget>
+			<box-widget name="Bleeding">
+				<stat-number horizontal :number="survivor.bleeding" />
+			</box-widget>
+			<box-widget name="Hunt XP">
+				<stat-number horizontal :number="survivor.huntXP" />
+			</box-widget>
+			<box-widget name="Courage">
+				<stat-number horizontal :number="survivor.courage" />
+			</box-widget>
+			<box-widget name="Understanding">
+				<stat-number horizontal :number="survivor.Understanding" />
+			</box-widget>
+			<box-widget name="Weapon Proficiency">
+				<stat-number horizontal :number="survivor.weaponXP" />
+			</box-widget>
+			<box-widget name="Stats" class="span-6">
+				<stat-number name="Movement" :number="survivor.movement" />
+				<stat-number name="Accuracy" :number="survivor.accuracy" />
+				<stat-number name="Strength" :number="survivor.strength" />
+				<stat-number name="Evasion" :number="survivor.evasion" />
+				<stat-number name="Luck" :number="survivor.luck" />
+				<stat-number name="Speed" :number="survivor.speed" />
+			</box-widget>
+			<box-widget name="Armor" class="span-6" v-if="survivor.armor">
+				<stat-number name="Insanity" :number="survivor.armor.insanity" />
+				<stat-number name="Head" :number="survivor.armor.head" />
+				<stat-number name="Arms" :number="survivor.armor.arms" />
+				<stat-number name="Body" :number="survivor.armor.body" />
+				<stat-number name="Waist" :number="survivor.armor.waist" />
+				<stat-number name="Legs" :number="survivor.armor.legs" />
+			</box-widget>
+			<box-widget name="Fighting Arts" class="span-6">
+				None
+			</box-widget>
+			<box-widget name="Disorders" class="span-6">
+				None
+			</box-widget>
+			<box-widget name="Abilities" class="span-6">
+				None
+			</box-widget>
 
-		<input type="text" v-model="survivor.name" />
-		<button type="submit" @click="handleSave">Save</button>
+			<input type="text" v-model="survivor.name" />
+			<button type="submit" @click="handleSave">Save</button>
+		</layout-grid>
   </div>
 </template>
 
 <script>
 import db from '@/firebase';
+import TopBar from '@/components/TopBar/TopBar';
+import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
 import BoxWidget from '@/components/BoxWidget';
 import StatNumber from '@/components/StatNumber';
 import StatAdjust from '@/components/StatAdjust';
 
 export default {
 	components: {
+		TopBar,
+		LayoutGrid,
 		BoxWidget,
 		StatNumber,
 		StatAdjust,
