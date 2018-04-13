@@ -13,13 +13,13 @@
 @for $i from 1 through 20 {
 	.transition-list-enter-active:nth-of-type(#{$i}) {
 		z-index: 21 - $i;
-		animation: 0.1s ease-in 0s + $i/20 forwards list-in;
+		animation: 0.1s ease-in 0s + $i/10 forwards list-in;
 	}
 }
 
 @keyframes list-in {
 	0% {
-		transform: translateY(200%);
+		transform: translateY(-200%);
 		opacity: 0;
 	}
 	50% {

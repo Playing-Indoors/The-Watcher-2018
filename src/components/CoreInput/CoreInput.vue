@@ -1,28 +1,34 @@
 <docs>
 </docs>
 <template>
-	<input
-		:id="`v${_uid}`"
-		class="block mb-4 bg-grey-dark text-white py-4 px-4 w-full"
-		:type="type"
-		ref="input"
-		v-bind:value="value"
-		v-on:input="updateValue($event.target.value)"
-		:required="required"
-		:autofocus="autofocus"
-		:placeholder="placeholder"
-		:disabled="disabled"
-		:min="min"
-		:max="max"
-		:step="step"
-		@blur="$emit('blur')"
-		@focus="$emit('focus')"
-	>
+	<div>
+		<label v-if="label" class="inline-block pb-1 span-6 text-xs">Name</label>
+		<input
+			:id="`v${_uid}`"
+			class="block bg-grey-dark text-white py-4 px-4 w-full shadow"
+			:type="type"
+			ref="input"
+			v-bind:value="value"
+			v-on:input="updateValue($event.target.value)"
+			:required="required"
+			:autofocus="autofocus"
+			:placeholder="placeholder"
+			:disabled="disabled"
+			:min="min"
+			:max="max"
+			:step="step"
+			@blur="$emit('blur')"
+			@focus="$emit('focus')"
+		>
+	</div>
 </template>
 
 <script>
 export default {
 	props: {
+		label: {
+			type: String,
+		},
 		autofocus: {
 			type: Boolean,
 			default: false,
@@ -33,7 +39,7 @@ export default {
 		},
 		placeholder: {
 			type: String,
-			default: '',
+			default: '- -',
 		},
 		required: {
 			type: Boolean,

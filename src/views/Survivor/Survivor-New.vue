@@ -1,21 +1,54 @@
 <template>
-  <form @submit.prevent="handleCreate(name, gender)">
-    <h1>Add Survivor</h1>
-		Name:
-		<input type="text" v-model="name" />
-		Gender
-		<select v-model="gender">
-			<option>Male</option>
-			<option>Female</option>
-		</select>
-		<button type="submit" class="bg-yellow">Create</button>
-  </form>
+	<div>
+		<top-bar>
+			Create New Survivor
+			<router-link
+				slot="left"
+				class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
+				:to="{ name: 'Settlement' }"
+			>
+				&lt;
+			</router-link>
+		</top-bar>
+
+		<layout-grid class="grid-contents">
+			<form @submit.prevent="handleCreate(name, gender)">
+				<core-input
+					class="span-6"
+					v-model="name"
+					label="Name"
+					placeholder="- -"
+					autoFocus
+					require
+				/>
+				<core-select
+					class="span-6"
+					v-model="gender"
+					label="Gender"
+					:options="['Male', 'Female']"
+				/>
+				<core-button submit class="span-6 mt-3">Create</core-button>
+			</form>
+		</layout-grid>
+	</div>
 </template>
 
 <script>
 import db from '@/firebase';
+import TopBar from '@/components/TopBar/TopBar';
+import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
+import CoreInput from '@/components/CoreInput/CoreInput';
+import CoreSelect from '@/components/CoreSelect/CoreSelect';
+import CoreButton from '@/components/CoreButton/CoreButton';
 
 export default {
+	components: {
+		TopBar,
+		LayoutGrid,
+		CoreInput,
+		CoreSelect,
+		CoreButton,
+	},
 	props: {
 		settlementId: {
 			type: String,
