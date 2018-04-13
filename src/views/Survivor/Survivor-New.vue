@@ -11,23 +11,20 @@
 			</router-link>
 		</top-bar>
 
-		<layout-grid class="grid-contents">
+		<layout-grid contents :columns="1">
 			<form @submit.prevent="handleCreate(name, gender)">
 				<core-input
-					class="span-6"
 					v-model="name"
 					label="Name"
-					placeholder="- -"
-					autoFocus
-					require
+					autofocus
+					required
 				/>
 				<core-select
-					class="span-6"
 					v-model="gender"
 					label="Gender"
 					:options="['Male', 'Female']"
 				/>
-				<core-button submit class="span-6 mt-3">Create</core-button>
+				<core-button submit class=" mt-3">Create</core-button>
 			</form>
 		</layout-grid>
 	</div>

@@ -2,7 +2,6 @@
 	<div
 		class="flex justify-center"
 	>
-	{{item}}
 		<button type="button" class="text-5xl text-white" @click="adjust(-1)">&ndash;</button>
 		<input
 			type="number"
@@ -10,6 +9,8 @@
 			steps="1"
 			:value="value"
 			@input="updateValue($event.target.value)"
+			:min="min"
+			:max="max"
 		/>
 		<button type="button" class="text-5xl text-white" @click="adjust(1)">+</button>
 	</div>
@@ -22,9 +23,6 @@ export default {
 			type: Number,
 			required: true,
 		},
-		item: {
-			type: [Number, Object],
-		},
 		min: {
 			type: Number,
 			default: 0,
@@ -33,9 +31,6 @@ export default {
 			type: Number,
 			default: 999,
 		},
-		updateTempObject: {
-			type: Function,
-		},
 	},
 	methods: {
 		updateValue(value) {
@@ -43,9 +38,9 @@ export default {
 		},
 		adjust(amount = 1) {
 			const newValue = this.value + amount;
-
-			this.updateTempObject({ survival: newValue });
-			this.updateValue(newValue);
+			if (newValue > this.min && newValue < this.max) {
+				this.updateValue(newValue);
+			}
 		},
 	},
 };

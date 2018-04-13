@@ -17,12 +17,10 @@
 	}
 }
 
-// @include breakpoint(m) {
-.grid-x-x {
-	grid-template-columns: 1fr 1fr;
-}
-.grid-x-x-x {
-	grid-template-columns: 1fr 1fr 1fr;
+@for $i from 1 through 12 {
+	.columns-#{$i} {
+		grid-template-columns: repeat($i, 1fr);
+	}
 }
 
 @for $item from 1 through 10 {
@@ -30,4 +28,3 @@
 		grid-column: span #{$item};
 	}
 }
-// }

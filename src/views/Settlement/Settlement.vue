@@ -20,10 +20,10 @@
 				+
 			</router-link>
 		</top-bar>
-		<layout-grid class="grid-contents">
-			<!-- <div v-if="survivors && survivors.length === 0">
-				<div class="bg-red p-4 span-6">Sorry no survivors</div>
-			</div> -->
+		<layout-grid contents :columns="1">
+			<div v-if="survivors && survivors.length === 0">
+				<div class="bg-red p-4">Sorry no survivors</div>
+			</div>
 			<transition-group tag="div" name="transition-list">
 				<router-link
 					v-for="survivor in survivors"
@@ -34,7 +34,7 @@
 							survivorId: survivor.id
 						}
 					}"
-					class="shadow hover:shadow-lg bg-grey-dark span-6 p-4 flex w-full text-white no-underline"
+					class="shadow hover:shadow-lg bg-grey-dark p-4 flex w-full text-white no-underline"
 				>
 					<div class="flex-1">
 						<div>{{survivor.name}}</div>

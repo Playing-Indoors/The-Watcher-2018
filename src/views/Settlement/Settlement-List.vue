@@ -10,7 +10,7 @@
 				+
 			</router-link>
 		</top-bar>
-		<layout-grid class="grid-contents">
+		<layout-grid contents :columns="1">
 			<transition-group tag="div" name="transition-list">
 				<router-link
 					v-for="settlement in settlements"
@@ -21,7 +21,7 @@
 							settlementId: settlement.id
 						}
 					}"
-					class="shadow hover:shadow-lg bg-grey-dark span-6 p-4 flex w-full text-white no-underline"
+					class="shadow hover:shadow-lg bg-grey-dark p-4 flex w-full text-white no-underline"
 				>
 					<div class="flex-1">
 						<div>{{settlement.name}}</div>

@@ -4,8 +4,8 @@
 		:class="horizontal ? 'flex justify-between items-end' : ''"
 	>
 		<div v-if="horizontal">[]</div>
-		<div class="text-4xl font-bold">{{number}}</div>
-		<div v-if="name" class="text-xs">{{name}}</div>
+		<div class="text-5xl font-bold">{{number}}</div>
+		<div v-if="name" class="text-xxs text-grey-lightest">{{name}}</div>
 	</div>
 </template>
 

@@ -4,15 +4,12 @@
 		title
 		display slot
 		popup slot
+		saves obj
+		reset obj
 
-	stat-horizontal
-		value
-		milestone
 
-	stat-vertical
-		value
-		?label
-		?milestone
+
+
 </docs>
 
 <template>
@@ -28,32 +25,37 @@
 			</router-link>
 		</top-bar>
 		<layout-grid>
-			<h1 class="span-6 text-center">{{survivor.name}}</h1>
-			<box-widget name="Survival" stat="survival">
-				<stat-number horizontal :number="survivor.survival" />
+			<box-widget name="Survival" stat="survival" class="span-2">
+				<stat-number :number="survivor.survival" />
 				<stat-adjust
 					slot="modal"
-					stat="survival"
 					slot-scope="{item, updateTempObject}"
 					:item="item"
 					:updateTempObject="updateTempObject"
 					v-model="survivor.survival"
 				/>
 			</box-widget>
-			<box-widget name="Bleeding">
-				<stat-number horizontal :number="survivor.bleeding" />
+			<box-widget name="Bleeding" class="span-2">
+				<stat-number :number="survivor.bleeding" />
+				<stat-adjust2
+					slot="modal"
+					stat="bleeding"
+					:value="survivor.survival"
+					:saveObj="saveObj"
+				/>
 			</box-widget>
-			<box-widget name="Hunt XP">
-				<stat-number horizontal :number="survivor.huntXP" />
+			<hunt-xp
+				v-model="survivor.huntXP"
+				class="span-2"
+			/>
+			<box-widget name="Courage" class="span-2">
+				<stat-number :number="survivor.courage" />
 			</box-widget>
-			<box-widget name="Courage">
-				<stat-number horizontal :number="survivor.courage" />
+			<box-widget name="Understanding" class="span-2">
+				<stat-number :number="survivor.understanding" />
 			</box-widget>
-			<box-widget name="Understanding">
-				<stat-number horizontal :number="survivor.Understanding" />
-			</box-widget>
-			<box-widget name="Weapon Proficiency">
-				<stat-number horizontal :number="survivor.weaponXP" />
+			<box-widget name="Weapon Proficiency" class="span-2">
+				<stat-number :number="survivor.weaponXP" />
 			</box-widget>
 			<box-widget name="Stats" class="span-6">
 				<stat-number name="Movement" :number="survivor.movement" />
@@ -63,13 +65,13 @@
 				<stat-number name="Luck" :number="survivor.luck" />
 				<stat-number name="Speed" :number="survivor.speed" />
 			</box-widget>
-			<box-widget name="Armor" class="span-6" v-if="survivor.armor">
-				<stat-number name="Insanity" :number="survivor.armor.insanity" />
-				<stat-number name="Head" :number="survivor.armor.head" />
-				<stat-number name="Arms" :number="survivor.armor.arms" />
-				<stat-number name="Body" :number="survivor.armor.body" />
-				<stat-number name="Waist" :number="survivor.armor.waist" />
-				<stat-number name="Legs" :number="survivor.armor.legs" />
+			<box-widget name="Armor" class="span-6">
+				<stat-number name="Insanity" :number="survivor.insanity" />
+				<stat-number name="Head" :number="survivor.head" />
+				<stat-number name="Arms" :number="survivor.arms" />
+				<stat-number name="Body" :number="survivor.body" />
+				<stat-number name="Waist" :number="survivor.waist" />
+				<stat-number name="Legs" :number="survivor.legs" />
 			</box-widget>
 			<box-widget name="Fighting Arts" class="span-6">
 				None
@@ -81,8 +83,10 @@
 				None
 			</box-widget>
 
-			<input type="text" v-model="survivor.name" />
-			<button type="submit" @click="handleSave">Save</button>
+			<div class="span-6">
+				<input type="text" v-model="survivor.name" />
+				<button type="submit" @click="handleSave">Save</button>
+			</div>
 		</layout-grid>
   </div>
 </template>
@@ -92,16 +96,20 @@ import db from '@/firebase';
 import TopBar from '@/components/TopBar/TopBar';
 import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
 import BoxWidget from '@/components/BoxWidget';
+import HuntXp from '@/components/HuntXp';
 import StatNumber from '@/components/StatNumber';
 import StatAdjust from '@/components/StatAdjust';
+import StatAdjust2 from '@/components/StatAdjust2';
 
 export default {
 	components: {
 		TopBar,
 		LayoutGrid,
 		BoxWidget,
+		HuntXp,
 		StatNumber,
 		StatAdjust,
+		StatAdjust2,
 	},
 	props: {
 		survivorId: {
@@ -132,6 +140,12 @@ export default {
 				.update({
 					name: this.survivor.name,
 				});
+		},
+		saveObj(obj) {
+			console.log('saving', obj);
+			db
+				.doc(`settlements/${this.settlementId}/survivors/${this.survivorId}`)
+				.update(obj);
 		},
 	},
 };

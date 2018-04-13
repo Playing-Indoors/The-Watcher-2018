@@ -7,21 +7,19 @@ Improvement
 </docs>
 
 <template>
-	<layout-grid class="grid-contents self-center">
-		<form class="self-center py-8 px-4" @submit.prevent="login()">
-			<div class="text-center span-8">
+	<layout-grid contents :columns="1">
+		<form @submit.prevent="login()">
+			<div class="text-center ">
 				<logo-mark class="text-white w-32" />
 			</div>
-			<!-- <label for="email" class="block span-8">Log in to The Watcher</label> -->
+			<!-- <label for="email" class="block ">Log in to The Watcher</label> -->
 			<core-input
-				class="span-8"
 				v-model="email"
 				label="Email"
 				autofocus
 				required
 			/>
 			<core-input
-				class="span-8"
 				v-model="password"
 				label="Password"
 				type="password"
@@ -29,10 +27,10 @@ Improvement
 			/>
 			<div
 				v-if="error"
-				class="bg-red p-4 span-8"
+				class="bg-red p-4"
 			>{{message}}</div>
-			<core-button submit class="span-8">Login</core-button>
-			<div class="flex justify-between span-8">
+			<core-button submit>Login</core-button>
+			<div class="flex justify-between">
 				<core-button color="text" @click="forgot()">Forgot Password</core-button>
 				<core-button color="text" @click="register()">Create Account</core-button>
 			</div>

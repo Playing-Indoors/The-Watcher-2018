@@ -1,20 +1,44 @@
 <template>
 	<div>
-    <h1>
-			New Settlement
-		</h1>
-		<form @submit.prevent="handleCreate(name)">
-			Name:
-			<input type="text" v-model="name" />
-			<button type="submit" class="bg-yellow">Create</button>
-		</form>
+		<top-bar>
+			Create New Settlement
+			<router-link
+				slot="left"
+				class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
+				:to="{ name: 'Settlements' }"
+			>
+				&lt;
+			</router-link>
+		</top-bar>
+
+		<layout-grid contents :columns="1">
+			<form @submit.prevent="handleCreate(name)">
+				<core-input
+					v-model="name"
+					label="Name"
+					autofocus
+					required
+				/>
+				<core-button submit class=" mt-3">Create</core-button>
+			</form>
+		</layout-grid>
 	</div>
 </template>
 
 <script>
 import db from '@/firebase';
+import TopBar from '@/components/TopBar/TopBar';
+import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
+import CoreInput from '@/components/CoreInput/CoreInput';
+import CoreButton from '@/components/CoreButton/CoreButton';
 
 export default {
+	components: {
+		TopBar,
+		LayoutGrid,
+		CoreInput,
+		CoreButton,
+	},
 	data() {
 		return {
 			name: '',
