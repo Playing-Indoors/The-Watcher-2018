@@ -7,6 +7,7 @@ module.exports = {
 	configureWebpack: {
 		plugins: [
 			new PurgecssPlugin({
+				whitelistPatterns: [/(__)/, /(-enter)/, /(-leave)/],
 				paths: glob.sync([
 					path.join(__dirname, './public/index.html'),
 					path.join(__dirname, './src/**/*.vue'),

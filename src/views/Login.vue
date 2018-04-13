@@ -7,33 +7,37 @@ Improvement
 </docs>
 
 <template>
-	<form class="self-center py-8 px-4" @submit.prevent="login()">
-		<div class="text-center mb-8">
-			<logo-mark class="text-white w-32" />
-		</div>
-		<label for="email" class="block mb-2">Log in to The Watcher</label>
-		<core-input
-			v-model="email"
-			placeholder="Enter your email..."
-			autoFocus
-			require
-		/>
-		<core-input
-			v-model="password"
-			type="password"
-			placeholder="Enter your password..."
-			require
-		/>
-		<div
-			v-if="error"
-			class="bg-red p-4 mb-4"
-		>{{message}}</div>
-		<core-button submit>Login</core-button>
-		<div class="flex justify-between mt-4">
-			<core-button color="text" @click="forgot()">Forgot Password</core-button>
-			<core-button color="text" @click="register()">Create Account</core-button>
-		</div>
-	</form>
+	<layout-grid class="grid-contents self-center">
+		<form class="self-center py-8 px-4" @submit.prevent="login()">
+			<div class="text-center span-8">
+				<logo-mark class="text-white w-32" />
+			</div>
+			<!-- <label for="email" class="block span-8">Log in to The Watcher</label> -->
+			<core-input
+				class="span-8"
+				v-model="email"
+				label="Email"
+				autofocus
+				required
+			/>
+			<core-input
+				class="span-8"
+				v-model="password"
+				label="Password"
+				type="password"
+				required
+			/>
+			<div
+				v-if="error"
+				class="bg-red p-4 span-8"
+			>{{message}}</div>
+			<core-button submit class="span-8">Login</core-button>
+			<div class="flex justify-between span-8">
+				<core-button color="text" @click="forgot()">Forgot Password</core-button>
+				<core-button color="text" @click="register()">Create Account</core-button>
+			</div>
+		</form>
+	</layout-grid>
 </template>
 
 <script>
@@ -42,12 +46,14 @@ import firebase from 'firebase';
 import CoreButton from '@/components/CoreButton/CoreButton';
 import CoreInput from '@/components/CoreInput/CoreInput';
 import LogoMark from '@/assets/logo-mark';
+import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
 
 export default {
 	components: {
 		CoreButton,
 		CoreInput,
 		LogoMark,
+		LayoutGrid,
 	},
 	data() {
 		return {

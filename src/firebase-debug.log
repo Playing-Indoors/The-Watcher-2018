@@ -1,0 +1,18 @@
+[debug] [2018-04-13T01:46:46.932Z] ----------------------------------------------------------------------
+[debug] [2018-04-13T01:46:46.935Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\CalebKester\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2018-04-13T01:46:46.936Z] CLI Version:   3.18.2
+[debug] [2018-04-13T01:46:46.936Z] Platform:      win32
+[debug] [2018-04-13T01:46:46.936Z] Node Version:  v8.10.0
+[debug] [2018-04-13T01:46:46.937Z] Time:          Thu Apr 12 2018 20:46:46 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-13T01:46:46.937Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-04-13T01:46:46.951Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-04-13T01:46:46.952Z] > authorizing via signed-in user
+[debug] [2018-04-13T01:46:46.955Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/the-watcher-b3ddf  
+  
+ Thu Apr 12 2018 20:46:46 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-13T01:46:47.304Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-13T01:46:47.306Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/the-watcher-b3ddf/tokens  
+  
+ Thu Apr 12 2018 20:46:47 GMT-0500 (Central Daylight Time)
+[debug] [2018-04-13T01:46:47.616Z] <<< HTTP RESPONSE 200

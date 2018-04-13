@@ -2,7 +2,7 @@
 </docs>
 <template>
 	<div>
-		<label v-if="label" class="inline-block pb-1 span-6 text-xs">Name</label>
+		<label v-if="label" class="inline-block pb-1 span-6 text-xs">{{label}}</label>
 		<input
 			:id="`v${_uid}`"
 			class="block bg-grey-dark text-white py-4 px-4 w-full shadow"
