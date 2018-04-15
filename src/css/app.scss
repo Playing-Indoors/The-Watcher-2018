@@ -11,6 +11,11 @@
  */
 @tailwind preflight;
 
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
 @import 'typography';
 /**
 	* This injects any component classes registered by plugins.
@@ -23,6 +28,7 @@
 
 @import 'grid';
 @import 'animations';
+// forms
 
 /**
 	* Here you would add any of your custom component classes; stuff that you'd

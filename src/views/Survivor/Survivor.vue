@@ -73,14 +73,6 @@
 				:saveAttributes="saveAttributes"
 				class="span-6"
 			/>
-			<box-widget name="Stats" class="span-6">
-				<stat-number name="Movement" :number="survivor.movement" />
-				<stat-number name="Accuracy" :number="survivor.accuracy" />
-				<stat-number name="Strength" :number="survivor.strength" />
-				<stat-number name="Evasion" :number="survivor.evasion" />
-				<stat-number name="Luck" :number="survivor.luck" />
-				<stat-number name="Speed" :number="survivor.speed" />
-			</box-widget>
 			<box-widget name="Armor" class="span-6">
 				<stat-number name="Insanity" :number="survivor.insanity" />
 				<stat-number name="Head" :number="survivor.head" />
