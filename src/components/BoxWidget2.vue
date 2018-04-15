@@ -16,7 +16,7 @@
 					<slot />
 				</div>
 			</button>
-			<div v-if="showModal" class="absolute pin bg-overlay flex flex-col justify-center items-center" @click="cancel()">
+			<div v-if="showModal" class="fixed pin bg-overlay flex flex-col justify-center items-center" @click="cancel()">
 				<!-- TODO: Think about changing this to a seperate close div -->
 				<div class="max-w-xs w-full" @click.stop="() => {}">
 					<div class="bg-grey-darkest p-4">
