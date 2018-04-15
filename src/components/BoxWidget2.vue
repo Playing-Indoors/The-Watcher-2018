@@ -1,7 +1,10 @@
 <template>
 	<div class="flex flex-col">
 		<label v-if="name" class="inline-block pb-1 text-xs">{{name}}</label>
-		<div class="bg-grey-dark flex flex-1">
+		<form
+			@submit.prevent="confirm()"
+			class="bg-grey-dark flex flex-1"
+		>
 			<button
 				@click="toggleModal()"
 				type="button"
@@ -13,58 +16,56 @@
 					<slot />
 				</div>
 			</button>
-			<div v-if="showModal" class="absolute pin bg-overlay flex flex-col justify-center items-center">
-				<div class="max-w-xs w-full">
+			<div v-if="showModal" class="absolute pin bg-overlay flex flex-col justify-center items-center" @click="cancel()">
+				<!-- TODO: Think about changing this to a seperate close div -->
+				<div class="max-w-xs w-full" @click.stop="() => {}">
 					<div class="bg-grey-darkest p-4">
 						<header class="text-2xl text-center mb-4">{{name}}</header>
 						<slot
 							name="modal"
 						/>
 					</div>
-					<button @click="confirm()" class="w-full bg-yellow p-4 text-white">Confirm</button>
-					<button @click="cancel()" class="w-full text-white p-4">Cancel</button>
+					<core-button
+						submit
+						:color="dirty ? 'yellow' : 'white'"
+					>Confirm</core-button>
+					<core-button color="text" @click="cancel()">Cancel</core-button>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 </template>
 
 <script>
-import db from '@/firebase';
+import CoreButton from '@/components/CoreButton/CoreButton';
 
 export default {
+	components: { CoreButton },
 	props: {
 		name: {
 			type: String,
 		},
-		resetData: {
-			type: Function,
-		},
-		saveData: {
-			type: Function,
-		},
-		value: {
-			type: Object,
-			required: true,
+		dirty: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	data() {
 		return {
 			showModal: false,
-			item: 1,
 		};
 	},
 	methods: {
 		confirm() {
-			console.log('data', this.value);
-			this.saveData();
-			db
-				.doc('settlements/ZDfh7AjWNCy3Eq8WYUog/survivors/0H0eXjTygGLvbYYcziLm')
-				.update({ ...this.value });
+			// 	console.log('data', this.attributes);
+			this.$emit('confirm');
+			// 	db
+			// 		.doc('settlements/ZDfh7AjWNCy3Eq8WYUog/survivors/0H0eXjTygGLvbYYcziLm')
+			// 		.update({ ...this.attributes });
 			this.toggleModal();
 		},
 		cancel() {
-			this.resetData();
+			this.$emit('cancel');
 			this.toggleModal();
 		},
 		toggleModal() {

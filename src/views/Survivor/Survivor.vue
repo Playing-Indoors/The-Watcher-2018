@@ -25,38 +25,54 @@
 			</router-link>
 		</top-bar>
 		<layout-grid>
-			<box-widget name="Survival" stat="survival" class="span-2">
-				<stat-number :number="survivor.survival" />
-				<stat-adjust
-					slot="modal"
-					slot-scope="{item, updateTempObject}"
-					:item="item"
-					:updateTempObject="updateTempObject"
-					v-model="survivor.survival"
-				/>
-			</box-widget>
-			<box-widget name="Bleeding" class="span-2">
-				<stat-number :number="survivor.bleeding" />
-				<stat-adjust2
-					slot="modal"
-					stat="bleeding"
-					:value="survivor.survival"
-					:saveObj="saveObj"
-				/>
-			</box-widget>
-			<hunt-xp
-				v-model="survivor.huntXP"
+			<single-attribute
+				v-model="survivor.survival"
+				attribute="survival"
+				name="Survival"
+				:saveAttributes="saveAttributes"
 				class="span-2"
 			/>
-			<box-widget name="Courage" class="span-2">
-				<stat-number :number="survivor.courage" />
-			</box-widget>
-			<box-widget name="Understanding" class="span-2">
-				<stat-number :number="survivor.understanding" />
-			</box-widget>
-			<box-widget name="Weapon Proficiency" class="span-2">
-				<stat-number :number="survivor.weaponXP" />
-			</box-widget>
+			<single-attribute
+				v-model="survivor.bleeding"
+				attribute="bleeding"
+				name="Bleeding"
+				:saveAttributes="saveAttributes"
+				class="span-2"
+			/>
+			<single-attribute
+				v-model="survivor.huntXP"
+				attribute="huntXP"
+				name="Hunt XP"
+				:saveAttributes="saveAttributes"
+				class="span-2"
+			/>
+			<single-attribute
+				v-model="survivor.courage"
+				attribute="courage"
+				name="Courage"
+				:saveAttributes="saveAttributes"
+				class="span-2"
+			/>
+			<single-attribute
+				v-model="survivor.understanding"
+				attribute="understanding"
+				name="Understanding"
+				:saveAttributes="saveAttributes"
+				class="span-2"
+			/>
+			<single-attribute
+				v-model="survivor.weaponXP"
+				attribute="weaponXP"
+				name="Weapon Proficiency"
+				:saveAttributes="saveAttributes"
+				class="span-2"
+			/>
+			<custom-attribute
+				:attributes="stats"
+				name="Stats"
+				:saveAttributes="saveAttributes"
+				class="span-6"
+			/>
 			<box-widget name="Stats" class="span-6">
 				<stat-number name="Movement" :number="survivor.movement" />
 				<stat-number name="Accuracy" :number="survivor.accuracy" />
@@ -96,7 +112,8 @@ import db from '@/firebase';
 import TopBar from '@/components/TopBar/TopBar';
 import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
 import BoxWidget from '@/components/BoxWidget';
-import HuntXp from '@/components/HuntXp';
+import SingleAttribute from '@/components/SingleAttribute';
+import CustomAttribute from '@/components/CustomAttribute';
 import StatNumber from '@/components/StatNumber';
 import StatAdjust from '@/components/StatAdjust';
 import StatAdjust2 from '@/components/StatAdjust2';
@@ -106,7 +123,8 @@ export default {
 		TopBar,
 		LayoutGrid,
 		BoxWidget,
-		HuntXp,
+		SingleAttribute,
+		CustomAttribute,
 		StatNumber,
 		StatAdjust,
 		StatAdjust2,
@@ -126,6 +144,36 @@ export default {
 			survivor: {},
 		};
 	},
+	computed: {
+		stats() {
+			return [
+				{
+					name: 'Movement',
+					value: this.survivor.movement,
+				},
+				{
+					name: 'Accuracy',
+					value: this.survivor.accuracy,
+				},
+				{
+					name: 'Strength',
+					value: this.survivor.strength,
+				},
+				{
+					name: 'Evasion',
+					value: this.survivor.evasion,
+				},
+				{
+					name: 'Luck',
+					value: this.survivor.luck,
+				},
+				{
+					name: 'Speed',
+					value: this.survivor.speed,
+				},
+			];
+		},
+	},
 	firestore() {
 		return {
 			survivor: db.doc(
@@ -141,7 +189,7 @@ export default {
 					name: this.survivor.name,
 				});
 		},
-		saveObj(obj) {
+		saveAttributes(obj) {
 			console.log('saving', obj);
 			db
 				.doc(`settlements/${this.settlementId}/survivors/${this.survivorId}`)

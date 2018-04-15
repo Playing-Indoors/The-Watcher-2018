@@ -5,12 +5,24 @@
 		@confirm="handleConfirm()"
 		@cancel="handleCancel()"
 	>
-		<stat-number :number="value" />
-		<stat-adjust
+		<stat-number
+			v-for="attr in attributes"
+			:key="attr.name"
+			:name="attr.name"
+			:number="attr.value"
+		/>
+		<!-- <stat-adjust
 			slot="modal"
 			v-model="tempValue"
-		/>
-
+		/> -->
+		<div slot="modal">
+			<stat-adjust
+				v-for="attr in attributes"
+				:key="attr.name"
+				:name="attr.name"
+				v-model="attr.value"
+			/>
+		</div>
 	</box-widget>
 </template>
 
@@ -25,13 +37,9 @@ export default {
 		name: {
 			type: String,
 		},
-		value: {
-			type: Number,
-			default: 0,
-		},
-		attribute: {
-			type: String,
-			required: true,
+		attributes: {
+			type: Array,
+			default: () => [],
 		},
 		saveAttributes: {
 			type: Function,
@@ -40,12 +48,12 @@ export default {
 	},
 	data() {
 		return {
-			tempValue: this.value,
+			tempValue: [],
 		};
 	},
 	watch: {
 		value(newVal) {
-			this.tempValue = newVal;
+			this.cloneAttr(newVal);
 		},
 	},
 	computed: {
@@ -53,7 +61,13 @@ export default {
 			return this.tempValue !== this.value;
 		},
 	},
+	mounted() {
+		this.cloneAttr(this.value);
+	},
 	methods: {
+		cloneAttr(value = []) {
+			this.tempValue = [...value];
+		},
 		handleConfirm() {
 			this.$emit('input', this.tempValue);
 			const obj = {};
