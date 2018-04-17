@@ -21,30 +21,40 @@
 			</router-link>
 		</top-bar>
 		<layout-grid contents :columns="1">
+			<div>
+				<h1>The Hunt</h1>
+				<core-select
+					label="Choose survivor to add to the hunt"
+					placeholder="- -"
+					:options="survivors"
+					optionKey="id"
+					optionText="name"
+					@input="addToHunt"
+				/>
+				<div
+					v-for="survivor in hunting"
+					:key="survivor.id"
+				>
+					<survivor-card
+						v-if="huntedLookup(survivor.survivorId)"
+						:survivor="huntedLookup(survivor.survivorId)"
+					/>
+					<core-button color="red" class="text-sm" @click="removeHunted(survivor.id)">Remove</core-button>
+				</div>
+
+			</div>
+			<div>
+				<h1>Survivors</h1>
+			</div>
 			<div v-if="survivors && survivors.length === 0">
 				<div class="bg-red p-4">Sorry no survivors</div>
 			</div>
 			<transition-group tag="div" name="transition-list">
-				<router-link
+				<survivor-card
 					v-for="survivor in survivors"
 					:key="survivor.id"
-					:to="{
-						name: 'Survivor',
-						params: {
-							survivorId: survivor.id
-						}
-					}"
-					class="shadow hover:shadow-lg bg-grey-dark p-4 flex w-full text-white no-underline"
-				>
-					<div class="flex-1">
-						<div>{{survivor.name}}</div>
-						<div class="text-grey text-xs">Last Accessed*: {{survivor.dateModified}}</div>
-						<div class="text-grey text-xs">Created On: {{survivor.dateCreated}}</div>
-					</div>
-					<div class="text-grey text-xs">
-						Stat*: <span class="text-white">0</span>
-					</div>
-				</router-link>
+					:survivor="survivor"
+				/>
 			</transition-group>
 		</layout-grid>
   </div>
@@ -72,11 +82,17 @@
 import db from '@/firebase';
 import TopBar from '@/components/TopBar/TopBar';
 import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
+import CoreSelect from '@/components/CoreSelect/CoreSelect';
+import CoreButton from '@/components/CoreButton/CoreButton';
+import SurvivorCard from '@/components/SurvivorCard';
 
 export default {
 	components: {
 		TopBar,
 		LayoutGrid,
+		CoreSelect,
+		CoreButton,
+		SurvivorCard,
 	},
 	props: {
 		settlementId: {
@@ -87,19 +103,32 @@ export default {
 	data() {
 		return {
 			settlement: null,
+			huntSelect: null,
+			hunting: [],
 			survivors: [],
 		};
 	},
 	firestore() {
 		return {
 			settlement: db.collection('settlements').doc(this.settlementId),
-			survivors: db
-				.collection('settlements')
-				.doc(this.settlementId)
-				.collection('survivors'),
+			survivors: db.collection(`settlements/${this.settlementId}/survivors`),
+			hunting: db.collection(`settlements/${this.settlementId}/hunting`),
 		};
 	},
 	methods: {
+		addToHunt(id) {
+			if (id && !this.hunting.find(survivor => survivor.survivorId === id)) {
+				db
+					.collection(`settlements/${this.settlementId}/hunting`)
+					.add({ survivorId: id });
+			}
+		},
+		removeHunted(id) {
+			db.doc(`settlements/${this.settlementId}/hunting/${id}`).delete();
+		},
+		huntedLookup(id) {
+			return this.survivors.find(survivor => survivor.id === id);
+		},
 		handleSave() {
 			db
 				.collection('settlements')

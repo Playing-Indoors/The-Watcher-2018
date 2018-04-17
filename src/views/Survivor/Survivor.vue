@@ -25,6 +25,19 @@
 			</router-link>
 		</top-bar>
 		<layout-grid>
+			<div v-if="hunting" class="span-6">
+				<h2>Hunting Party</h2>
+				<div
+					v-for="survivor in hunting"
+					:key="survivor.id"
+				>
+					<survivor-card
+						v-if="huntedLookup(survivor.survivorId)"
+						:survivor="huntedLookup(survivor.survivorId)"
+					/>
+					<core-button color="red" class="text-sm" @click="removeHunted(survivor.id)">Remove</core-button>
+				</div>
+			</div>
 			<single-attribute
 				v-model="survivor.survival"
 				attribute="survival"
@@ -109,17 +122,21 @@ import CustomAttribute from '@/components/CustomAttribute';
 import StatNumber from '@/components/StatNumber';
 import StatAdjust from '@/components/StatAdjust';
 import StatAdjust2 from '@/components/StatAdjust2';
+import SurvivorCard from '@/components/SurvivorCard';
+import CoreButton from '@/components/CoreButton/CoreButton';
 
 export default {
 	components: {
 		TopBar,
 		LayoutGrid,
 		BoxWidget,
+		CoreButton,
 		SingleAttribute,
 		CustomAttribute,
 		StatNumber,
 		StatAdjust,
 		StatAdjust2,
+		SurvivorCard,
 	},
 	props: {
 		survivorId: {
@@ -133,7 +150,9 @@ export default {
 	},
 	data() {
 		return {
+			hunting: [],
 			survivor: {},
+			survivors: [],
 		};
 	},
 	computed: {
@@ -171,21 +190,38 @@ export default {
 			survivor: db.doc(
 				`settlements/${this.settlementId}/survivors/${this.survivorId}`,
 			),
+			hunting: db.collection(`settlements/${this.settlementId}/hunting`),
+			survivors: db.collection(`settlements/${this.settlementId}/survivors`),
 		};
 	},
+	beforeRouteUpdate(to, from, next) {
+		this.$bind(
+			'survivor',
+			db.doc(
+				`settlements/${this.settlementId}/survivors/${to.params.survivorId}`,
+			),
+		);
+		next();
+	},
 	methods: {
+		huntedLookup(id) {
+			return this.survivors.find(survivor => survivor.id === id);
+		},
+		removeHunted(id) {
+			db.doc(`settlements/${this.settlementId}/hunting/${id}`).delete();
+		},
 		handleSave() {
-			db
-				.doc(`settlements/${this.settlementId}/survivors/${this.survivorId}`)
+			this.$firestoreRefs.survivor
 				.update({
 					name: this.survivor.name,
-				});
+				})
+				.then(res => console.log(res));
 		},
 		saveAttributes(obj) {
 			console.log('saving', obj);
-			db
-				.doc(`settlements/${this.settlementId}/survivors/${this.survivorId}`)
-				.update(obj);
+			this.$firestoreRefs.survivor
+				.update(obj)
+				.then(res => console.log('saved', res));
 		},
 	},
 };

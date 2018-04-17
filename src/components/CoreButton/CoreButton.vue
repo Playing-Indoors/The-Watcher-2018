@@ -17,8 +17,8 @@ export default {
 		color: {
 			type: String,
 			default: 'yellow',
-			validator: size =>
-				['yellow', 'white', 'text', 'red'].indexOf(size) !== -1,
+			validator: color =>
+				['yellow', 'white', 'text', 'red'].indexOf(color) !== -1,
 		},
 		submit: {
 			type: Boolean,
@@ -46,6 +46,8 @@ export default {
 				return 'bg-white text-black hover:bg-white-dark focus:bg-grey-lightest';
 			} else if (this.color === 'text') {
 				return 'bg-transparent text-white hover:underline';
+			} else if (this.color === 'red') {
+				return 'bg-red text-white hover:bg-red-dark focus:bg-red-dark';
 			}
 		},
 		element() {

@@ -31,6 +31,10 @@ TODO:
 				@blur="$emit('blur')"
 				@focus="$emit('focus')"
 			>
+				<option
+					v-if="placeholder"
+					:value="null"
+				>{{placeholder}}</option>
 				<slot
 					v-for="item in options"
 					:data="item"
@@ -78,6 +82,9 @@ export default {
 		required: {
 			type: Boolean,
 			default: false,
+		},
+		placeholder: {
+			type: String,
 		},
 		// #region Object Props
 		// Instead of emitting the key, emits the entire object
