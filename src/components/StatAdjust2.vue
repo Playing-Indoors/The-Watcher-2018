@@ -21,16 +21,16 @@ export default {
 	props: {
 		value: {
 			type: Number,
-			required: true,
+			required: true
 		},
 		min: {
 			type: Number,
-			default: 0,
+			default: 0
 		},
 		max: {
 			type: Number,
-			default: 999,
-		},
+			default: 999
+		}
 	},
 	methods: {
 		updateValue(value) {
@@ -41,7 +41,7 @@ export default {
 			if (newValue > this.min && newValue < this.max) {
 				this.updateValue(newValue);
 			}
-		},
-	},
+		}
+	}
 };
 </script>

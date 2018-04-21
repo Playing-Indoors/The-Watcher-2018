@@ -27,46 +27,46 @@
 export default {
 	props: {
 		label: {
-			type: String,
+			type: String
 		},
 		autofocus: {
 			type: Boolean,
-			default: false,
+			default: false
 		},
 		disabled: {
 			type: Boolean,
-			default: false,
+			default: false
 		},
 		placeholder: {
 			type: String,
-			default: '- -',
+			default: '- -'
 		},
 		required: {
 			type: Boolean,
-			default: false,
+			default: false
 		},
 		type: {
 			type: String,
-			default: 'text',
+			default: 'text'
 		},
 		value: {
-			type: [String, Number],
+			type: [String, Number]
 		},
 		flush: {
-			type: Boolean,
+			type: Boolean
 		},
 		min: {
 			type: Number,
-			default: null,
+			default: null
 		},
 		max: {
 			type: Number,
-			default: null,
+			default: null
 		},
 		step: {
 			type: Number,
-			default: null,
-		},
+			default: null
+		}
 	},
 	methods: {
 		updateValue(value) {
@@ -95,7 +95,7 @@ export default {
 				this.$refs.input.value = updateValue;
 			}
 			this.$emit('input', updateValue);
-		},
-	},
+		}
+	}
 };
 </script>

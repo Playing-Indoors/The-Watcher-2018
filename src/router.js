@@ -21,39 +21,39 @@ const router = new Router({
 	routes: [
 		{
 			path: '*',
-			redirect: '/',
+			redirect: '/'
 		},
 		{
 			path: '/',
 			name: 'Login',
 			component: Login,
 			meta: {
-				requiresNoAuth: true,
-			},
+				requiresNoAuth: true
+			}
 		},
 		{
 			path: '/logout',
 			name: 'Logout',
 			component: Logout,
 			meta: {
-				requiresAuth: true,
-			},
+				requiresAuth: true
+			}
 		},
 		{
 			path: '/settlements',
 			name: 'Settlements',
 			component: SettlementsList,
 			meta: {
-				requiresAuth: true,
-			},
+				requiresAuth: true
+			}
 		},
 		{
 			path: '/settlements/new',
 			name: 'Settlements-New',
 			component: SettlementsNew,
 			meta: {
-				requiresAuth: true,
-			},
+				requiresAuth: true
+			}
 		},
 		{
 			path: '/settlements/:settlementId',
@@ -64,8 +64,8 @@ const router = new Router({
 			// 	settlement: Math.trunc(route.params.settlement),
 			// }),
 			meta: {
-				requiresAuth: true,
-			},
+				requiresAuth: true
+			}
 		},
 		{
 			path: '/settlements/:settlementId/survivor/new',
@@ -73,12 +73,12 @@ const router = new Router({
 			component: SurvivorNew,
 			props: true,
 			meta: {
-				requiresAuth: true,
-			},
+				requiresAuth: true
+			}
 		},
 		{
 			path: '/settlements/:settlementId',
-			redirect: '/',
+			redirect: '/'
 		},
 		{
 			path: '/settlements/:settlementId/survivor/:survivorId',
@@ -86,24 +86,24 @@ const router = new Router({
 			component: SurvivorManage,
 			props: true,
 			meta: {
-				requiresAuth: true,
-			},
+				requiresAuth: true
+			}
 		},
 		{
 			path: '/about',
 			name: 'about',
 			component: About,
 			meta: {
-				requiresAuth: true,
-			},
+				requiresAuth: true
+			}
 		},
 		{
 			path: '/survivors',
 			name: 'survivors',
 			component: Survivors,
 			meta: {
-				requiresAuth: true,
-			},
+				requiresAuth: true
+			}
 		},
 		// {
 		// 	path: '/survivors/new',
@@ -118,8 +118,8 @@ const router = new Router({
 			name: 'survivors-group',
 			component: SurvivorsGroup,
 			meta: {
-				requiresAuth: true,
-			},
+				requiresAuth: true
+			}
 		},
 		{
 			path: '/survivors/:id',
@@ -127,10 +127,10 @@ const router = new Router({
 			component: SurvivorsDetail,
 			props: true,
 			meta: {
-				requiresAuth: true,
-			},
-		},
-	],
+				requiresAuth: true
+			}
+		}
+	]
 });
 
 router.beforeEach((to, from, next) => {
@@ -141,7 +141,7 @@ router.beforeEach((to, from, next) => {
 		if (!isUser) {
 			next({
 				path: '/login',
-				query: { redirect: to.fullPath },
+				query: { redirect: to.fullPath }
 			});
 		} else {
 			next();
@@ -150,7 +150,7 @@ router.beforeEach((to, from, next) => {
 		const isUser = firebase.auth().currentUser;
 		if (isUser) {
 			next({
-				path: '/settlements',
+				path: '/settlements'
 			});
 		} else {
 			next();

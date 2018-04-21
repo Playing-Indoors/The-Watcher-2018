@@ -56,50 +56,50 @@ TODO:
 export default {
 	props: {
 		label: {
-			type: String,
+			type: String
 		},
 		// Tracks the value
 		value: {
-			type: [String, Number, Object, Boolean],
+			type: [String, Number, Object, Boolean]
 		},
 		// Populates our select list
 		options: {
 			type: Array,
-			required: true,
+			required: true
 		},
 		multiple: {
 			type: Boolean,
-			default: false,
+			default: false
 		},
 		autofocus: {
 			type: Boolean,
-			default: false,
+			default: false
 		},
 		disabled: {
 			type: Boolean,
-			default: false,
+			default: false
 		},
 		required: {
 			type: Boolean,
-			default: false,
+			default: false
 		},
 		placeholder: {
-			type: String,
+			type: String
 		},
 		// #region Object Props
 		// Instead of emitting the key, emits the entire object
 		trackObject: {
 			type: Boolean,
-			default: false,
+			default: false
 		},
 		// Specifies the key value. Required if options is object
 		optionKey: {
-			type: String,
+			type: String
 		},
 		// Specifies the object key value to show the text
 		optionText: {
-			type: String,
-		},
+			type: String
+		}
 		// #endregion
 	},
 	created() {
@@ -111,7 +111,7 @@ export default {
 		) {
 			console.warn(
 				'No key was specified in core-select. Please supply an `optionKey` prop!',
-				this.options,
+				this.options
 			);
 		}
 	},
@@ -124,7 +124,7 @@ export default {
 				return key;
 			}
 			return this.value;
-		},
+		}
 	},
 	methods: {
 		updateValue(value) {
@@ -172,7 +172,7 @@ export default {
 				return option[Object.keys(option)[0]];
 			}
 			return option;
-		},
-	},
+		}
+	}
 };
 </script>

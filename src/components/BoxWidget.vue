@@ -39,13 +39,13 @@
 export default {
 	props: {
 		name: {
-			type: String,
-		},
+			type: String
+		}
 	},
 	data() {
 		return {
 			showModal: false,
-			item: 1,
+			item: 1
 		};
 	},
 	methods: {
@@ -55,7 +55,7 @@ export default {
 		updateTempObject(newObj) {
 			this.item = newObj;
 			console.log('new', newObj);
-		},
-	},
+		}
+	}
 };
 </script>

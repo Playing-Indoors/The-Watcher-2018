@@ -28,12 +28,12 @@ export default {
 		return {
 			locations: [],
 			name: '',
-			image: '',
+			image: ''
 		};
 	},
 	firestore() {
 		return {
-			locations: db.collection('locations').orderBy('createdAt'),
+			locations: db.collection('locations').orderBy('createdAt')
 		};
 	},
 	methods: {
@@ -49,8 +49,8 @@ export default {
 				.collection('locations')
 				.doc(id)
 				.delete();
-		},
-	},
+		}
+	}
 };
 </script>
 

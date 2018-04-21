@@ -18,24 +18,24 @@ export default {
 			type: String,
 			default: 'yellow',
 			validator: color =>
-				['yellow', 'white', 'text', 'red'].indexOf(color) !== -1,
+				['yellow', 'white', 'text', 'red'].indexOf(color) !== -1
 		},
 		submit: {
 			type: Boolean,
-			default: false,
+			default: false
 		},
 		size: {
 			type: String,
 			default: 'normal',
-			validator: size => ['normal'].indexOf(size) !== -1,
+			validator: size => ['normal'].indexOf(size) !== -1
 		},
 		to: {
-			type: [String, Object],
-		},
+			type: [String, Object]
+		}
 	},
 	data() {
 		return {
-			baseClass: 'block py-3 px-4 w-full no-outline',
+			baseClass: 'block py-3 px-4 w-full no-outline'
 		};
 	},
 	computed: {
@@ -61,7 +61,7 @@ export default {
 				return this.submit ? 'submit' : 'button';
 			}
 			return null;
-		},
-	},
+		}
+	}
 };
 </script>

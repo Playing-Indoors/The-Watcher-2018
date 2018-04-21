@@ -19,7 +19,7 @@ export default {
 	data() {
 		return {
 			name: '',
-			gender: '',
+			gender: ''
 		};
 	},
 	methods: {
@@ -47,12 +47,12 @@ export default {
 					arms: 0,
 					body: 0,
 					waist: 0,
-					legs: 0,
-				},
+					legs: 0
+				}
 			});
 			this.name = '';
 			this.gender = '';
-		},
-	},
+		}
+	}
 };
 </script>

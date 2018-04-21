@@ -44,18 +44,18 @@ export default {
 		LayoutGrid,
 		CoreInput,
 		CoreSelect,
-		CoreButton,
+		CoreButton
 	},
 	props: {
 		settlementId: {
 			type: String,
-			required: true,
-		},
+			required: true
+		}
 	},
 	data() {
 		return {
 			name: 'Test Name',
-			gender: 'Male',
+			gender: 'Male'
 		};
 	},
 	methods: {
@@ -83,7 +83,7 @@ export default {
 				arms: 0,
 				body: 0,
 				waist: 0,
-				legs: 0,
+				legs: 0
 			};
 
 			db
@@ -93,7 +93,7 @@ export default {
 					console.log('CREATED', res);
 					this.$router.push({
 						name: 'Survivor',
-						params: { survivorId: res.id },
+						params: { survivorId: res.id }
 					});
 				})
 				.catch(err => console.error(err));
@@ -124,7 +124,7 @@ export default {
 			// 		});
 			// 	})
 			// 	.catch(err => console.error(err));
-		},
-	},
+		}
+	}
 };
 </script>

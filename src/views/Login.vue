@@ -51,14 +51,14 @@ export default {
 		CoreButton,
 		CoreInput,
 		LogoMark,
-		LayoutGrid,
+		LayoutGrid
 	},
 	data() {
 		return {
 			message: '',
 			error: false,
 			email: '',
-			password: '',
+			password: ''
 		};
 	},
 	methods: {
@@ -130,7 +130,7 @@ export default {
 				.then(res => {
 					this.handleSuccess(res);
 				});
-		},
-	},
+		}
+	}
 };
 </script>

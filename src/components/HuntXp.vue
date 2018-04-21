@@ -23,35 +23,35 @@ export default {
 	components: { BoxWidget, StatAdjust, StatNumber },
 	props: {
 		name: {
-			type: String,
+			type: String
 		},
 		value: {
 			type: Number,
-			default: 0,
+			default: 0
 		},
 		attribute: {
 			type: String,
-			required: true,
+			required: true
 		},
 		saveAttributes: {
 			type: Function,
-			default: () => {},
-		},
+			default: () => {}
+		}
 	},
 	data() {
 		return {
-			tempValue: this.value,
+			tempValue: this.value
 		};
 	},
 	watch: {
 		value(newVal) {
 			this.tempValue = newVal;
-		},
+		}
 	},
 	computed: {
 		dirty() {
 			return this.tempValue !== this.value;
-		},
+		}
 	},
 	methods: {
 		handleConfirm() {
@@ -62,7 +62,7 @@ export default {
 		},
 		handleCancel() {
 			this.tempValue = this.value;
-		},
-	},
+		}
+	}
 };
 </script>

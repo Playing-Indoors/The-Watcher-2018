@@ -8,7 +8,7 @@ const config = {
 	databaseURL: 'https://the-watcher-b3ddf.firebaseio.com',
 	projectId: 'the-watcher-b3ddf',
 	storageBucket: 'the-watcher-b3ddf.appspot.com',
-	messagingSenderId: '1075845017475',
+	messagingSenderId: '1075845017475'
 };
 
 firebase.initializeApp(config);

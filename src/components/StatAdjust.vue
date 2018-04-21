@@ -20,22 +20,22 @@ export default {
 	props: {
 		value: {
 			type: Number,
-			required: true,
+			required: true
 		},
 		item: {
-			type: [Number, Object],
+			type: [Number, Object]
 		},
 		min: {
 			type: Number,
-			default: 0,
+			default: 0
 		},
 		max: {
 			type: Number,
-			default: 999,
+			default: 999
 		},
 		updateTempObject: {
-			type: Function,
-		},
+			type: Function
+		}
 	},
 	methods: {
 		updateValue(value) {
@@ -46,7 +46,7 @@ export default {
 
 			this.updateTempObject({ survival: newValue });
 			this.updateValue(newValue);
-		},
-	},
+		}
+	}
 };
 </script>

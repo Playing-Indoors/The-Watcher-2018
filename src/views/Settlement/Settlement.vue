@@ -92,27 +92,27 @@ export default {
 		LayoutGrid,
 		CoreSelect,
 		CoreButton,
-		SurvivorCard,
+		SurvivorCard
 	},
 	props: {
 		settlementId: {
 			type: String,
-			required: true,
-		},
+			required: true
+		}
 	},
 	data() {
 		return {
 			settlement: null,
 			huntSelect: null,
 			hunting: [],
-			survivors: [],
+			survivors: []
 		};
 	},
 	firestore() {
 		return {
 			settlement: db.collection('settlements').doc(this.settlementId),
 			survivors: db.collection(`settlements/${this.settlementId}/survivors`),
-			hunting: db.collection(`settlements/${this.settlementId}/hunting`),
+			hunting: db.collection(`settlements/${this.settlementId}/hunting`)
 		};
 	},
 	methods: {
@@ -134,7 +134,7 @@ export default {
 				.collection('settlements')
 				.doc(this.settlementId)
 				.update({
-					name: this.settlement.name,
+					name: this.settlement.name
 				})
 				.then(res => {
 					console.log('UPDATED', res);
@@ -144,8 +144,8 @@ export default {
 					// });
 				})
 				.catch(err => console.error(err));
-		},
-	},
+		}
+	}
 };
 </script>
 

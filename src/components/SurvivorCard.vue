@@ -26,8 +26,8 @@ export default {
 		survivor: {
 			type: Object,
 			default: () => ({}),
-			required: true,
-		},
-	},
+			required: true
+		}
+	}
 };
 </script>

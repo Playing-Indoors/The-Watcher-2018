@@ -93,22 +93,22 @@ export default {
 	components: {
 		BoxWidget,
 		StatNumber,
-		StatAdjust,
+		StatAdjust
 	},
 	props: {
 		id: {
 			type: String,
-			required: true,
-		},
+			required: true
+		}
 	},
 	data() {
 		return {
-			survivor: {},
+			survivor: {}
 		};
 	},
 	firestore() {
 		return {
-			survivor: db.collection('survivors').doc(this.id),
+			survivor: db.collection('survivors').doc(this.id)
 		};
 	},
 	methods: {
@@ -117,10 +117,10 @@ export default {
 				.collection('survivors')
 				.doc(this.id)
 				.update({
-					name: this.survivor.name,
+					name: this.survivor.name
 				});
-		},
-	},
+		}
+	}
 };
 </script>
 

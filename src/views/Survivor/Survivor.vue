@@ -24,6 +24,9 @@
 				&lt;
 			</router-link>
 		</top-bar>
+		<div class="">
+
+			</div>
 		<layout-grid>
 			<div v-if="hunting" class="span-6">
 				<h2>Hunting Party</h2>
@@ -96,6 +99,7 @@
 			</box-widget>
 			<box-widget name="Fighting Arts" class="span-6">
 				None
+				{{fightingArts}}
 			</box-widget>
 			<box-widget name="Disorders" class="span-6">
 				None
@@ -114,6 +118,7 @@
 
 <script>
 import db from '@/firebase';
+import fightingArts from '@/assets/game/fightingArts';
 import TopBar from '@/components/TopBar/TopBar';
 import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
 import BoxWidget from '@/components/BoxWidget';
@@ -136,23 +141,24 @@ export default {
 		StatNumber,
 		StatAdjust,
 		StatAdjust2,
-		SurvivorCard,
+		SurvivorCard
 	},
 	props: {
 		survivorId: {
 			type: String,
-			required: true,
+			required: true
 		},
 		settlementId: {
 			type: String,
-			required: true,
-		},
+			required: true
+		}
 	},
 	data() {
 		return {
 			hunting: [],
 			survivor: {},
 			survivors: [],
+			fightingArts: fightingArts
 		};
 	},
 	computed: {
@@ -160,46 +166,46 @@ export default {
 			return [
 				{
 					name: 'Movement',
-					value: this.survivor.movement,
+					value: this.survivor.movement
 				},
 				{
 					name: 'Accuracy',
-					value: this.survivor.accuracy,
+					value: this.survivor.accuracy
 				},
 				{
 					name: 'Strength',
-					value: this.survivor.strength,
+					value: this.survivor.strength
 				},
 				{
 					name: 'Evasion',
-					value: this.survivor.evasion,
+					value: this.survivor.evasion
 				},
 				{
 					name: 'Luck',
-					value: this.survivor.luck,
+					value: this.survivor.luck
 				},
 				{
 					name: 'Speed',
-					value: this.survivor.speed,
-				},
+					value: this.survivor.speed
+				}
 			];
-		},
+		}
 	},
 	firestore() {
 		return {
 			survivor: db.doc(
-				`settlements/${this.settlementId}/survivors/${this.survivorId}`,
+				`settlements/${this.settlementId}/survivors/${this.survivorId}`
 			),
 			hunting: db.collection(`settlements/${this.settlementId}/hunting`),
-			survivors: db.collection(`settlements/${this.settlementId}/survivors`),
+			survivors: db.collection(`settlements/${this.settlementId}/survivors`)
 		};
 	},
 	beforeRouteUpdate(to, from, next) {
 		this.$bind(
 			'survivor',
 			db.doc(
-				`settlements/${this.settlementId}/survivors/${to.params.survivorId}`,
-			),
+				`settlements/${this.settlementId}/survivors/${to.params.survivorId}`
+			)
 		);
 		next();
 	},
@@ -213,7 +219,7 @@ export default {
 		handleSave() {
 			this.$firestoreRefs.survivor
 				.update({
-					name: this.survivor.name,
+					name: this.survivor.name
 				})
 				.then(res => console.log(res));
 		},
@@ -222,8 +228,8 @@ export default {
 			this.$firestoreRefs.survivor
 				.update(obj)
 				.then(res => console.log('saved', res));
-		},
-	},
+		}
+	}
 };
 </script>
 

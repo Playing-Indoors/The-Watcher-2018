@@ -33,18 +33,18 @@ import PanelSelector from './PanelSelector';
 
 export default {
 	components: {
-		PanelSelector,
+		PanelSelector
 	},
 	data() {
 		return {
-			panels: [],
+			panels: []
 		};
 	},
 	methods: {
 		addPanel(index) {
 			console.log(index);
 			this.panels.splice(0, 0, 'panel');
-		},
-	},
+		}
+	}
 };
 </script>

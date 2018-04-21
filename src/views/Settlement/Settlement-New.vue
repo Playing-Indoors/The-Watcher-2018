@@ -37,11 +37,11 @@ export default {
 		TopBar,
 		LayoutGrid,
 		CoreInput,
-		CoreButton,
+		CoreButton
 	},
 	data() {
 		return {
-			name: '',
+			name: ''
 			// campaign: null,
 			// campaigns: {
 			// 	people_of_the_lantern: {
@@ -74,17 +74,17 @@ export default {
 					name,
 					dateCreated,
 					dateModified: dateCreated,
-					population: 0,
+					population: 0
 				})
 				.then(res => {
 					console.log('CREATED', res);
 					this.$router.push({
 						name: 'Settlement',
-						params: { settlementId: res.id },
+						params: { settlementId: res.id }
 					});
 				})
 				.catch(err => console.error(err));
-		},
-	},
+		}
+	}
 };
 </script>

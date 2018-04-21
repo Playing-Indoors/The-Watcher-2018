@@ -22,23 +22,23 @@ import SurvivorsDetail from './Survivors-Detail';
 
 export default {
 	components: {
-		SurvivorsDetail,
+		SurvivorsDetail
 	},
 	data() {
 		return {
 			survivor: null,
-			survivors: [],
+			survivors: []
 		};
 	},
 	firestore() {
 		return {
-			survivors: db.collection('survivors').orderBy('createdAt'),
+			survivors: db.collection('survivors').orderBy('createdAt')
 		};
 	},
 	methods: {
 		addSurvivorPanel(id) {
 			this.survivor = id;
-		},
-	},
+		}
+	}
 };
 </script>

@@ -21,12 +21,12 @@ import HelloWorld from '@/components/HelloWorld.vue';
 export default {
 	name: 'home',
 	components: {
-		HelloWorld,
+		HelloWorld
 	},
 	data() {
 		return {
 			email: '',
-			password: '',
+			password: ''
 		};
 	},
 	methods: {
@@ -104,7 +104,7 @@ export default {
 				.then(res => {
 					console.log('success', res);
 				});
-		},
-	},
+		}
+	}
 };
 </script>

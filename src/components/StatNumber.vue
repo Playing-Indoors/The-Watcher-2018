@@ -13,15 +13,15 @@
 export default {
 	props: {
 		name: {
-			type: String,
+			type: String
 		},
 		number: {
-			type: Number,
+			type: Number
 		},
 		horizontal: {
 			type: Boolean,
-			default: false,
-		},
-	},
+			default: false
+		}
+	}
 };
 </script>

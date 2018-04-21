@@ -12,12 +12,12 @@ export default {
 	props: {
 		contents: {
 			type: Boolean,
-			default: false,
+			default: false
 		},
 		columns: {
 			type: Number,
-			default: 6,
-		},
+			default: 6
+		}
 	},
 	computed: {
 		myClass() {
@@ -28,10 +28,10 @@ export default {
 				'columns-3': this.columns === 3,
 				'columns-4': this.columns === 4,
 				'columns-5': this.columns === 5,
-				'columns-6': this.columns === 6,
+				'columns-6': this.columns === 6
 			};
-		},
-	},
+		}
+	}
 };
 </script>
 

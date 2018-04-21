@@ -35,31 +35,31 @@ export default {
 	components: { BoxWidget, StatAdjust, StatNumber },
 	props: {
 		name: {
-			type: String,
+			type: String
 		},
 		attributes: {
 			type: Array,
-			default: () => [],
+			default: () => []
 		},
 		saveAttributes: {
 			type: Function,
-			default: () => {},
-		},
+			default: () => {}
+		}
 	},
 	data() {
 		return {
-			tempValue: [],
+			tempValue: []
 		};
 	},
 	watch: {
 		value(newVal) {
 			this.cloneAttr(newVal);
-		},
+		}
 	},
 	computed: {
 		dirty() {
 			return this.tempValue !== this.value;
-		},
+		}
 	},
 	mounted() {
 		this.cloneAttr(this.value);
@@ -76,7 +76,7 @@ export default {
 		},
 		handleCancel() {
 			this.tempValue = this.value;
-		},
-	},
+		}
+	}
 };
 </script>

@@ -1,18 +1,3 @@
-/**
- * Copyright 2017 Google Inc. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the 'License');
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an 'AS IS' BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 'use strict';
 
 // [START all]
@@ -22,19 +7,77 @@ const functions = require('firebase-functions');
 
 // The Firebase Admin SDK to access the Firebase Realtime Database.
 const admin = require('firebase-admin');
+
 admin.initializeApp();
+
+const firestore = admin.firestore();
+
 // [END import]
 
 // If the number of likes gets deleted, recount the number of likes
 
+// recountPopulation({ name: 'Function Survivor Test' }, { params: { settlementId: 'KTOc2tlJOQPuefq7gpAN', survivorId: '1' } })
+
 exports.recountPopulation = functions.firestore
-	.document('settlements/{settlementID}/survivors/{survivorsID}')
-	.onCreate((event, context) => {
-		console.log('recount started', context);
+	// ('settlements/KTOc2tlJOQPuefq7gpAN/survivors/3EIetaWMMd0QCZMIWN3n')
+	.document('settlements/{settlementId}/survivors/{survivorId}')
+	.onCreate((snap, context) => {
+		// console.log('context', context);
+		// console.warn(event);
+		// console.warn(context);
+		// console.log('recount started', context);
+		// console.log(context);
+		// console.log('recount started', context);
+		// console.log(context);
+		// console.log('data', snap.data());
+
+		// Uncomment when done testing
+		// const settlementRef = snap.ref;
+		// console.log('id', settlementRef.id);
+		// console.log('path', settlementRef.path);
+
+		// const ref = snap.ref.firestore.doc('settlements/KTOc2tlJOQPuefq7gpAN');
+
+		console.log(snap);
 		console.log(context);
-		const settlementRef = event.ref.parent.parent;
-		console.log('population');
-		console.log(settlementRef.child('population'));
+		const settlementId = context.params.settlementId;
+		const settlementRef = firestore.doc(`settlements/${settlementId}`);
+		const ref = firestore.collection(`settlements/${settlementId}/survivors`);
+		// const ref = settlementRef.survivors;
+		// console.warn('fef', ref);
+
+		// console.log(ref.size);
+		// console.log(ref);
+		console.log(ref.path);
+		console.log(snap.path);
+		return ref
+			.get()
+			.then(colSnap => {
+				// todo query data to check for alive people
+				const population = colSnap.size;
+				// console.log(colSnap.size);
+				// console.log('size', colSnap.doc().survivors.size);
+				// const pop = colSnap.data().population + 1;
+				// console.log('pop', pop);
+				// console.log('size', colSnap.data());
+				console.log('population', population);
+
+				return settlementRef.set({ population }, { merge: true });
+			})
+			.catch(err => console.warn(err));
+
+		// console.log(ref.get('name'));
+
+		// console.log(settlementRef.data());
+		// console.log('population');
+		// console.log(settlementRef.child('population'));
+
+		// console.log(snap.ref().parent().data());
+		// const settlementRef = snap.ref.parent.parent;
+		// console.log('settlementRef', settlementRef.child('population'));
+		// console.log('settlementRef', settlementRef.population));
+		// console.log('population');
+		// console.log(settlementRef.child('population'));
 		// console.log(settlementID);
 		// console.log(survivorsID);
 		// console.log(collectionRef.parent.data);
@@ -43,7 +86,7 @@ exports.recountPopulation = functions.firestore
 		// const countRef = collectionRef.population;
 		// console.log('pop 1', countRef);
 		// console.log('pop 2', collectionRef.parent.child('population'));
-		return true;
+		// return true;
 		// return admin
 		// 	.firestore()
 		// 	.collection('messages')
@@ -98,6 +141,7 @@ exports.makeUppercase = functions.firestore
 		// [END makeUppercaseTrigger]
 		// [START makeUppercaseBody]
 		// Grab the current value of what was written to the Realtime Database.
+		// console.log(snap);
 		const original = snap.data().original;
 		console.log('Uppercasing', context.params.documentId, original);
 		const uppercase = original.toUpperCase();

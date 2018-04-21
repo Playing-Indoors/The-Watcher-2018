@@ -26,13 +26,13 @@ import db from '@/firebase';
 export default {
 	data() {
 		return {
-			survivors: [],
+			survivors: []
 		};
 	},
 	firestore() {
 		return {
-			survivors: db.collection('survivors').orderBy('createdAt'),
+			survivors: db.collection('survivors').orderBy('createdAt')
 		};
-	},
+	}
 };
 </script>

@@ -42,16 +42,16 @@ export default {
 	components: { CoreButton },
 	props: {
 		name: {
-			type: String,
+			type: String
 		},
 		dirty: {
 			type: Boolean,
-			default: false,
-		},
+			default: false
+		}
 	},
 	data() {
 		return {
-			showModal: false,
+			showModal: false
 		};
 	},
 	methods: {
@@ -69,7 +69,7 @@ export default {
 		},
 		toggleModal() {
 			this.showModal = !this.showModal;
-		},
-	},
+		}
+	}
 };
 </script>

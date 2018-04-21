@@ -35,7 +35,7 @@ import { db } from '../main';
 export default {
 	name: 'HelloWorld',
 	props: {
-		msg: String,
+		msg: String
 	},
 	data() {
 		return {
@@ -43,7 +43,7 @@ export default {
 			boxes: [],
 			locations: [],
 			name: '',
-			image: '',
+			image: ''
 		};
 	},
 	// mounted() {
@@ -53,7 +53,7 @@ export default {
 	firestore() {
 		return {
 			locations: db.collection('locations').orderBy('createdAt'),
-			boxes: db.collection('boxes').orderBy('createdAt'),
+			boxes: db.collection('boxes').orderBy('createdAt')
 		};
 	},
 	methods: {
@@ -69,8 +69,8 @@ export default {
 				.collection('locations')
 				.doc(id)
 				.delete();
-		},
-	},
+		}
+	}
 	// firestore() {
 	// 	return {
 	// 		boxes: db.collection('boxes'),

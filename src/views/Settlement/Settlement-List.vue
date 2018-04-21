@@ -45,18 +45,18 @@ import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
 export default {
 	components: {
 		TopBar,
-		LayoutGrid,
+		LayoutGrid
 	},
 	data() {
 		return {
-			settlements: [],
+			settlements: []
 		};
 	},
 	firestore() {
 		return {
-			settlements: db.collection('settlements').orderBy('dateModified', 'desc'),
+			settlements: db.collection('settlements').orderBy('dateModified', 'desc')
 			// settlements: db.collection('settlements'),
 		};
-	},
+	}
 };
 </script>
