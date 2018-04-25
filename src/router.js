@@ -82,13 +82,10 @@ const router = new Router({
 			redirect: '/'
 		},
 		{
-			path: '/settlements/:settlementId/survivors',
+			path: '/settlements/:settlementId/survivors/:survivorId',
 			name: 'Survivors',
 			component: SurvivorsManage,
-			props: route => ({
-				settlementId: route.params.settlementId,
-				survivors: !route.query.s || route.query.s.split(',')
-			}),
+			props: true,
 			meta: {
 				requiresAuth: true
 			}

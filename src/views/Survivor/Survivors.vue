@@ -30,24 +30,35 @@ Can we add a "current user panel"?
 					>
 						x
 					</button>
-					<the-hunt :settlementId="settlementId" />
+					<the-hunt
+						:activeSurvivorId="survivorId"
+						:settlementId="settlementId"
+					/>
 				</div>
 			</template>
 		</top-bar>
 		<div class="flex">
 			<survivor
-				v-for="(survivor, idx) in survivors"
-				:key="idx"
-				:survivorId="survivor"
+				:survivorId="survivorId"
 				:settlementId="settlementId"
 				class="flex-1"
-				:id="survivor"
+			/>
+			<survivor
+				v-for="(survivor, idx) in eligibleHunters"
+				v-if="idx < showHuntCount"
+				:key="idx"
+				:survivorId="survivor.survivorId"
+				:settlementId="settlementId"
+				class="flex-1"
 			/>
 		</div>
   </div>
 </template>
 
 <script>
+import debounce from 'lodash/debounce';
+
+import db from '@/firebase';
 import TopBar from '@/components/TopBar/TopBar';
 import Survivor from './Survivor';
 import TheHunt from './TheHunt';
@@ -59,6 +70,10 @@ export default {
 		TheHunt
 	},
 	props: {
+		survivorId: {
+			type: String,
+			required: true
+		},
 		settlementId: {
 			type: String,
 			required: true
@@ -69,13 +84,49 @@ export default {
 	},
 	data() {
 		return {
-			huntVisible: false
+			hunting: [],
+			huntVisible: false,
+			showHuntCount: 0
 		};
+	},
+	computed: {
+		eligibleHunters() {
+			return this.hunting.filter(survivor => {
+				if (survivor.id === this.survivorId) {
+					return false;
+				}
+				if (!survivor.visible) {
+					return false;
+				}
+				return true;
+			});
+		}
+	},
+	firestore() {
+		return {
+			hunting: db.collection(`settlements/${this.settlementId}/hunting`)
+		};
+	},
+	mounted: function() {
+		this.calcViewport();
+		window.addEventListener('resize', this.calcViewportDebounce);
+	},
+	beforeDestroy: function() {
+		window.removeEventListener('resize', this.calcViewportDebounce);
 	},
 	methods: {
 		toggleHunt(toggle = !this.huntVisible) {
 			this.huntVisible = toggle;
-		}
+		},
+		calcViewport() {
+			const width = window.innerWidth;
+			// 400 is smallest a survivor should be
+			// we subtract one because we always show the active survivor
+			this.showHuntCount = this.showHuntcount = Math.floor(width / 400) - 1;
+		},
+		calcViewportDebounce: debounce(function() {
+			this.calcViewport();
+		}, 500)
 	}
 };
 </script>

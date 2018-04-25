@@ -8,17 +8,18 @@
 			class="flex items-center"
 		>
 			<router-link
-				class="flex-1"
+				class="flex-1 text-white no-underline"
+				:class="survivor.survivorId !== activeSurvivorId || 'text-yellow'"
 				:to="{
 					name: 'Survivors',
-					query: {
-						s: survivor.id
+					params: {
+						survivorId: survivor.survivorId
 					}
 				}"
 			>
 				{{huntedLookup(survivor.survivorId).name}}
 			</router-link>
-			<div class="flex">
+			<div class="flex items-center">
 				<!-- <core-button
 					v-if="idx !== 0"
 					color="text"
@@ -40,6 +41,16 @@
 					class="text-sm"
 					@click="removeHunted(survivor.id)"
 				>|-|</core-button> -->
+				<span v-if="survivor.survivorId === activeSurvivorId">Active&nbsp;</span>
+				<core-button
+					v-else
+					@click="toggleVisible(survivor.id, !survivor.visible)"
+					color="text"
+					class="text-sm"
+				>
+					<template v-if="survivor.visible">hide</template>
+					<template v-else>show</template>
+				</core-button>
 				<core-button
 					color="red"
 					class="text-sm"
@@ -77,6 +88,10 @@ export default {
 		settlementId: {
 			type: String,
 			required: true
+		},
+		activeSurvivorId: {
+			type: String,
+			default: ''
 		}
 	},
 	data() {
@@ -107,6 +122,11 @@ export default {
 			if (id && !this.hunting.find(survivor => survivor.survivorId === id)) {
 				this.$firestoreRefs.hunting.add({ survivorId: id });
 			}
+		},
+		toggleVisible(id, visible) {
+			db
+				.doc(`settlements/${this.settlementId}/hunting/${id}`)
+				.update({ visible });
 		},
 		removeHunted(id) {
 			db.doc(`settlements/${this.settlementId}/hunting/${id}`).delete();

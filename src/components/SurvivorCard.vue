@@ -3,8 +3,8 @@
 		v-if="survivor"
 		:to="{
 			name: 'Survivors',
-			query: {
-				s: survivor.id
+			params: {
+				survivorId: survivor.id
 			}
 
 		}"

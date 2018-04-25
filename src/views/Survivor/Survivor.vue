@@ -17,13 +17,12 @@
 		<top-bar>
 			{{survivor.name}}
 		</top-bar>
-		<core-button @click="bind">bind</core-button>
 		<div class="bg-black flex text-xxs">
 			<button class="flex-auto text-yellow p-1 border-b-2 border-yellow" type="button">Survivor Sheet</button>
 			<button class="flex-auto text-grey p-1 border-b-2 border-grey-dark" type="button">Severe Injuries</button>
 			<button class="flex-auto text-grey p-1 border-b-2 border-grey-dark" type="button">Additional Information</button>
 		</div>
-		<layout-grid fluid>
+		<layout-grid>
 			<div v-if="hunting" class="span-6 hidden">
 				<h2>Hunting Party</h2>
 				<div
@@ -147,6 +146,11 @@ export default {
 		settlementId: {
 			type: String,
 			required: true
+		},
+		// Only uses for shadow /shrug
+		partOfGroup: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
@@ -215,13 +219,6 @@ export default {
 	// 	next();
 	// },
 	methods: {
-		bind() {
-			console.log('bind', this.survivorId);
-			this.$bind(
-				'survivor',
-				db.doc(`settlements/${this.settlementId}/survivors/${this.survivorId}`)
-			);
-		},
 		huntedLookup(id) {
 			return this.survivors.find(survivor => survivor.id === id);
 		},
