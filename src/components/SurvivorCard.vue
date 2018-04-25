@@ -2,10 +2,11 @@
 	<router-link
 		v-if="survivor"
 		:to="{
-			name: 'Survivor',
-			params: {
-				survivorId: survivor.id
+			name: 'Survivors',
+			query: {
+				s: survivor.id
 			}
+
 		}"
 		class="shadow hover:shadow-lg bg-grey-dark p-4 flex w-full text-white no-underline"
 	>

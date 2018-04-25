@@ -7,6 +7,9 @@ import firebase from 'firebase';
 import './registerServiceWorker';
 import './firebase';
 
+// const settings = { /* your settings... */ timestampsInSnapshots: true };
+// firestore.settings(settings);
+
 Vue.use(VueFire);
 
 Vue.config.productionTip = false;

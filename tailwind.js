@@ -44,7 +44,7 @@ View the full documentation at https://tailwindcss.com.
 
 let colors = {
 	transparent: 'transparent',
-	overlay: 'hsla(0, 0%, 0%, 0.8)',
+	overlay: 'hsla(0, 0%, 0%, 0.94)',
 	inherit: 'inherit',
 
 	black: '#000000',

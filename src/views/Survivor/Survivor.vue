@@ -13,22 +13,18 @@
 </docs>
 
 <template>
-	<div>
+	<div v-if="survivor">
 		<top-bar>
 			{{survivor.name}}
-			<router-link
-				slot="left"
-				class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
-				:to="{ name: 'Settlement' }"
-			>
-				&lt;
-			</router-link>
 		</top-bar>
-		<div class="">
-
-			</div>
-		<layout-grid>
-			<div v-if="hunting" class="span-6">
+		<core-button @click="bind">bind</core-button>
+		<div class="bg-black flex text-xxs">
+			<button class="flex-auto text-yellow p-1 border-b-2 border-yellow" type="button">Survivor Sheet</button>
+			<button class="flex-auto text-grey p-1 border-b-2 border-grey-dark" type="button">Severe Injuries</button>
+			<button class="flex-auto text-grey p-1 border-b-2 border-grey-dark" type="button">Additional Information</button>
+		</div>
+		<layout-grid fluid>
+			<div v-if="hunting" class="span-6 hidden">
 				<h2>Hunting Party</h2>
 				<div
 					v-for="survivor in hunting"
@@ -99,7 +95,7 @@
 			</box-widget>
 			<box-widget name="Fighting Arts" class="span-6">
 				None
-				{{fightingArts}}
+				<!-- {{fightingArts}} -->
 			</box-widget>
 			<box-widget name="Disorders" class="span-6">
 				None
@@ -200,16 +196,32 @@ export default {
 			survivors: db.collection(`settlements/${this.settlementId}/survivors`)
 		};
 	},
-	beforeRouteUpdate(to, from, next) {
-		this.$bind(
-			'survivor',
-			db.doc(
-				`settlements/${this.settlementId}/survivors/${to.params.survivorId}`
-			)
-		);
-		next();
+	watch: {
+		survivorId() {
+			console.log('change', this.survivorId);
+			this.$bind(
+				'survivor',
+				db.doc(`settlements/${this.settlementId}/survivors/${this.survivorId}`)
+			).then(e => console.log(e));
+		}
 	},
+	// beforeRouteUpdate(to, from, next) {
+	// 	this.$bind(
+	// 		'survivor',
+	// 		db.doc(
+	// 			`settlements/${this.settlementId}/survivors/${to.params.survivorId}`
+	// 		)
+	// 	);
+	// 	next();
+	// },
 	methods: {
+		bind() {
+			console.log('bind', this.survivorId);
+			this.$bind(
+				'survivor',
+				db.doc(`settlements/${this.settlementId}/survivors/${this.survivorId}`)
+			);
+		},
 		huntedLookup(id) {
 			return this.survivors.find(survivor => survivor.id === id);
 		},

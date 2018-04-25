@@ -6,6 +6,7 @@ import SettlementsNew from '@/views/Settlement/Settlement-New';
 import SettlementsEdit from '@/views/Settlement/Settlement';
 import SurvivorNew from '@/views/Survivor/Survivor-New';
 import SurvivorManage from '@/views/Survivor/Survivor';
+import SurvivorsManage from '@/views/Survivor/Survivors';
 import Login from '@/views/Login.vue';
 import Logout from '@/views/Logout.vue';
 import About from '@/views/About.vue';
@@ -80,6 +81,31 @@ const router = new Router({
 			path: '/settlements/:settlementId',
 			redirect: '/'
 		},
+		{
+			path: '/settlements/:settlementId/survivors',
+			name: 'Survivors',
+			component: SurvivorsManage,
+			props: route => ({
+				settlementId: route.params.settlementId,
+				survivors: !route.query.s || route.query.s.split(',')
+			}),
+			meta: {
+				requiresAuth: true
+			}
+		},
+		// {
+		// 	path: '/settlements/:settlementId/survivors/:survivorId',
+		// 	name: 'Survivors',
+		// 	component: SurvivorsManage,
+		// 	props: route => ({
+		// 		survivorId: route.params.survivorId,
+		// 		settlementId: route.params.settlementId,
+		// 		survivors: !route.query.s || route.query.s.split(',')
+		// 	}),
+		// 	meta: {
+		// 		requiresAuth: true
+		// 	}
+		// },
 		{
 			path: '/settlements/:settlementId/survivor/:survivorId',
 			name: 'Survivor',

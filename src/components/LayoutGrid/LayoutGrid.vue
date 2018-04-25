@@ -1,7 +1,6 @@
 <template>
 	<div
 		:class="[$style.layout, myClass]"
-		class="max-w-sm mx-auto"
 	>
 		<slot />
 	</div>
@@ -17,11 +16,16 @@ export default {
 		columns: {
 			type: Number,
 			default: 6
+		},
+		fluid: {
+			type: Boolean,
+			default: false
 		}
 	},
 	computed: {
 		myClass() {
 			return {
+				'max-w-sm mx-auto': !this.fluid,
 				'grid-contents': this.contents,
 				'columns-1': this.columns === 1,
 				'columns-2': this.columns === 2,
