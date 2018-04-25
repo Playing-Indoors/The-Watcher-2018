@@ -21,6 +21,6 @@
 		"mocha": "^3.2.0",
 		"sinon": "^1.17.7"
 	},
-	"node": ">=8",
+	"engines": { "node": ">=8 <10" },
 	"private": true
 }
