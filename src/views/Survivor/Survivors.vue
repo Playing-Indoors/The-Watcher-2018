@@ -92,7 +92,7 @@ export default {
 	computed: {
 		eligibleHunters() {
 			return this.hunting.filter(survivor => {
-				if (survivor.id === this.survivorId) {
+				if (survivor.survivorId === this.survivorId) {
 					return false;
 				}
 				if (!survivor.visible) {
