@@ -1,16 +1,15 @@
 {
 	"name": "the-watcher",
 	"version": "0.1.0",
-	"engines": {
-		"node": ">=8.10"
-	},
 	"private": true,
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
-		"lint": "vue-cli-service lint",
 		"test": "vue-cli-service lint",
-		"functions": "firebase deploy --only functions"
+		"e2e": "vue-cli-service e2e",
+		"lint": "vue-cli-service lint",
+		"functions": "firebase deploy --only functions",
+		"e2e:open": "vue-cli-service e2e:open"
 	},
 	"dependencies": {
 		"firebase": "^4.12.0",
@@ -23,6 +22,7 @@
 	},
 	"devDependencies": {
 		"@vue/cli-plugin-babel": "^3.0.0-beta.6",
+		"@vue/cli-plugin-e2e-cypress": "^3.0.0-beta.7",
 		"@vue/cli-plugin-eslint": "^3.0.0-beta.6",
 		"@vue/cli-plugin-pwa": "^3.0.0-beta.6",
 		"@vue/cli-service": "^3.0.0-beta.6",
@@ -38,22 +38,15 @@
 		"tailwindcss": "^0.5.1",
 		"vue-template-compiler": "^2.5.13"
 	},
-	"browserslist": [
-		"> 1%",
-		"last 2 versions",
-		"not ie <= 8"
-	],
+	"browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
+	"engines": {
+		"node": ">=8.10 <10"
+	},
 	"gitHooks": {
 		"pre-commit": "lint-staged"
 	},
 	"lint-staged": {
-		"src/**/*.js": [
-			"vue-cli-service lint",
-			"git add"
-		],
-		"src/**/*.vue": [
-			"vue-cli-service lint",
-			"git add"
-		]
+		"src/**/*.js": ["vue-cli-service lint", "git add"],
+		"src/**/*.vue": ["vue-cli-service lint", "git add"]
 	}
 }
