@@ -19,6 +19,8 @@
 			:step="step"
 			@blur="$emit('blur')"
 			@focus="$emit('focus')"
+			:name="name"
+			:data-test="dataTest"
 		>
 	</div>
 </template>
@@ -66,6 +68,12 @@ export default {
 		step: {
 			type: Number,
 			default: null
+		},
+		name: {
+			type: String
+		},
+		dataTest: {
+			type: String
 		}
 	},
 	methods: {

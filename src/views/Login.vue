@@ -18,18 +18,21 @@ Improvement
 				label="Email"
 				autofocus
 				required
+				name="email"
 			/>
 			<core-input
 				v-model="password"
 				label="Password"
 				type="password"
 				required
+				name="password"
 			/>
 			<div
 				v-if="error"
 				class="bg-red p-4"
+				data-test="error"
 			>{{message}}</div>
-			<core-button submit>Login</core-button>
+			<core-button submit data-test="submit">Login</core-button>
 			<div class="flex justify-between">
 				<core-button color="text" @click="forgot()">Forgot Password</core-button>
 				<core-button color="text" @click="register()">Create Account</core-button>
