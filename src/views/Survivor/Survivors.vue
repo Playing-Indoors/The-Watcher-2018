@@ -119,9 +119,7 @@ export default {
 			this.huntVisible = toggle;
 		},
 		calcViewport() {
-			// NOT REALLY HAPPY WITH THIS DUE TO NOT SUPPORTING ZOOM!
-			// DO I JUST ACCEPT DEFEAT AND USE BREAKPOINTS??!?
-			const width = window.innerWidth;
+			const width = document.documentElement.clientWidth;
 			// 400 is smallest a survivor should be
 			// we subtract one because we always show the active survivor
 			this.showHuntCount = this.showHuntcount = Math.floor(width / 400) - 1;

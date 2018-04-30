@@ -33,6 +33,8 @@
 					</div>
 				</router-link>
 			</transition-group>
+
+			<core-button color="text" to="/logout">Log Out</core-button>
 		</layout-grid>
   </div>
 </template>
@@ -41,11 +43,13 @@
 import db from '@/firebase';
 import TopBar from '@/components/TopBar/TopBar';
 import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
+import CoreButton from '@/components/CoreButton/CoreButton';
 
 export default {
 	components: {
 		TopBar,
-		LayoutGrid
+		LayoutGrid,
+		CoreButton
 	},
 	data() {
 		return {

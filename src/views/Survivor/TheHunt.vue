@@ -41,16 +41,18 @@
 					class="text-sm"
 					@click="removeHunted(survivor.id)"
 				>|-|</core-button> -->
-				<span v-if="survivor.survivorId === activeSurvivorId">Active&nbsp;</span>
-				<core-button
-					v-else
-					@click="toggleVisible(survivor.id, !survivor.visible)"
-					color="text"
-					class="text-sm"
-				>
-					<template v-if="survivor.visible">hide</template>
-					<template v-else>show</template>
-				</core-button>
+				<template v-if="activeSurvivorId">
+					<span v-if="survivor.survivorId === activeSurvivorId">Active&nbsp;</span>
+					<core-button
+						v-else
+						@click="toggleVisible(survivor.id, !survivor.visible)"
+						color="text"
+						class="text-sm"
+					>
+						<template v-if="survivor.visible">hide</template>
+						<template v-else>show</template>
+					</core-button>
+				</template>
 				<core-button
 					color="red"
 					class="text-sm"

@@ -20,63 +20,27 @@
 				+
 			</router-link>
 		</top-bar>
-		<layout-grid contents :columns="1">
-			<div>
-				<h1>The Hunt</h1>
-				<core-select
-					label="Choose survivor to add to the hunt"
-					placeholder="- -"
-					:options="survivors"
-					optionKey="id"
-					optionText="name"
-					@input="addToHunt"
-				/>
-				<div
-					v-for="survivor in hunting"
-					:key="survivor.id"
-				>
-					<survivor-card
-						v-if="huntedLookup(survivor.survivorId)"
-						:survivor="huntedLookup(survivor.survivorId)"
-					/>
-					<core-button color="red" class="text-sm" @click="removeHunted(survivor.id)">Remove</core-button>
-				</div>
-
-			</div>
-			<div>
-				<h1>Survivors</h1>
-			</div>
-			<div v-if="survivors && survivors.length === 0">
-				<div class="bg-red p-4">Sorry no survivors</div>
-			</div>
-			<transition-group tag="div" name="transition-list">
-				<survivor-card
-					v-for="survivor in survivors"
-					:key="survivor.id"
-					:survivor="survivor"
-				/>
-			</transition-group>
-		</layout-grid>
+		<div class="bg-black flex text-xxs text-center">
+			<router-link
+				:to="{ name: 'Settlement' }"
+				class="flex-auto no-underline text-grey p-1 border-b-2 border-grey-dark hover:text-yellow"
+				active-class="text-yellow border-yellow"
+				exact
+			>Alive</router-link>
+			<router-link
+				:to="{ name: 'SettlementDead' }"
+				class="flex-auto no-underline text-grey p-1 border-b-2 border-grey-dark hover:text-yellow"
+				active-class="text-yellow border-yellow"
+			>Dead</router-link>
+			<router-link
+				:to="{ name: 'SettlementHunt' }"
+				class="flex-auto no-underline text-grey p-1 border-b-2 border-grey-dark hover:text-yellow"
+				active-class="text-yellow border-yellow"
+			>The Hunt</router-link>
+		</div>
+		<router-view />
   </div>
 </template>
-
-		<!-- <br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<div class="span-6 border-t pt-4 text-center">edits</div>
-		<div class="span-6">
-			Name:
-			<input type="text" v-model="settlement.name" />
-			<br />
-			<div>Created: {{settlement.dateCreated}}</div>
-			<div>Modified: {{settlement.dateModified}}</div>
-			<div>Population: {{settlement.population}}</div>
-			<button type="submit" class="bg-yellow" @click="handleSave">Save</button>
-		</div>
-  </div> -->
 
 <script>
 import db from '@/firebase';
