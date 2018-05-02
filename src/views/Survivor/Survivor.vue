@@ -1,15 +1,10 @@
 <docs>
-
 	wrapper - handles popup logic
 		title
 		display slot
 		popup slot
 		saves obj
 		reset obj
-
-
-
-
 </docs>
 
 <template>
@@ -17,126 +12,57 @@
 		<top-bar>
 			{{survivor.name}}
 		</top-bar>
-		<div class="bg-black flex text-xxs">
-			<button class="flex-auto text-yellow p-1 border-b-2 border-yellow" type="button">Survivor Sheet</button>
-			<button class="flex-auto text-grey p-1 border-b-2 border-grey-dark" type="button">Severe Injuries</button>
-			<button class="flex-auto text-grey p-1 border-b-2 border-grey-dark" type="button">Additional Information</button>
+		<div class="bg-black flex text-xxs text-center">
+			<button
+				class="flex-auto no-underline p-1 border-b-2 hover:text-yellow"
+				:class="tab === 'sheet' ? 'text-yellow border-yellow' : 'text-grey border-grey-dark'"
+				type="button"
+				@click="handleTab('sheet')"
+			>Survivor Sheet</button>
+			<button
+				class="flex-auto no-underline p-1 border-b-2 hover:text-yellow"
+				:class="tab === 'injuries' ? 'text-yellow border-yellow' : 'text-grey border-grey-dark'"
+				type="button"
+				@click="handleTab('injuries')"
+			>Severe Injuries</button>
+			<button
+				class="flex-auto no-underline p-1 border-b-2 hover:text-yellow"
+				:class="tab === 'info' ? 'text-yellow border-yellow' : 'text-grey border-grey-dark'"
+				type="button"
+				@click="handleTab('info')"
+			>Additional Information</button>
 		</div>
-		<layout-grid>
-			<div v-if="hunting" class="span-6 hidden">
-				<h2>Hunting Party</h2>
-				<div
-					v-for="survivor in hunting"
-					:key="survivor.id"
-				>
-					<survivor-card
-						v-if="huntedLookup(survivor.survivorId)"
-						:survivor="huntedLookup(survivor.survivorId)"
-					/>
-					<core-button color="red" class="text-sm" @click="removeHunted(survivor.id)">Remove</core-button>
-				</div>
-			</div>
-			<single-attribute
-				v-model="survivor.survival"
-				attribute="survival"
-				name="Survival"
-				:saveAttributes="saveAttributes"
-				class="span-2"
-			/>
-			<single-attribute
-				v-model="survivor.bleeding"
-				attribute="bleeding"
-				name="Bleeding"
-				:saveAttributes="saveAttributes"
-				class="span-2"
-			/>
-			<single-attribute
-				v-model="survivor.huntXP"
-				attribute="huntXP"
-				name="Hunt XP"
-				:saveAttributes="saveAttributes"
-				class="span-2"
-			/>
-			<single-attribute
-				v-model="survivor.courage"
-				attribute="courage"
-				name="Courage"
-				:saveAttributes="saveAttributes"
-				class="span-2"
-			/>
-			<single-attribute
-				v-model="survivor.understanding"
-				attribute="understanding"
-				name="Understanding"
-				:saveAttributes="saveAttributes"
-				class="span-2"
-			/>
-			<single-attribute
-				v-model="survivor.weaponXP"
-				attribute="weaponXP"
-				name="Weapon Proficiency"
-				:saveAttributes="saveAttributes"
-				class="span-2"
-			/>
-			<custom-attribute
-				:attributes="stats"
-				name="Stats"
-				:saveAttributes="saveAttributes"
-				class="span-6"
-			/>
-			<box-widget name="Armor" class="span-6">
-				<stat-number name="Insanity" :number="survivor.insanity" />
-				<stat-number name="Head" :number="survivor.head" />
-				<stat-number name="Arms" :number="survivor.arms" />
-				<stat-number name="Body" :number="survivor.body" />
-				<stat-number name="Waist" :number="survivor.waist" />
-				<stat-number name="Legs" :number="survivor.legs" />
-			</box-widget>
-			<box-widget name="Fighting Arts" class="span-6">
-				None
-				<!-- {{fightingArts}} -->
-			</box-widget>
-			<box-widget name="Disorders" class="span-6">
-				None
-			</box-widget>
-			<box-widget name="Abilities" class="span-6">
-				None
-			</box-widget>
-
-			<div class="span-6">
-				<input type="text" v-model="survivor.name" />
-				<button type="submit" @click="handleSave">Save</button>
-			</div>
-		</layout-grid>
+		<survivor-sheet
+			v-if="tab === 'sheet'"
+			:saveAttributes="saveAttributes"
+			:survivor="survivor"
+		/>
+		<survivor-injuries
+			v-else-if="tab === 'injuries'"
+			:saveAttributes="saveAttributes"
+			:survivor="survivor"
+		/>
+		<survivor-info
+			v-else-if="tab === 'info'"
+			:saveAttributes="saveAttributes"
+			:survivor="survivor"
+		/>
   </div>
 </template>
 
 <script>
 import db from '@/firebase';
-import fightingArts from '@/assets/game/fightingArts';
 import TopBar from '@/components/TopBar/TopBar';
-import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
-import BoxWidget from '@/components/BoxWidget';
-import SingleAttribute from '@/components/SingleAttribute';
-import CustomAttribute from '@/components/CustomAttribute';
-import StatNumber from '@/components/StatNumber';
-import StatAdjust from '@/components/StatAdjust';
-import StatAdjust2 from '@/components/StatAdjust2';
-import SurvivorCard from '@/components/SurvivorCard';
-import CoreButton from '@/components/CoreButton/CoreButton';
+import SurvivorSheet from '@/views/Survivor/Survivor-Sheet';
+import SurvivorInjuries from '@/views/Survivor/Survivor-Injuries';
+import SurvivorInfo from '@/views/Survivor/Survivor-Info';
 
 export default {
 	components: {
 		TopBar,
-		LayoutGrid,
-		BoxWidget,
-		CoreButton,
-		SingleAttribute,
-		CustomAttribute,
-		StatNumber,
-		StatAdjust,
-		StatAdjust2,
-		SurvivorCard
+		SurvivorSheet,
+		SurvivorInfo,
+		SurvivorInjuries
 	},
 	props: {
 		survivorId: {
@@ -155,10 +81,8 @@ export default {
 	},
 	data() {
 		return {
-			hunting: [],
-			survivor: {},
-			survivors: [],
-			fightingArts: fightingArts
+			tab: 'sheet',
+			survivor: {}
 		};
 	},
 	computed: {
@@ -195,9 +119,7 @@ export default {
 		return {
 			survivor: db.doc(
 				`settlements/${this.settlementId}/survivors/${this.survivorId}`
-			),
-			hunting: db.collection(`settlements/${this.settlementId}/hunting`),
-			survivors: db.collection(`settlements/${this.settlementId}/survivors`)
+			)
 		};
 	},
 	watch: {
@@ -219,11 +141,8 @@ export default {
 	// 	next();
 	// },
 	methods: {
-		huntedLookup(id) {
-			return this.survivors.find(survivor => survivor.id === id);
-		},
-		removeHunted(id) {
-			db.doc(`settlements/${this.settlementId}/hunting/${id}`).delete();
+		handleTab(name) {
+			this.tab = name;
 		},
 		handleSave() {
 			this.$firestoreRefs.survivor

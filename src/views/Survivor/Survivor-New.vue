@@ -83,7 +83,8 @@ export default {
 				arms: 0,
 				body: 0,
 				waist: 0,
-				legs: 0
+				legs: 0,
+				notes: ''
 			};
 
 			db
