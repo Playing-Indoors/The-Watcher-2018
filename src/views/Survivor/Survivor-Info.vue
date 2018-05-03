@@ -3,7 +3,6 @@
 		<core-input
 			v-model="name"
 			label="Name"
-			autofocus
 			required
 		/>
 		<core-select
@@ -49,7 +48,13 @@ export default {
 			notes: this.survivor.notes
 		};
 	},
-	// watch() {},
+	watch: {
+		survivor(survivor) {
+			this.name = survivor.name;
+			this.gender = survivor.gender;
+			this.notes = survivor.notes;
+		}
+	},
 	methods: {
 		save() {
 			this.saveAttributes({

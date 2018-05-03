@@ -1,27 +1,30 @@
 <template>
-	<layout-grid>
-		INJURIES
+	<layout-grid :columns="1">
+		<label class="block pb-1 text-xs">Head</label>
+		<div
+			v-for="(injury, index) in head"
+			:key="index"
+			class="flex items-center"
+		>
+			<label class="flex-1 text-xxs text-grey-light">{{injury.name}}</label>
+			<button
+				v-for="(value, index) in injury.values"
+				:key="index"
+				type="button"
+				class="w-4 h-4 block bg-grey rounded-full shadow ml-2"
+			></button>
+		</div>
 	</layout-grid>
 </template>
 
 <script>
 import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
-import BoxWidget from '@/components/BoxWidget';
-import SingleAttribute from '@/components/SingleAttribute';
-import CustomAttribute from '@/components/CustomAttribute';
-import StatNumber from '@/components/StatNumber';
-import StatAdjust from '@/components/StatAdjust';
-import StatAdjust2 from '@/components/StatAdjust2';
+import CheckboxMultiple from '@/components/CheckboxMultiple/CheckboxMultiple';
 
 export default {
 	components: {
 		LayoutGrid,
-		BoxWidget,
-		SingleAttribute,
-		CustomAttribute,
-		StatNumber,
-		StatAdjust,
-		StatAdjust2
+		CheckboxMultiple
 	},
 	props: {
 		survivor: {
@@ -32,6 +35,32 @@ export default {
 			type: Function,
 			default: () => {}
 		}
+	},
+	data() {
+		return {
+			head: [
+				{
+					name: 'Intracranial Hemorrhage',
+					count: 1,
+					values: [false]
+				},
+				{
+					name: 'Deaf',
+					count: 1,
+					values: [false]
+				},
+				{
+					name: 'Blind',
+					count: 2,
+					values: [true, false]
+				},
+				{
+					name: 'Shattered Jaw',
+					count: 2,
+					values: [true, false]
+				}
+			]
+		};
 	}
 };
 </script>

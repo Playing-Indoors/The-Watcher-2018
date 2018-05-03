@@ -19,6 +19,10 @@ import Survivors from '@/views/Survivors';
 import SurvivorsDetail from '@/views/Survivors-Detail';
 import SurvivorsGroup from '@/views/Survivors-Group';
 
+// Admin
+import AdminInjuries from '@/views/Admin/AdminInjuries';
+import AdminFightingArts from '@/views/Admin/AdminFightingArts';
+
 Vue.use(Router);
 
 const router = new Router({
@@ -47,6 +51,29 @@ const router = new Router({
 				requiresAuth: true
 			}
 		},
+
+		// #region Admin
+		{
+			path: '/admin/injuries',
+			name: 'AdminInjuries',
+			component: AdminInjuries,
+			meta: {
+				requiresAdmin: true,
+				requiresAuth: true
+			}
+		},
+		{
+			path: '/admin/fighting-arts',
+			name: 'AdminFightingArts',
+			component: AdminFightingArts,
+			meta: {
+				requiresAdmin: true,
+				requiresAuth: true
+			}
+		},
+		// #endregion
+
+		// #region Settlement
 		{
 			path: '/settlements',
 			name: 'Settlements',
