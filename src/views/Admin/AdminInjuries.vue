@@ -55,29 +55,39 @@ export default {
 	methods: {
 		rebuildCollection() {
 			console.log(injuries);
-			db
-				.collection('assets/rules/severe-injuries')
-				.add({ ...injuries[0] })
-				.then(docRef => {
-					console.log('Document written with ID: ', docRef.id);
-				})
-				.catch(error => {
-					console.error('Error adding document: ', error);
-				});
+			const batch = db.batch();
+			const ref = db.collection('assets/rules/severe-injuries');
+			Object.entries(injuries).forEach(injury => {
+				const key = injury[0];
+				const data = injury[1];
+				console.log(`Adding ${key}`, data);
+				batch.set(ref.doc(key), data);
+			});
+			batch.commit().then(res => console.log('success', res));
+			// db
+			// 	.collection('assets/rules/severe-injuries')
+			// 	.add({ ...injuries[0] })
+			// 	.then(docRef => {
+			// 		console.log('Document written with ID: ', docRef.id);
+			// 	})
+			// 	.catch(error => {
+			// 		console.error('Error adding document: ', error);
+			// 	});
 		},
 		handleCreate() {
-			db
-				.collection('assets/rules/severe-injuries')
-				.add({
-					name: this.name,
-					description: this.description
-				})
-				.then(docRef => {
-					console.log('Document written with ID: ', docRef.id);
-				})
-				.catch(error => {
-					console.error('Error adding document: ', error);
-				});
+			// db
+			// 	.collection('assets/rules/severe-injuries')
+			// 	.doc('testid')
+			// 	.set({
+			// 		name: this.name,
+			// 		description: this.description
+			// 	})
+			// 	.then(docRef => {
+			// 		console.log('Document written with ID: ', docRef);
+			// 	})
+			// 	.catch(error => {
+			// 		console.error('Error adding document: ', error);
+			// 	});
 		}
 	}
 };
