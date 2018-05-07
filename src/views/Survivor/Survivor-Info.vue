@@ -15,6 +15,7 @@
 			label="Notes"
 		/>
 		<core-button submit @click="save">Save</core-button>
+		<div>Log:</div>
 	</layout-grid>
 </template>
 

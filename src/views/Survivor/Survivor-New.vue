@@ -55,7 +55,13 @@ export default {
 	data() {
 		return {
 			name: 'Test Name',
-			gender: 'Male'
+			gender: 'Male',
+			injuries: []
+		};
+	},
+	firestore() {
+		return {
+			injuries: db.doc('assets/severe-injuries')
 		};
 	},
 	methods: {
@@ -84,7 +90,8 @@ export default {
 				body: 0,
 				waist: 0,
 				legs: 0,
-				notes: ''
+				notes: '',
+				'severe-injuries': this.injuries
 			};
 
 			db
@@ -93,7 +100,7 @@ export default {
 				.then(res => {
 					console.log('CREATED', res);
 					this.$router.push({
-						name: 'Survivor',
+						name: 'Survivors',
 						params: { survivorId: res.id }
 					});
 				})

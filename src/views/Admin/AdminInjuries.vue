@@ -17,6 +17,7 @@
 				/>
 				<core-button submit>Create</core-button>
 				<core-button @click="rebuildCollection()">rebuild</core-button>
+				<core-button @click="rebuildDoc()">doc</core-button>
 			</form>
 		</layout-grid>
 	</div>
@@ -38,21 +39,35 @@ export default {
 		CoreInput,
 		CoreButton
 	},
-	firestore() {
-		return {
-			injuries: db
-				.collection('assets/rules/severe-injuries')
-				.orderBy('name', 'desc')
-		};
-	},
+	// firestore() {
+	// 	return {
+	// 		injuries: db
+	// 			.collection('assets/rules/severe-injuries')
+	// 			.orderBy('name', 'desc')
+	// 	};
+	// },
 	data() {
 		return {
-			injuries: [],
 			name: '',
 			description: ''
 		};
 	},
 	methods: {
+		rebuildDoc() {
+			console.log(injuries);
+			db.doc('assets/severe-injuries').set({
+				...injuries
+			});
+			// db
+			// 	.collection('assets/rules/severe-injuries')
+			// 	.add({ ...injuries[0] })
+			// 	.then(docRef => {
+			// 		console.log('Document written with ID: ', docRef.id);
+			// 	})
+			// 	.catch(error => {
+			// 		console.error('Error adding document: ', error);
+			// 	});
+		},
 		rebuildCollection() {
 			console.log(injuries);
 			const batch = db.batch();

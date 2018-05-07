@@ -1,88 +1,125 @@
 export default {
 	blind: {
+		type: 'head',
 		limit: 2,
-		name: 'Blind'
+		name: 'Blind',
+		value: [false, false]
 	},
-	broken_arm: {
+	'broken-arm': {
+		type: 'arms',
 		name: 'Broken Arm',
-		limit: 2
-	},
-	broken_hip: {
-		name: 'Broken Hip',
-		disableDodge: true
-	},
-	broken_leg: {
 		limit: 2,
-		name: 'Broken Leg'
+		value: [false, false]
 	},
-	broken_rib: {
+	'broken-hip': {
+		type: 'waist',
+		name: 'Broken Hip',
+		disableDodge: true,
+		limit: 1,
+		value: [false]
+	},
+	'broken-leg': {
+		limit: 2,
+		type: 'legs',
+		name: 'Broken Leg',
+		value: [false, false]
+	},
+	'broken-rib': {
+		type: 'chest',
 		name: 'Broken Rib',
-		limit: 0
+		limit: 0,
+		value: [false, false, false, false, false]
 	},
 	contracture: {
+		type: 'arms',
 		name: 'Contracture',
-		limit: 0
+		limit: 0,
+		value: [false, false, false, false, false]
 	},
 	deaf: {
+		type: 'head',
 		name: 'Deaf',
-		limit: 1
-	},
-	destroyed_back: {
 		limit: 1,
-		name: 'Destroyed Back'
+		value: [false]
 	},
-	destroyed_genitals: {
+	'destroyed-back': {
+		limit: 1,
+		type: 'chest',
+		name: 'Destroyed Back',
+		value: [false]
+	},
+	'destroyed-genitals': {
+		type: 'waist',
 		name: 'Destroyed Genitals',
-		limit: 1
+		limit: 1,
+		value: [false]
 	},
-	dismembered_arm: {
+	'dismembered-arm': {
 		limit: 2,
-		name: 'Dismembered Arm'
+		type: 'arms',
+		name: 'Dismembered Arm',
+		value: [false, false]
 	},
-	dismembered_leg: {
+	'dismembered-leg': {
 		limit: 2,
 		disableDash: true,
-		name: 'Dismembered Leg'
+		type: 'legs',
+		name: 'Dismembered Leg',
+		value: [false, false]
 	},
-	gaping_chest_wound: {
+	'gaping-chest-wound': {
+		type: 'chest',
 		name: 'Gaping chest wound',
-		limit: 0
+		limit: 0,
+		value: [false, false, false, false, false]
 	},
 	hamstrung: {
 		limit: 1,
-		name: 'Hamstrung'
+		type: 'legs',
+		name: 'Hamstrung',
+		value: [false]
 	},
-	intestinal_prolapse: {
+	'intestinal-prolapse': {
 		limit: 1,
 		disableWaist: true,
-		name: 'Intestinal Prolapse'
+		type: 'waist',
+		name: 'Intestinal Prolapse',
+		value: [false]
 	},
-	intracranial_hemorrhage: {
+	'intracranial-hemorrhage': {
+		type: 'head',
 		name: 'Intracranial Hemorrhage',
 		limit: 1,
 		effects: {
 			disableSurvivalGain: true,
 			disableSurvivalUse: true
-		}
+		},
+		value: [false]
 	},
-	ruptured_muscle: {
+	'ruptured-muscle': {
 		effects: {
 			disableFightingArts: true
 		},
+		type: 'hands',
 		name: 'Ruptured Muscle',
-		limit: 1
+		limit: 1,
+		value: [false]
 	},
-	shattered_jaw: {
+	'shattered-jaw': {
+		type: 'head',
 		name: 'Shattered Jaw',
 		limit: 1,
 		effect: {
 			disableEncourage: true,
 			// TODO: change this?
 			disableConsume: true
-		}
+		},
+		value: [false]
 	},
-	warped_pelvis: {
+	'warped-pelvis': {
+		type: 'waist',
 		name: 'Warped Pelvis',
-		limit: 0
+		limit: 0,
+		value: [false, false, false, false, false]
 	}
 };

@@ -41,6 +41,8 @@
 			v-else-if="tab === 'injuries'"
 			:saveAttributes="saveAttributes"
 			:survivor="survivor"
+			:settlementId="settlementId"
+			:injuries="survivor['severe-injuries']"
 		/>
 		<survivor-info
 			v-else-if="tab === 'info'"

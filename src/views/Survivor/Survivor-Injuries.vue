@@ -1,33 +1,41 @@
 <template>
 	<layout-grid :columns="1">
-		<label class="block pb-1 text-xs">Head</label>
 		<div
-			v-for="(injury, index) in head"
-			:key="index"
-			class="flex items-center"
+			v-for="location in locations"
+			:key="location"
+			class="border-b border-grey"
 		>
-			<label class="flex-1 text-xxs text-grey-light">{{injury.name}}</label>
-			<button
-				v-for="(value, index) in injury.values"
-				:key="index"
-				type="button"
-				class="w-4 h-4 block bg-grey rounded-full shadow ml-2"
-			></button>
+			<label
+				class="block pb-1 text-xs capitalize"
+			>{{location}}</label>
+			<div
+				v-for="(injury, injuryKey) in injuries"
+				v-if="injury.type === location"
+				:key="injuryKey"
+				class="flex items-center my-2"
+			>
+				<label class="flex-1 text-xxs text-grey-light pl-2">{{injury.name}}</label>
+				<injuries-toggle
+					:id="injuryKey"
+					:injury="injury"
+					:saveAttributes="saveAttributes"
+				/>
+			</div>
 		</div>
 	</layout-grid>
 </template>
 
 <script>
 import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
-import CheckboxMultiple from '@/components/CheckboxMultiple/CheckboxMultiple';
+import InjuriesToggle from './Survivor-Injuries-Toggle';
 
 export default {
 	components: {
 		LayoutGrid,
-		CheckboxMultiple
+		InjuriesToggle
 	},
 	props: {
-		survivor: {
+		injuries: {
 			type: Object,
 			required: true
 		},
@@ -38,29 +46,25 @@ export default {
 	},
 	data() {
 		return {
-			head: [
-				{
-					name: 'Intracranial Hemorrhage',
-					count: 1,
-					values: [false]
-				},
-				{
-					name: 'Deaf',
-					count: 1,
-					values: [false]
-				},
-				{
-					name: 'Blind',
-					count: 2,
-					values: [true, false]
-				},
-				{
-					name: 'Shattered Jaw',
-					count: 2,
-					values: [true, false]
-				}
-			]
+			locations: ['head', 'arms', 'chest', 'waist', 'legs']
 		};
+	},
+	methods: {
+		handleInjuryToggle(key) {
+			const field = `severe-injuries.${key}.value`;
+			this.saveAttributes({
+				[field]: this.injuries[key].value
+			});
+			// console.log(this.injuries);
+			// db
+			// 	.doc(
+			// 		`settlements/${this.settlementId}/survivors/${
+			// 			this.survivor.id
+			// 		}/severe-injuries/${id}`
+			// 	)
+			// 	.update(this.injuries[index])
+			// 	.then(res => console.log('saved', res));
+		}
 	}
 };
 </script>
