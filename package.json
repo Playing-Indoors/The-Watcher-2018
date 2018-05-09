@@ -9,6 +9,7 @@
 		"e2e": "vue-cli-service e2e",
 		"lint": "vue-cli-service lint",
 		"functions": "firebase deploy --only functions",
+		"hosting": "firebase deploy --only hosting",
 		"e2e:open": "vue-cli-service e2e:open"
 	},
 	"dependencies": {
