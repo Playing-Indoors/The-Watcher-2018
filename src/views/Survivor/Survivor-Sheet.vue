@@ -65,10 +65,13 @@
 			<stat-number name="Waist" :number="survivor.waist" />
 			<stat-number name="Legs" :number="survivor.legs" />
 		</box-widget>
-		<box-widget name="Fighting Arts" class="span-6">
-			None
-			<!-- {{fightingArts}} -->
-		</box-widget>
+		<asset-attribute
+			v-model="survivor.fightingArts"
+			attribute="fightingArts"
+			name="Fighting Arts"
+			:saveAttributes="saveAttributes"
+			class="span-6"
+		/>
 		<box-widget name="Disorders" class="span-6">
 			None
 		</box-widget>
@@ -87,6 +90,7 @@ import fightingArts from '@/assets/game/fightingArts';
 import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
 import BoxWidget from '@/components/BoxWidget';
 import SingleAttribute from '@/components/SingleAttribute';
+import AssetAttribute from '@/components/AssetAttribute';
 import CustomAttribute from '@/components/CustomAttribute';
 import StatNumber from '@/components/StatNumber';
 import StatAdjust from '@/components/StatAdjust';
@@ -96,6 +100,7 @@ export default {
 	components: {
 		LayoutGrid,
 		BoxWidget,
+		AssetAttribute,
 		SingleAttribute,
 		CustomAttribute,
 		StatNumber,
