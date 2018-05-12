@@ -2,15 +2,17 @@
 	<div
 		class="flex flex-col"
 	>
+		<slide-y-up-transition tag="div" group>
+			<list-item
+				v-for="(asset, key) in survivorAssets"
+				:key="key"
+				class="mb-4"
+				:name="asset.name"
+				:description="asset.description"
+				@delete="removeAsset(key)"
+			/>
+		</slide-y-up-transition>
 
-		<list-item
-			v-for="(asset, key) in survivorAssets"
-			:key="key"
-			class="mb-4"
-			:name="asset.name"
-			:description="asset.description"
-			@delete="removeAsset(key)"
-		/>
 		<!-- https://projects.invisionapp.com/d/main#/console/9394408/237051717/preview -->
 
 		<select
@@ -30,6 +32,7 @@
 </template>
 
 <script>
+import { SlideYUpTransition } from 'vue2-transitions';
 import db from '@/firebase';
 import CoreButton from '@/components/CoreButton/CoreButton';
 import ListItem from '@/components/ListItem';
@@ -38,7 +41,7 @@ export default {
 	model: {
 		prop: 'survivorAssets'
 	},
-	components: { CoreButton, ListItem },
+	components: { CoreButton, ListItem, SlideYUpTransition },
 	props: {
 		survivorAssets: {
 			type: Object,
