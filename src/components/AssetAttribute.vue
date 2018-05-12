@@ -5,10 +5,9 @@
 		@confirm="handleConfirm()"
 		@cancel="handleCancel()"
 	>
-		{{value}} - -
-		<!-- <asset-render
+		<asset-render
 			:list="value"
-		/> -->
+		/>
 		<asset-adjust
 			slot="modal"
 			:attribute="attribute"
@@ -19,7 +18,6 @@
 </template>
 
 <script>
-import fightingArts from '@/assets/game/fightingArts.js';
 import BoxWidget from '@/components/BoxWidget2';
 import AssetAdjust from '@/components/AssetAdjust';
 import AssetRender from '@/components/AssetRender';
@@ -31,8 +29,8 @@ export default {
 			type: String
 		},
 		value: {
-			type: Array,
-			default: () => []
+			type: Object,
+			default: () => ({})
 		},
 		attribute: {
 			type: String,
@@ -45,7 +43,6 @@ export default {
 	},
 	data() {
 		return {
-			fightingArts,
 			tempValue: this.value
 		};
 	},

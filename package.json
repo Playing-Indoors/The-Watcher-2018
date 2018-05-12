@@ -18,6 +18,7 @@
 		"register-service-worker": "^1.2.0",
 		"vue": "^2.5.16",
 		"vue-router": "^3.0.1",
+		"vue2-transitions": "^0.2.3",
 		"vuefire": "^2.0.0-alpha.10",
 		"vuex": "^3.0.1"
 	},
@@ -39,7 +40,11 @@
 		"tailwindcss": "^0.5.3",
 		"vue-template-compiler": "^2.5.16"
 	},
-	"browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not ie <= 8"
+	],
 	"engines": {
 		"node": ">=8.10 <10"
 	},
@@ -47,7 +52,13 @@
 		"pre-commit": "lint-staged"
 	},
 	"lint-staged": {
-		"src/**/*.js": ["vue-cli-service lint", "git add"],
-		"src/**/*.vue": ["vue-cli-service lint", "git add"]
+		"src/**/*.js": [
+			"vue-cli-service lint",
+			"git add"
+		],
+		"src/**/*.vue": [
+			"vue-cli-service lint",
+			"git add"
+		]
 	}
 }

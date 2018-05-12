@@ -17,7 +17,7 @@
 				</div>
 			</button>
 			<div v-if="showModal" class="fixed pin bg-overlay flex flex-col justify-center items-center" @click.self="cancel()">
-				<div class="max-w-xs w-full">
+				<div class="max-w-xs w-full flex flex-col">
 					<div class="bg-grey-darkest p-4">
 						<header class="text-2xl text-center mb-4">{{name}}</header>
 						<slot

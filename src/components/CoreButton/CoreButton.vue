@@ -35,7 +35,7 @@ export default {
 	},
 	data() {
 		return {
-			baseClass: 'block py-3 px-4 w-full no-outline text-center'
+			baseClass: 'block py-3 px-4 no-outline text-center'
 		};
 	},
 	computed: {

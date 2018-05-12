@@ -2,57 +2,75 @@
 	<div
 		class="flex flex-col"
 	>
-		<div
-			v-for="asset in value"
-			:key="asset"
-			class="mb-4 flex items-center"
-		>
-			<div class="flex-grow w-full p-3 bg-grey">{{fightingArts[asset].name}}</div>
-			<core-button class="flex-1">?</core-button>
-			<core-button class="flex-1" color="red">x</core-button>
-		</div>
+
+		<list-item
+			v-for="(asset, key) in survivorAssets"
+			:key="key"
+			class="mb-4"
+			:name="asset.name"
+			:description="asset.description"
+			@delete="removeAsset(key)"
+		/>
 		<!-- https://projects.invisionapp.com/d/main#/console/9394408/237051717/preview -->
 
 		<select
-			v-if="value.length < 3"
-			class="bg-grey p-3 text-white"
+			v-if="Object.keys(survivorAssets).length < 3"
+			class="bg-grey p-3 text-white text-sm"
 			@input="updateValue($event.target.value)"
 		>
 			<option>- -</option>
 			<option
-				v-for="(option, key) in fightingArts"
-				v-if="value.indexOf(key) === -1"
+				v-for="(asset, key) in assets"
+				v-if="!survivorAssets[key]"
 				:key="key"
 				:value="key"
-			>{{option.name}}</option>
+			>{{asset.name}}</option>
 		</select>
 	</div>
 </template>
 
 <script>
-import fightingArts from '@/assets/game/fightingArts.js';
+import db from '@/firebase';
 import CoreButton from '@/components/CoreButton/CoreButton';
+import ListItem from '@/components/ListItem';
 
 export default {
-	components: { CoreButton },
+	model: {
+		prop: 'survivorAssets'
+	},
+	components: { CoreButton, ListItem },
 	props: {
-		value: {
-			type: Array,
-			required: true
+		survivorAssets: {
+			type: Object,
+			required: true,
+			default: () => ({})
 		},
 		attribute: {
 			type: String,
 			required: true
 		}
 	},
+	firestore() {
+		return {
+			assets: db.doc(`assets/${this.attribute}`)
+		};
+	},
 	data() {
 		return {
-			fightingArts
+			assets: []
 		};
 	},
 	methods: {
-		updateValue(value) {
-			this.$emit('input', [...this.value, value]);
+		updateValue(asset) {
+			this.$emit('input', {
+				...this.survivorAssets,
+				[asset]: this.assets[asset]
+			});
+		},
+		removeAsset(assetKey) {
+			const newList = { ...this.survivorAssets };
+			delete newList[assetKey];
+			this.$emit('input', newList);
 		}
 	}
 };

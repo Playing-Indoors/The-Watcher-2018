@@ -61,7 +61,7 @@ export default {
 	},
 	firestore() {
 		return {
-			injuries: db.doc('assets/severe-injuries')
+			injuries: db.doc('assets/severeInjuries')
 		};
 	},
 	methods: {
