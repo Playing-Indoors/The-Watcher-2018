@@ -29,6 +29,7 @@
 			name="Hunt XP"
 			:saveAttributes="saveAttributes"
 			class="span-2"
+			:max="15"
 		/>
 		<single-attribute
 			v-model="survivor.courage"
@@ -36,6 +37,7 @@
 			name="Courage"
 			:saveAttributes="saveAttributes"
 			class="span-2"
+			:max="9"
 		/>
 		<single-attribute
 			v-model="survivor.understanding"
@@ -43,6 +45,7 @@
 			name="Understanding"
 			:saveAttributes="saveAttributes"
 			class="span-2"
+			:max="9"
 		/>
 		<single-attribute
 			v-model="survivor.weaponXP"
@@ -50,6 +53,7 @@
 			name="Weapon Proficiency"
 			:saveAttributes="saveAttributes"
 			class="span-2"
+			:max="8"
 		/>
 		<custom-attribute
 			:attributes="stats"
@@ -69,7 +73,7 @@
 			v-model="survivor.fightingArts"
 			attribute="fightingArts"
 			name="Fighting Arts"
-			:limit="3"
+			:max="3"
 			:saveAttributes="saveAttributes"
 			class="span-6"
 		/>

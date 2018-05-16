@@ -16,7 +16,7 @@
 		<!-- https://projects.invisionapp.com/d/main#/console/9394408/237051717/preview -->
 
 		<select
-			v-if="limit === 0 || Object.keys(survivorAssets).length < limit"
+			v-if="max === 0 || Object.keys(survivorAssets).length < max"
 			class="bg-grey p-3 text-white text-sm"
 			@input="updateValue($event.target.value)"
 		>
@@ -52,7 +52,7 @@ export default {
 			type: String,
 			required: true
 		},
-		limit: {
+		max: {
 			type: Number,
 			default: 0
 		}

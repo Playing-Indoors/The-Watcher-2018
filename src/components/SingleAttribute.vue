@@ -9,6 +9,7 @@
 		<stat-adjust
 			slot="modal"
 			v-model="tempValue"
+			:max="max"
 		/>
 
 	</box-widget>
@@ -26,6 +27,10 @@ export default {
 			type: String
 		},
 		value: {
+			type: Number,
+			default: 0
+		},
+		max: {
 			type: Number,
 			default: 0
 		},

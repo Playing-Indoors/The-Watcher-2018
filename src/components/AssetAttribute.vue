@@ -10,7 +10,7 @@
 		/>
 		<asset-adjust
 			slot="modal"
-			:limit="limit"
+			:max="max"
 			:attribute="attribute"
 			v-model="tempValue"
 		/>
@@ -33,7 +33,7 @@ export default {
 			type: Object,
 			default: () => ({})
 		},
-		limit: {
+		max: {
 			type: Number,
 			default: 0
 		},
