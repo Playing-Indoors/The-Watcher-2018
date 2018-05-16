@@ -81,6 +81,7 @@
 			v-model="survivor.disorders"
 			attribute="disorders"
 			name="Disorders"
+			:max="3"
 			:saveAttributes="saveAttributes"
 			class="span-6"
 		/>
