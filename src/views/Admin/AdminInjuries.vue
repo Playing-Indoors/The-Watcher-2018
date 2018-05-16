@@ -9,6 +9,9 @@
 				<select v-model="asset">
 					<option value="severeInjuries">Severe Injuries</option>
 					<option value="fightingArts">Fighting Arts</option>
+					<option value="abilities">Abilities</option>
+					<option value="disorders">disorders</option>
+					<option value="impairments">impairments</option>
 				</select>
 				<!-- <core-input
 					v-model="name"
@@ -36,6 +39,9 @@ import CoreButton from '@/components/CoreButton/CoreButton';
 
 import severeInjuries from '@/assets/game/severeInjuries.js';
 import fightingArts from '@/assets/game/fightingArts.js';
+import abilities from '@/assets/game/abilitiesGroup.js';
+import disorders from '@/assets/game/disorders.js';
+import impairments from '@/assets/game/impairmentsGroup.js';
 
 export default {
 	components: {
@@ -62,7 +68,10 @@ export default {
 		rebuildDoc() {
 			const assets = {
 				fightingArts,
-				severeInjuries
+				severeInjuries,
+				abilities,
+				disorders,
+				impairments
 			};
 			db
 				.doc(`assets/${this.asset}`)
