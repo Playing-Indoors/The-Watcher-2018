@@ -69,15 +69,31 @@
 			v-model="survivor.fightingArts"
 			attribute="fightingArts"
 			name="Fighting Arts"
+			:limit="3"
 			:saveAttributes="saveAttributes"
 			class="span-6"
 		/>
-		<box-widget name="Disorders" class="span-6">
-			None
-		</box-widget>
-		<box-widget name="Abilities" class="span-6">
-			None
-		</box-widget>
+		<asset-attribute
+			v-model="survivor.disorders"
+			attribute="disorders"
+			name="Disorders"
+			:saveAttributes="saveAttributes"
+			class="span-6"
+		/>
+		<asset-attribute
+			v-model="survivor.abilities"
+			attribute="abilities"
+			name="Abilities"
+			:saveAttributes="saveAttributes"
+			class="span-6"
+		/>
+		<asset-attribute
+			v-model="survivor.impairments"
+			attribute="impairments"
+			name="Impairments"
+			:saveAttributes="saveAttributes"
+			class="span-6"
+		/>
 		<!-- <div class="span-6">
 			<input type="text" v-model="survivor.name" />
 			<button type="submit" @click="handleSave">Save</button>

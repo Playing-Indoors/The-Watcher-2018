@@ -162,16 +162,3 @@ export default {
 	}
 };
 </script>
-
-<style lang="scss" module>
-.layout {
-	display: grid;
-	grid-column-gap: 1rem;
-	grid-row-gap: 1rem;
-	grid-template-columns: repeat(6, 1fr);
-
-	> * {
-		grid-column-end: span 2;
-	}
-}
-</style>

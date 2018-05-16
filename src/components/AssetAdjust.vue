@@ -16,7 +16,7 @@
 		<!-- https://projects.invisionapp.com/d/main#/console/9394408/237051717/preview -->
 
 		<select
-			v-if="Object.keys(survivorAssets).length < 3"
+			v-if="limit === 0 || Object.keys(survivorAssets).length < limit"
 			class="bg-grey p-3 text-white text-sm"
 			@input="updateValue($event.target.value)"
 		>
@@ -51,6 +51,10 @@ export default {
 		attribute: {
 			type: String,
 			required: true
+		},
+		limit: {
+			type: Number,
+			default: 0
 		}
 	},
 	firestore() {
