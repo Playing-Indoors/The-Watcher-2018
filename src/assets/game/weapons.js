@@ -101,75 +101,75 @@ export default {
 		weapon_proficiency: 'sword',
 		weapon_name: 'sword'
 	},
-	clubSpecialization: {
+	specializationClub: {
 		name: 'Specialization - Club',
 		description:
 			'When attacking with a club, on a <b>perfect hit</b>, double your wound attempt total on the first selected hit location.<br/>Limit, once per attack.'
 	},
-	twilightSwordSpecialization: {
+	specializationTwilightSword: {
 		name: 'Specialization - Twilight Sword',
 		description:
 			"This sentient sword improves as it's used. Gain the effect as proficiency rank increases. Rank 2: Ignore <b>Cumbersome</b> on Twilight Sword. Rank 4: When attacking with the Twilight Sword, ignore <b>slow</b> and gain +2 speed. Rank 6: Twilight Sword gains <b>Deadly</b>.",
 		excluded_campaigns: ['people_of_the_stars', 'people_of_the_sun']
 	},
-	axeSpecialization: {
+	specializationAxe: {
 		name: 'Specialization - Axe',
 		description:
 			'When attacking with an axe, if your wound attempt fails, you may ignore it and attempt to wound the selected hit location again. Limit, once per attack.'
 	},
-	spearSpecialization: {
+	specializationSpear: {
 		name: 'Specialization - Spear',
 		description:
 			'When attacking with a spear, if you draw a <b>trap</b>, roll 1d10. On a 7+, cancel the <b>trap</b>. Discard it, then reshuffle the hit location discard into the hit location deck and draw a new card. Limit, once per round.'
 	},
-	fistAndToothSpecialization: {
+	specializationFistAndTooth: {
 		name: 'Specialization - Fist & Tooth',
 		description:
 			"You may stand (if knocked down) at the start of the monster's turn or the survivor's turn. Limit once per round."
 	},
-	grandWeaponSpecialization: {
+	specializationGrandWeapon: {
 		name: 'Specialization - Grand Weapon',
 		description:
 			'When attacking with a grand weapon, gain <i>+1 accuracy</i>.<br/>When attacking with a Grand Weapon during your act, if you critically wound, the monster is knocked down.'
 	},
-	whipSpecialization: {
+	specializationWhip: {
 		name: 'Specialization - Whip',
 		description:
 			'When you wound with a whip, instead of moving the top card of the AI deck into the wound stack, you may move the top card of the AI discard pile. Limit once per attack.'
 	},
-	shieldSpecialization: {
+	specializationShield: {
 		name: 'Specialization - Shield',
 		description:
 			'While a shield is in your gear grid, you are no longer knocked down after <b>collision</b> with a monster. While a shield is in your gear grid, add <font class="inline_shield">1</font> to all hit locations.'
 	},
-	swordSpecialization: {
+	specializationSword: {
 		name: 'Specialization - Sword',
 		description:
 			'When attacking with a sword, after drawing hit locations, make a wound attempt and then select a hit location to resolve with that result. Limit, once per attack.'
 	},
-	daggerSpecialization: {
+	specializationDagger: {
 		name: 'Specialization - Dagger',
 		description:
 			'When attacking with a Dagger, if a wound attempt fails, after performing any reactions, you may discard another drawn hit location card to attempt to wound that hit location again. Limit, once per attack.'
 	},
-	katanaSpecialization: {
+	specializationKatana: {
 		name: 'Specialization - Katana',
 		description:
 			'You may not select this as your weapon type.<br/>If you are <b>blind</b> and have 4+ levels of Katana proficiency, gain the following:<br/>On your first <b>Perfect Hit</b> each attack with a Katana, do not draw a hit location. The monster suffers 1 wound.',
 		expansion: 'sunstalker'
 	},
-	scytheSpecialization: {
+	specializationScythe: {
 		name: 'Specialization - Scythe',
 		description:
 			'When you critically wound with a scythe, roll 1d10. On a 6+, shuffle the hit location deck (do not shuffle unresolved hit locations).<br/>Limit, once per round.',
 		expansion: 'dragon_king'
 	},
-	bowSpecialization: {
+	specializationBow: {
 		name: 'Specialization - Bow',
 		description:
 			'When attacking with a bow, you may reroll any misses once. Limit, once per attack.'
 	},
-	katarSpecialization: {
+	specializationKatar: {
 		name: 'Specialization - Katar',
 		description:
 			'When attacking with a Katar, cancel reactions on the first selected hit location.'
