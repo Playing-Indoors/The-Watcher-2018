@@ -2,6 +2,6 @@
 	"root": true,
 	"extends": ["plugin:vue/essential", "@vue/prettier"],
 	"rules": {
-		"no-console": 1
+		"no-console": 0
 	}
 }
