@@ -5,7 +5,7 @@
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
-		"test": "vue-cli-service lint",
+		"test": "vue-cli-service test",
 		"e2e": "vue-cli-service e2e",
 		"lint": "vue-cli-service lint",
 		"functions": "firebase deploy --only functions",
@@ -40,11 +40,7 @@
 		"tailwindcss": "^0.5.3",
 		"vue-template-compiler": "^2.5.16"
 	},
-	"browserslist": [
-		"> 1%",
-		"last 2 versions",
-		"not ie <= 8"
-	],
+	"browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
 	"engines": {
 		"node": ">=8.10 <10"
 	},
@@ -52,13 +48,7 @@
 		"pre-commit": "lint-staged"
 	},
 	"lint-staged": {
-		"src/**/*.js": [
-			"vue-cli-service lint",
-			"git add"
-		],
-		"src/**/*.vue": [
-			"vue-cli-service lint",
-			"git add"
-		]
+		"src/**/*.js": ["vue-cli-service lint", "git add"],
+		"src/**/*.vue": ["vue-cli-service lint", "git add"]
 	}
 }
