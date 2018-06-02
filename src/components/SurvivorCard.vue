@@ -1,24 +1,24 @@
 <template>
-	<router-link
-		v-if="survivor"
-		:to="{
-			name: 'Survivors',
-			params: {
-				survivorId: survivor.id
-			}
+  <router-link
+    v-if="survivor"
+    :to="{
+      name: 'Survivors',
+      params: {
+        survivorId: survivor.id
+      }
 
-		}"
-		class="shadow hover:shadow-lg bg-grey-dark p-4 flex w-full text-white no-underline"
-	>
-		<div class="flex-1">
-			<div>{{survivor.name}}</div>
-			<div class="text-grey text-xs">Last Accessed*: {{survivor.dateModified}}</div>
-			<div class="text-grey text-xs">Created On: {{survivor.dateCreated}}</div>
-		</div>
-		<div class="text-grey text-xs">
-			Stat*: <span class="text-white">0</span>
-		</div>
-	</router-link>
+    }"
+    class="shadow hover:shadow-lg bg-grey-dark p-4 flex w-full text-white no-underline"
+  >
+    <div class="flex-1">
+      <div>{{survivor.name}}</div>
+      <div class="text-grey text-xs">Last Accessed*: {{survivor.dateModified}}</div>
+      <div class="text-grey text-xs">Created On: {{survivor.dateCreated}}</div>
+    </div>
+    <div class="text-grey text-xs">
+      Stat*: <span class="text-white">0</span>
+    </div>
+  </router-link>
 </template>
 
 <script>

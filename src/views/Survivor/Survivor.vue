@@ -1,54 +1,45 @@
-<docs>
-	wrapper - handles popup logic
-		title
-		display slot
-		popup slot
-		saves obj
-		reset obj
-</docs>
-
 <template>
-	<div v-if="survivor">
-		<top-bar>
-			{{survivor.name}}
-		</top-bar>
-		<div class="bg-black flex text-xxs text-center">
-			<button
-				class="flex-auto no-underline p-1 border-b-2 hover:text-yellow"
-				:class="tab === 'sheet' ? 'text-yellow border-yellow' : 'text-grey border-grey-dark'"
-				type="button"
-				@click="handleTab('sheet')"
-			>Survivor Sheet</button>
-			<button
-				class="flex-auto no-underline p-1 border-b-2 hover:text-yellow"
-				:class="tab === 'injuries' ? 'text-yellow border-yellow' : 'text-grey border-grey-dark'"
-				type="button"
-				@click="handleTab('injuries')"
-			>Severe Injuries</button>
-			<button
-				class="flex-auto no-underline p-1 border-b-2 hover:text-yellow"
-				:class="tab === 'info' ? 'text-yellow border-yellow' : 'text-grey border-grey-dark'"
-				type="button"
-				@click="handleTab('info')"
-			>Additional Information</button>
-		</div>
-		<survivor-sheet
-			v-if="tab === 'sheet'"
-			:saveAttributes="saveAttributes"
-			:survivor="survivor"
-		/>
-		<survivor-injuries
-			v-else-if="tab === 'injuries'"
-			:saveAttributes="saveAttributes"
-			:survivor="survivor"
-			:settlementId="settlementId"
-			:injuries="survivor['severe-injuries']"
-		/>
-		<survivor-info
-			v-else-if="tab === 'info'"
-			:saveAttributes="saveAttributes"
-			:survivor="survivor"
-		/>
+  <div v-if="survivor">
+    <top-bar>
+      {{survivor.name}}
+    </top-bar>
+    <div class="bg-black flex text-xxs text-center">
+      <button
+        :class="tab === 'sheet' ? 'text-yellow border-yellow' : 'text-grey border-grey-dark'"
+        class="flex-auto no-underline p-1 border-b-2 hover:text-yellow"
+        type="button"
+        @click="handleTab('sheet')"
+      >Survivor Sheet</button>
+      <button
+        :class="tab === 'injuries' ? 'text-yellow border-yellow' : 'text-grey border-grey-dark'"
+        class="flex-auto no-underline p-1 border-b-2 hover:text-yellow"
+        type="button"
+        @click="handleTab('injuries')"
+      >Severe Injuries</button>
+      <button
+        :class="tab === 'info' ? 'text-yellow border-yellow' : 'text-grey border-grey-dark'"
+        class="flex-auto no-underline p-1 border-b-2 hover:text-yellow"
+        type="button"
+        @click="handleTab('info')"
+      >Additional Information</button>
+    </div>
+    <survivor-sheet
+      v-if="tab === 'sheet'"
+      :save-attributes="saveAttributes"
+      :survivor="survivor"
+    />
+    <survivor-injuries
+      v-else-if="tab === 'injuries'"
+      :save-attributes="saveAttributes"
+      :survivor="survivor"
+      :settlement-id="settlementId"
+      :injuries="survivor['severe-injuries']"
+    />
+    <survivor-info
+      v-else-if="tab === 'info'"
+      :save-attributes="saveAttributes"
+      :survivor="survivor"
+    />
   </div>
 </template>
 

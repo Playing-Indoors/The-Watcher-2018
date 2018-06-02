@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="min-h-screen antialiased bg-grey-darkest text-white font-sans">
-		<router-view />
-		<button @click="checkPWA()">PWA</button>
+    <router-view />
+    <button @click="checkPWA()">PWA</button>
   </div>
 </template>
 

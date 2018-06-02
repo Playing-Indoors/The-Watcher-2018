@@ -1,14 +1,14 @@
 <template>
-	<component
-		:is="element"
-		:type="type"
-		:class="[baseClass, colorClass]"
-		@click="$emit('click')"
-		@blur="$emit('blur')"
-		:to="to"
-	>
-		<slot></slot>
-	</component>
+  <component
+    :is="element"
+    :type="type"
+    :class="[baseClass, colorClass]"
+    :to="to"
+    @click="$emit('click')"
+    @blur="$emit('blur')"
+  >
+    <slot/>
+  </component>
 </template>
 
 <script>
@@ -30,7 +30,8 @@ export default {
 			validator: size => ['normal'].indexOf(size) !== -1
 		},
 		to: {
-			type: [String, Object]
+			type: [String, Object],
+			default: null
 		}
 	},
 	data() {

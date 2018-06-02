@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" :class="bg">
+  <div :class="bg" class="hello">
     <h1>{{ msg }}</h1>
 
     <article v-for="(location, idx) in locations" :key="idx">
@@ -17,13 +17,13 @@
       <button type="submit" class="button is-success">Add New Location</button>
     </form>
 
-		<p
-			v-for="(box, index) in boxes"
-			:key="index"
-		>
-			{{box}}
-		</p>
-		<button @click="addLocation('testbox')">add</button>
+    <p
+      v-for="(box, index) in boxes"
+      :key="index"
+    >
+      {{box}}
+    </p>
+    <button @click="addLocation('testbox')">add</button>
   </div>
 </template>
 
@@ -35,7 +35,10 @@ import { db } from '../main';
 export default {
 	name: 'HelloWorld',
 	props: {
-		msg: String
+		msg: {
+			type: String,
+			default: ''
+		}
 	},
 	data() {
 		return {

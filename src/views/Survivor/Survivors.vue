@@ -1,57 +1,53 @@
-<docs>
-Can we add a "current user panel"?
-</docs>
-
 <template>
   <div>
-		<top-bar>
-			Hunting Party
-			<router-link
-				slot="left"
-				class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
-				:to="{ name: 'Settlement' }"
-			>
-				&lt;
-			</router-link>
-			<template slot="right">
-				<button
-					@click="toggleHunt()"
-					class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
-				>
-					&oplus;
-				</button>
-				<div
-					:class="huntVisible || 'hidden'"
-					class="bg-overlay fixed pin z-50"
-				>
-					<button
-						@click="toggleHunt()"
-						class="absolute pin-r pin-t mr-4 mt-4 inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
-					>
-						x
-					</button>
-					<the-hunt
-						:activeSurvivorId="survivorId"
-						:settlementId="settlementId"
-					/>
-				</div>
-			</template>
-		</top-bar>
-		<div class="flex">
-			<survivor
-				:survivorId="survivorId"
-				:settlementId="settlementId"
-				class="flex-1"
-			/>
-			<survivor
-				v-for="(survivor, idx) in eligibleHunters"
-				v-if="idx < showHuntCount"
-				:key="idx"
-				:survivorId="survivor.survivorId"
-				:settlementId="settlementId"
-				class="flex-1"
-			/>
-		</div>
+    <top-bar>
+      Hunting Party
+      <router-link
+        slot="left"
+        :to="{ name: 'Settlement' }"
+        class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
+      >
+        &lt;
+      </router-link>
+      <template slot="right">
+        <button
+          class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
+          @click="toggleHunt()"
+        >
+          &oplus;
+        </button>
+        <div
+          :class="huntVisible || 'hidden'"
+          class="bg-overlay fixed pin z-50"
+        >
+          <button
+            class="absolute pin-r pin-t mr-4 mt-4 inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
+            @click="toggleHunt()"
+          >
+            x
+          </button>
+          <the-hunt
+            :active-survivor-id="survivorId"
+            :settlement-id="settlementId"
+          />
+        </div>
+      </template>
+    </top-bar>
+    <div class="flex">
+      <survivor
+        :survivor-id="survivorId"
+        :settlement-id="settlementId"
+        class="flex-1"
+      />
+      <survivor
+        v-for="(survivor, idx) in eligibleHunters"
+        v-if="idx < showHuntCount"
+        :key="idx"
+        :survivor-id="survivor.survivorId"
+        :settlement-id="settlementId"
+        class="flex-1"
+      />
+    </div>
   </div>
 </template>
 
@@ -77,9 +73,6 @@ export default {
 		settlementId: {
 			type: String,
 			required: true
-		},
-		survivors: {
-			type: Array
 		}
 	},
 	data() {

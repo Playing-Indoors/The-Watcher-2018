@@ -1,22 +1,22 @@
 <template>
-	<layout-grid :columns="1">
-		<core-input
-			v-model="name"
-			label="Name"
-			required
-		/>
-		<core-select
-			v-model="gender"
-			label="Gender"
-			:options="['Male', 'Female']"
-		/>
-		<core-input
-			v-model="notes"
-			label="Notes"
-		/>
-		<core-button submit @click="save">Save</core-button>
-		<div>Log:</div>
-	</layout-grid>
+  <layout-grid :columns="1">
+    <core-input
+      v-model="name"
+      label="Name"
+      required
+    />
+    <core-select
+      v-model="gender"
+      :options="['Male', 'Female']"
+      label="Gender"
+    />
+    <core-input
+      v-model="notes"
+      label="Notes"
+    />
+    <core-button submit @click="save">Save</core-button>
+    <div>Log:</div>
+  </layout-grid>
 </template>
 
 <script>

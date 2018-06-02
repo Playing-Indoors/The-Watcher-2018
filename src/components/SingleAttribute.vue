@@ -1,18 +1,18 @@
 <template>
-	<box-widget
-		:name="name"
-		:dirty="dirty"
-		@confirm="handleConfirm()"
-		@cancel="handleCancel()"
-	>
-		<stat-number :number="value" />
-		<stat-adjust
-			slot="modal"
-			v-model="tempValue"
-			:max="max"
-		/>
+  <box-widget
+    :name="name"
+    :dirty="dirty"
+    @confirm="handleConfirm()"
+    @cancel="handleCancel()"
+  >
+    <stat-number :number="value" />
+    <stat-adjust
+      slot="modal"
+      v-model="tempValue"
+      :max="max"
+    />
 
-	</box-widget>
+  </box-widget>
 </template>
 
 <script>
@@ -24,7 +24,8 @@ export default {
 	components: { BoxWidget, StatAdjust, StatNumber },
 	props: {
 		name: {
-			type: String
+			type: String,
+			default: ''
 		},
 		value: {
 			type: Number,
@@ -48,14 +49,14 @@ export default {
 			tempValue: this.value
 		};
 	},
-	watch: {
-		value(newVal) {
-			this.tempValue = newVal;
-		}
-	},
 	computed: {
 		dirty() {
 			return this.tempValue !== this.value;
+		}
+	},
+	watch: {
+		value(newVal) {
+			this.tempValue = newVal;
 		}
 	},
 	methods: {

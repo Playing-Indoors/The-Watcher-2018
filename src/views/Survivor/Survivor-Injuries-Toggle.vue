@@ -1,23 +1,23 @@
 <template>
-	<div class="flex">
-		<div
-			v-for="(dot, dotIndex) in injury.value"
-			:key="dotIndex"
-		>
-			<input
-				class="hidden"
-				:id="`${id}-${dotIndex}`"
-				type="checkbox"
-				v-model="injury.value[dotIndex]"
-				@change="handleInjuryToggle(id)"
-			/>
-			<label
-				:for="`${id}-${dotIndex}`"
-				class="w-4 h-4 block bg-grey-darkest rounded-full shadow ml-2"
-				:class="dot ? $style.active : $style.inactive"
-			/>
-		</div>
-	</div>
+  <div class="flex">
+    <div
+      v-for="(dot, dotIndex) in injury.value"
+      :key="dotIndex"
+    >
+      <input
+        :id="`${id}-${dotIndex}`"
+        v-model="injury.value[dotIndex]"
+        class="hidden"
+        type="checkbox"
+        @change="handleInjuryToggle(id)"
+      >
+      <label
+        :for="`${id}-${dotIndex}`"
+        :class="dot ? $style.active : $style.inactive"
+        class="w-4 h-4 block bg-grey-darkest rounded-full shadow ml-2"
+      />
+    </div>
+  </div>
 </template>
 
 <script>

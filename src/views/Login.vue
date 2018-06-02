@@ -1,44 +1,41 @@
-<docs>
 Improvement
 - Allow anonymous
 - Allow Email Link auth
 - https://console.firebase.google.com/u/0/project/the-watcher-b3ddf/authentication/providers
 
-</docs>
-
 <template>
-	<layout-grid contents :columns="1">
-		<form @submit.prevent="login()">
-			<div class="text-center ">
-				<logo-mark class="text-white w-32" />
-			</div>
-			<!-- <label for="email" class="block ">Log in to The Watcher</label> -->
-			<core-input
-				v-model="email"
-				label="Email"
-				autofocus
-				required
-				name="email"
-			/>
-			<core-input
-				v-model="password"
-				label="Password"
-				type="password"
-				required
-				name="password"
-			/>
-			<div
-				v-if="error"
-				class="bg-red p-4"
-				data-test="error"
-			>{{message}}</div>
-			<core-button submit data-test="submit">Login</core-button>
-			<div class="flex justify-between">
-				<core-button color="text" @click="forgot()">Forgot Password</core-button>
-				<core-button color="text" @click="register()">Create Account</core-button>
-			</div>
-		</form>
-	</layout-grid>
+  <layout-grid :columns="1" contents>
+    <form @submit.prevent="login()">
+      <div class="text-center ">
+        <logo-mark class="text-white w-32" />
+      </div>
+      <!-- <label for="email" class="block ">Log in to The Watcher</label> -->
+      <core-input
+        v-model="email"
+        label="Email"
+        autofocus
+        required
+        name="email"
+      />
+      <core-input
+        v-model="password"
+        label="Password"
+        type="password"
+        required
+        name="password"
+      />
+      <div
+        v-if="error"
+        class="bg-red p-4"
+        data-test="error"
+      >{{message}}</div>
+      <core-button submit data-test="submit">Login</core-button>
+      <div class="flex justify-between">
+        <core-button color="text" @click="forgot()">Forgot Password</core-button>
+        <core-button color="text" @click="register()">Create Account</core-button>
+      </div>
+    </form>
+  </layout-grid>
 </template>
 
 <script>

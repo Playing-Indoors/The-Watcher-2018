@@ -1,6 +1,6 @@
 <template>
-  <div class="hello" :class="bg">
-		<h2>Titles: {{msg}}</h2>
+  <div :class="bg" class="hello">
+    <h2>Titles: {{msg}}</h2>
   </div>
 </template>
 
@@ -8,7 +8,10 @@
 export default {
 	name: 'HelloWorld',
 	props: {
-		msg: String
+		msg: {
+			type: String,
+			default: ''
+		}
 	},
 	data() {
 		return {

@@ -1,17 +1,17 @@
 <template>
   <div>
-		<br />
+    <br >
     <img src="../assets/logo.png">
-		Email
-		<input type="email" v-model="email" />
-		<br />
-		Password
-		<input type="password" v-model="password" />
-		<br />
-		<button type="submit" @click="register">Register</button>
-		<button type="submit" @click="login">Login</button>
-		<button type="submit" @click="logout">logout</button>
-		<button type="submit" @click="getUser">user</button>
+    Email
+    <input v-model="email" type="email" >
+    <br >
+    Password
+    <input v-model="password" type="password" >
+    <br >
+    <button type="submit" @click="register">Register</button>
+    <button type="submit" @click="login">Login</button>
+    <button type="submit" @click="logout">logout</button>
+    <button type="submit" @click="getUser">user</button>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>

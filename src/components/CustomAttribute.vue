@@ -1,29 +1,29 @@
 <template>
-	<box-widget
-		:name="name"
-		:dirty="dirty"
-		@confirm="handleConfirm()"
-		@cancel="handleCancel()"
-	>
-		<stat-number
-			v-for="attr in attributes"
-			:key="attr.name"
-			:name="attr.name"
-			:number="attr.value"
-		/>
-		<!-- <stat-adjust
+  <box-widget
+    :name="name"
+    :dirty="dirty"
+    @confirm="handleConfirm()"
+    @cancel="handleCancel()"
+  >
+    <stat-number
+      v-for="attr in attributes"
+      :key="attr.name"
+      :name="attr.name"
+      :number="attr.value"
+    />
+    <!-- <stat-adjust
 			slot="modal"
 			v-model="tempValue"
 		/> -->
-		<div slot="modal">
-			<stat-adjust
-				v-for="attr in attributes"
-				:key="attr.name"
-				:name="attr.name"
-				v-model="attr.value"
-			/>
-		</div>
-	</box-widget>
+    <div slot="modal">
+      <stat-adjust
+        v-for="attr in attributes"
+        :key="attr.name"
+        :name="attr.name"
+        v-model="attr.value"
+      />
+    </div>
+  </box-widget>
 </template>
 
 <script>
@@ -35,7 +35,8 @@ export default {
 	components: { BoxWidget, StatAdjust, StatNumber },
 	props: {
 		name: {
-			type: String
+			type: String,
+			default: ''
 		},
 		attributes: {
 			type: Array,
@@ -51,14 +52,14 @@ export default {
 			tempValue: []
 		};
 	},
-	watch: {
-		value(newVal) {
-			this.cloneAttr(newVal);
-		}
-	},
 	computed: {
 		dirty() {
 			return this.tempValue !== this.value;
+		}
+	},
+	watch: {
+		value(newVal) {
+			this.cloneAttr(newVal);
 		}
 	},
 	mounted() {

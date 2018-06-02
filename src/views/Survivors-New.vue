@@ -1,14 +1,14 @@
 <template>
   <form @submit.prevent="handleCreate(name, gender)">
     <h1>Add Survivor</h1>
-		Name:
-		<input type="text" v-model="name" />
-		Gender
-		<select v-model="gender">
-			<option>Male</option>
-			<option>Female</option>
-		</select>
-		<button type="submit" class="bg-yellow">Create</button>
+    Name:
+    <input v-model="name" type="text" >
+    Gender
+    <select v-model="gender">
+      <option>Male</option>
+      <option>Female</option>
+    </select>
+    <button type="submit" class="bg-yellow">Create</button>
   </form>
 </template>
 

@@ -1,28 +1,28 @@
 <template>
-	<layout-grid :columns="1">
-		<div
-			v-for="location in locations"
-			:key="location"
-			class="border-b border-grey"
-		>
-			<label
-				class="block pb-1 text-xs capitalize"
-			>{{location}}</label>
-			<div
-				v-for="(injury, injuryKey) in injuries"
-				v-if="injury.type === location"
-				:key="injuryKey"
-				class="flex items-center my-2"
-			>
-				<label class="flex-1 text-xxs text-grey-light pl-2">{{injury.name}}</label>
-				<injuries-toggle
-					:id="injuryKey"
-					:injury="injury"
-					:saveAttributes="saveAttributes"
-				/>
-			</div>
-		</div>
-	</layout-grid>
+  <layout-grid :columns="1">
+    <div
+      v-for="location in locations"
+      :key="location"
+      class="border-b border-grey"
+    >
+      <label
+        class="block pb-1 text-xs capitalize"
+      >{{location}}</label>
+      <div
+        v-for="(injury, injuryKey) in injuries"
+        v-if="injury.type === location"
+        :key="injuryKey"
+        class="flex items-center my-2"
+      >
+        <label class="flex-1 text-xxs text-grey-light pl-2">{{injury.name}}</label>
+        <injuries-toggle
+          :id="injuryKey"
+          :injury="injury"
+          :save-attributes="saveAttributes"
+        />
+      </div>
+    </div>
+  </layout-grid>
 </template>
 
 <script>

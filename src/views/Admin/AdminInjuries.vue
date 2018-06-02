@@ -1,19 +1,19 @@
 <template>
-	<div>
-		<top-bar>
-			Admin Severe Injuries
-		</top-bar>
+  <div>
+    <top-bar>
+      Admin Severe Injuries
+    </top-bar>
 
-		<layout-grid contents :columns="1">
-			<form @submit.prevent="handleCreate(name)">
-				<select v-model="asset">
-					<option value="severeInjuries">Severe Injuries</option>
-					<option value="fightingArts">Fighting Arts</option>
-					<option value="abilities">Abilities</option>
-					<option value="disorders">disorders</option>
-					<option value="impairments">impairments</option>
-				</select>
-				<!-- <core-input
+    <layout-grid :columns="1" contents>
+      <form @submit.prevent="handleCreate(name)">
+        <select v-model="asset">
+          <option value="severeInjuries">Severe Injuries</option>
+          <option value="fightingArts">Fighting Arts</option>
+          <option value="abilities">Abilities</option>
+          <option value="disorders">disorders</option>
+          <option value="impairments">impairments</option>
+        </select>
+        <!-- <core-input
 					v-model="name"
 					label="Name"
 					required
@@ -22,12 +22,12 @@
 					v-model="description"
 					label="Description"
 				/> -->
-				<!-- <core-button submit>Create</core-button> -->
-				<!-- <core-button @click="rebuildCollection()">rebuild</core-button> -->
-				<core-button @click="rebuildDoc()">Reimport</core-button>
-			</form>
-		</layout-grid>
-	</div>
+        <!-- <core-button submit>Create</core-button> -->
+        <!-- <core-button @click="rebuildCollection()">rebuild</core-button> -->
+        <core-button @click="rebuildDoc()">Reimport</core-button>
+      </form>
+    </layout-grid>
+  </div>
 </template>
 
 <script>

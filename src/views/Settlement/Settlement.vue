@@ -1,44 +1,41 @@
-<docs>
-</docs>
-
 <template>
-	<div v-if="settlement">
-		<top-bar>
-			{{settlement.name}}'s Survivors
-			<router-link
-				slot="left"
-				class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
-				:to="{ name: 'Settlements' }"
-			>
-				&lt;
-			</router-link>
-			<router-link
-				slot="right"
-				class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
-				:to="{ name: 'Survivor-New' }"
-			>
-				+
-			</router-link>
-		</top-bar>
-		<div class="bg-black flex text-xxs text-center">
-			<router-link
-				:to="{ name: 'Settlement' }"
-				class="flex-auto no-underline text-grey p-1 border-b-2 border-grey-dark hover:text-yellow"
-				active-class="text-yellow border-yellow"
-				exact
-			>Alive</router-link>
-			<router-link
-				:to="{ name: 'SettlementDead' }"
-				class="flex-auto no-underline text-grey p-1 border-b-2 border-grey-dark hover:text-yellow"
-				active-class="text-yellow border-yellow"
-			>Dead</router-link>
-			<router-link
-				:to="{ name: 'SettlementHunt' }"
-				class="flex-auto no-underline text-grey p-1 border-b-2 border-grey-dark hover:text-yellow"
-				active-class="text-yellow border-yellow"
-			>The Hunt</router-link>
-		</div>
-		<router-view />
+  <div v-if="settlement">
+    <top-bar>
+      {{settlement.name}}'s Survivors
+      <router-link
+        slot="left"
+        :to="{ name: 'Settlements' }"
+        class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
+      >
+        &lt;
+      </router-link>
+      <router-link
+        slot="right"
+        :to="{ name: 'Survivor-New' }"
+        class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
+      >
+        +
+      </router-link>
+    </top-bar>
+    <div class="bg-black flex text-xxs text-center">
+      <router-link
+        :to="{ name: 'Settlement' }"
+        class="flex-auto no-underline text-grey p-1 border-b-2 border-grey-dark hover:text-yellow"
+        active-class="text-yellow border-yellow"
+        exact
+      >Alive</router-link>
+      <router-link
+        :to="{ name: 'SettlementDead' }"
+        class="flex-auto no-underline text-grey p-1 border-b-2 border-grey-dark hover:text-yellow"
+        active-class="text-yellow border-yellow"
+      >Dead</router-link>
+      <router-link
+        :to="{ name: 'SettlementHunt' }"
+        class="flex-auto no-underline text-grey p-1 border-b-2 border-grey-dark hover:text-yellow"
+        active-class="text-yellow border-yellow"
+      >The Hunt</router-link>
+    </div>
+    <router-view />
   </div>
 </template>
 

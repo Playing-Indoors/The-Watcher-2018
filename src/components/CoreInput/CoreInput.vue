@@ -1,35 +1,33 @@
-<docs>
-</docs>
 <template>
-	<div>
-		<label v-if="label" class="inline-block pb-1 text-xs">{{label}}</label>
-		<input
-			:id="`v${_uid}`"
-			class="block bg-grey-dark text-white py-4 px-4 w-full shadow"
-			:type="type"
-			ref="input"
-			v-bind:value="value"
-			v-on:input="updateValue($event.target.value)"
-			:required="required"
-			:autofocus="autofocus"
-			:placeholder="placeholder"
-			:disabled="disabled"
-			:min="min"
-			:max="max"
-			:step="step"
-			@blur="$emit('blur')"
-			@focus="$emit('focus')"
-			:name="name"
-			:data-test="dataTest"
-		>
-	</div>
+  <div>
+    <label v-if="label" class="inline-block pb-1 text-xs">{{label}}</label>
+    <input
+      ref="input"
+      :id="`v${_uid}`"
+      :type="type"
+      v-bind:value="value"
+      :required="required"
+      :autofocus="autofocus"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :min="min"
+      :max="max"
+      :step="step"
+      :name="name"
+      class="block bg-grey-dark text-white py-4 px-4 w-full shadow"
+      v-on:input="updateValue($event.target.value)"
+      @blur="$emit('blur')"
+      @focus="$emit('focus')"
+    >
+  </div>
 </template>
 
 <script>
 export default {
 	props: {
 		label: {
-			type: String
+			type: String,
+			default: ''
 		},
 		autofocus: {
 			type: Boolean,
@@ -52,10 +50,12 @@ export default {
 			default: 'text'
 		},
 		value: {
-			type: [String, Number]
+			type: [String, Number],
+			default: null
 		},
 		flush: {
-			type: Boolean
+			type: Boolean,
+			default: false
 		},
 		min: {
 			type: Number,
@@ -70,10 +70,8 @@ export default {
 			default: null
 		},
 		name: {
-			type: String
-		},
-		dataTest: {
-			type: String
+			type: String,
+			default: ''
 		}
 	},
 	methods: {

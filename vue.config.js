@@ -15,5 +15,9 @@ module.exports = {
 				])
 			})
 		]
+	},
+
+	pwa: {
+		name: 'The Watcher'
 	}
 };

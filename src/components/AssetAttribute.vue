@@ -1,21 +1,21 @@
 <template>
-	<box-widget
-		:name="name"
-		:dirty="dirty"
-		@confirm="handleConfirm()"
-		@cancel="handleCancel()"
-	>
-		<asset-render
-			:list="value"
-		/>
-		<asset-adjust
-			slot="modal"
-			:max="max"
-			:attribute="attribute"
-			v-model="tempValue"
-		/>
+  <box-widget
+    :name="name"
+    :dirty="dirty"
+    @confirm="handleConfirm()"
+    @cancel="handleCancel()"
+  >
+    <asset-render
+      :list="value"
+    />
+    <asset-adjust
+      slot="modal"
+      :max="max"
+      :attribute="attribute"
+      v-model="tempValue"
+    />
 
-	</box-widget>
+  </box-widget>
 </template>
 
 <script>
@@ -27,7 +27,8 @@ export default {
 	components: { BoxWidget, AssetAdjust, AssetRender },
 	props: {
 		name: {
-			type: String
+			type: String,
+			default: ''
 		},
 		value: {
 			type: Object,
@@ -51,14 +52,14 @@ export default {
 			tempValue: this.value
 		};
 	},
-	watch: {
-		value(newVal) {
-			this.tempValue = newVal;
-		}
-	},
 	computed: {
 		dirty() {
 			return this.tempValue !== this.value;
+		}
+	},
+	watch: {
+		value(newVal) {
+			this.tempValue = newVal;
 		}
 	},
 	methods: {
