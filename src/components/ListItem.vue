@@ -1,14 +1,14 @@
 <template>
-  <div
-    class="mb-4 flex items-center flex-wrap  text-sm"
-  >
-    <div class="flex-grow p-3 bg-grey">{{name}}</div>
-    <core-button v-if="description" class="flex-shrink" @click="showDesc = !showDesc">?</core-button>
-    <core-button class="flex-shrink" color="red" @click="$emit('delete')">x</core-button>
-    <slide-y-up-transition>
-      <div v-show="showDesc" class="w-full text-center text-xs pt-4 px-2" v-html="description" />
-    </slide-y-up-transition>
-  </div>
+	<div
+		class="mb-4 flex items-center flex-wrap  text-sm"
+	>
+		<div class="flex-grow p-3 bg-grey">{{name}}</div>
+		<core-button v-if="description" class="flex-shrink" @click="showDesc = !showDesc">?</core-button>
+		<core-button class="flex-shrink" color="red" @click="$emit('delete')">x</core-button>
+		<slide-y-up-transition>
+			<div v-show="showDesc" class="w-full text-center text-xs pt-4 px-2" v-html="description" />
+		</slide-y-up-transition>
+	</div>
 </template>
 
 <script>

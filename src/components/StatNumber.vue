@@ -1,12 +1,12 @@
 <template>
-  <div
-    :class="horizontal ? 'flex justify-between items-end' : ''"
-    class="text-center w-full"
-  >
-    <div v-if="horizontal">[]</div>
-    <div class="text-5xl font-bold">{{number}}</div>
-    <div v-if="name" class="text-xxs text-grey-lightest">{{name}}</div>
-  </div>
+	<div
+		:class="horizontal ? 'flex justify-between items-end' : ''"
+		class="text-center w-full"
+	>
+		<div v-if="horizontal">[]</div>
+		<div class="text-5xl font-bold">{{number}}</div>
+		<div v-if="name" class="text-xxs text-grey-lightest">{{name}}</div>
+	</div>
 </template>
 
 <script>

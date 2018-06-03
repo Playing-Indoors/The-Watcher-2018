@@ -1,14 +1,14 @@
 <template>
-  <component
-    :is="element"
-    :type="type"
-    :class="[baseClass, colorClass]"
-    :to="to"
-    @click="$emit('click')"
-    @blur="$emit('blur')"
-  >
-    <slot/>
-  </component>
+	<component
+		:is="element"
+		:type="type"
+		:class="[baseClass, colorClass]"
+		:to="to"
+		@click="$emit('click')"
+		@blur="$emit('blur')"
+	>
+		<slot/>
+	</component>
 </template>
 
 <script>

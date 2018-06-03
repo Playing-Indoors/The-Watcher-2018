@@ -1,18 +1,18 @@
 <template>
-  <box-widget
-    :name="name"
-    :dirty="dirty"
-    @confirm="handleConfirm()"
-    @cancel="handleCancel()"
-  >
-    <stat-number :number="value" />
-    <stat-adjust
-      slot="modal"
-      v-model="tempValue"
-      :max="max"
-    />
+	<box-widget
+		:name="name"
+		:dirty="dirty"
+		@confirm="handleConfirm()"
+		@cancel="handleCancel()"
+	>
+		<stat-number :number="value" />
+		<stat-adjust
+			slot="modal"
+			v-model="tempValue"
+			:max="max"
+		/>
 
-  </box-widget>
+	</box-widget>
 </template>
 
 <script>

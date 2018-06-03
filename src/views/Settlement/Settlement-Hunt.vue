@@ -1,7 +1,7 @@
 <template>
-  <the-hunt
-    :settlement-id="settlementId"
-  />
+	<the-hunt
+		:settlement-id="settlementId"
+	/>
 </template>
 
 <script>

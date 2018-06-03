@@ -1,27 +1,27 @@
 <template>
-  <div>
-    <div class="flex justify-center p-4">
-      <button
-        type="button"
-        class="w-16 pt-8 border-4 border-grey-light border-dashed
+	<div>
+		<div class="flex justify-center p-4">
+			<button
+				type="button"
+				class="w-16 pt-8 border-4 border-grey-light border-dashed
 				hover:bg-grey"
-        @click="addPanel(0)"
-      />
-      <div v-for="(panel, idx) in panels"
-           :key="idx"
-           class="max-w-xs w-full"
-      >
-        <panel-selector />
-      </div>
-      <button
-        v-if="panels.length > 0"
-        type="button"
-        class="w-16 pt-8 border-4 border-grey-light border-dashed
+				@click="addPanel(0)"
+			/>
+			<div v-for="(panel, idx) in panels"
+				:key="idx"
+				class="max-w-xs w-full"
+			>
+				<panel-selector />
+			</div>
+			<button
+				v-if="panels.length > 0"
+				type="button"
+				class="w-16 pt-8 border-4 border-grey-light border-dashed
 				hover:bg-grey"
-        @click="addPanel(panels.length)"
-      />
-    </div>
-  </div>
+				@click="addPanel(panels.length)"
+			/>
+		</div>
+	</div>
 </template>
 
 <script>

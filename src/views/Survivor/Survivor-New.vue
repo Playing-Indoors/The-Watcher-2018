@@ -1,33 +1,33 @@
 <template>
-  <div>
-    <top-bar>
-      Create New Survivor
-      <router-link
-        slot="left"
-        :to="{ name: 'Settlement' }"
-        class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
-      >
-        &lt;
-      </router-link>
-    </top-bar>
+	<div>
+		<top-bar>
+			Create New Survivor
+			<router-link
+				slot="left"
+				:to="{ name: 'Settlement' }"
+				class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
+			>
+				&lt;
+			</router-link>
+		</top-bar>
 
-    <layout-grid :columns="1" contents>
-      <form @submit.prevent="handleCreate(name, gender)">
-        <core-input
-          v-model="name"
-          label="Name"
-          autofocus
-          required
-        />
-        <core-select
-          v-model="gender"
-          :options="['Male', 'Female']"
-          label="Gender"
-        />
-        <core-button submit class=" mt-3">Create</core-button>
-      </form>
-    </layout-grid>
-  </div>
+		<layout-grid :columns="1" contents>
+			<form @submit.prevent="handleCreate(name, gender)">
+				<core-input
+					v-model="name"
+					label="Name"
+					autofocus
+					required
+				/>
+				<core-select
+					v-model="gender"
+					:options="['Male', 'Female']"
+					label="Gender"
+				/>
+				<core-button submit class=" mt-3">Create</core-button>
+			</form>
+		</layout-grid>
+	</div>
 </template>
 
 <script>

@@ -1,18 +1,18 @@
 <template>
-  <div v-if="survivors">
-    <layout-grid :columns="1" contents>
-      <div v-if="survivors && survivors.length === 0">
-        <div class="bg-red p-4">Sorry no survivors</div>
-      </div>
-      <slide-y-up-transition tag="div" group>
-        <survivor-card
-          v-for="survivor in survivors"
-          :key="survivor.id"
-          :survivor="survivor"
-        />
-      </slide-y-up-transition>
-    </layout-grid>
-  </div>
+	<div v-if="survivors">
+		<layout-grid :columns="1" contents>
+			<div v-if="survivors && survivors.length === 0">
+				<div class="bg-red p-4">Sorry no survivors</div>
+			</div>
+			<slide-y-up-transition tag="div" group>
+				<survivor-card
+					v-for="survivor in survivors"
+					:key="survivor.id"
+					:survivor="survivor"
+				/>
+			</slide-y-up-transition>
+		</layout-grid>
+	</div>
 </template>
 
 <script>

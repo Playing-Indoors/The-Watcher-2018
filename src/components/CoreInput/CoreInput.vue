@@ -1,25 +1,25 @@
 <template>
-  <div>
-    <label v-if="label" class="inline-block pb-1 text-xs">{{label}}</label>
-    <input
-      ref="input"
-      :id="`v${_uid}`"
-      :type="type"
-      v-bind:value="value"
-      :required="required"
-      :autofocus="autofocus"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :min="min"
-      :max="max"
-      :step="step"
-      :name="name"
-      class="block bg-grey-dark text-white py-4 px-4 w-full shadow"
-      v-on:input="updateValue($event.target.value)"
-      @blur="$emit('blur')"
-      @focus="$emit('focus')"
-    >
-  </div>
+	<div>
+		<label v-if="label" class="inline-block pb-1 text-xs">{{label}}</label>
+		<input
+			ref="input"
+			:id="`v${_uid}`"
+			:type="type"
+			v-bind:value="value"
+			:required="required"
+			:autofocus="autofocus"
+			:placeholder="placeholder"
+			:disabled="disabled"
+			:min="min"
+			:max="max"
+			:step="step"
+			:name="name"
+			class="block bg-grey-dark text-white py-4 px-4 w-full shadow"
+			v-on:input="updateValue($event.target.value)"
+			@blur="$emit('blur')"
+			@focus="$emit('focus')"
+		>
+	</div>
 </template>
 
 <script>

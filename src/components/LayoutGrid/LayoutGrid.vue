@@ -1,9 +1,9 @@
 <template>
-  <div
-    :class="[$style.layout, myClass]"
-  >
-    <slot />
-  </div>
+	<div
+		:class="[$style.layout, myClass]"
+	>
+		<slot />
+	</div>
 </template>
 
 <script>

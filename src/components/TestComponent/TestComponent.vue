@@ -1,7 +1,7 @@
 <template>
-  <div :class="bg" class="hello">
-    <h2>Titles: {{msg}}</h2>
-  </div>
+	<div :class="bg" class="hello">
+		<h2>Titles: {{msg}}</h2>
+	</div>
 </template>
 
 <script>

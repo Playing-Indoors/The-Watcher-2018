@@ -1,25 +1,25 @@
 <template>
-  <div>
-    <top-bar>
-      Admin Severe Injuries
-    </top-bar>
+	<div>
+		<top-bar>
+			Admin Severe Injuries
+		</top-bar>
 
-    <layout-grid :columns="1" contents>
-      <form @submit.prevent="handleCreate(name)">
-        <core-input
-          v-model="name"
-          label="Name"
-          required
-        />
-        <core-input
-          v-model="description"
-          label="Description"
-        />
-        <core-button submit>Create</core-button>
-        <core-button @click="rebuildCollection()">rebuild</core-button>
-      </form>
-    </layout-grid>
-  </div>
+		<layout-grid :columns="1" contents>
+			<form @submit.prevent="handleCreate(name)">
+				<core-input
+					v-model="name"
+					label="Name"
+					required
+				/>
+				<core-input
+					v-model="description"
+					label="Description"
+				/>
+				<core-button submit>Create</core-button>
+				<core-button @click="rebuildCollection()">rebuild</core-button>
+			</form>
+		</layout-grid>
+	</div>
 </template>
 
 <script>

@@ -1,38 +1,38 @@
 <template>
-  <div class="flex flex-col">
-    <label v-if="name" class="inline-block pb-1 text-xs">{{name}}</label>
-    <form
-      class="bg-grey-dark flex flex-1"
-      @submit.prevent="confirm()"
-    >
-      <button
-        type="button"
-        class="py-6 px-4 flex flex-col justify-between items-stretch w-full text-inherit text-left shadow hover:shadow-lg"
-        @click="toggleModal()"
-      >
-        <div
-          class="flex justify-between w-full"
-        >
-          <slot />
-        </div>
-      </button>
-      <div v-if="showModal" class="fixed pin bg-overlay flex flex-col justify-center items-center" @click.self="cancel()">
-        <div class="max-w-xs w-full flex flex-col">
-          <div class="bg-grey-darkest p-4">
-            <header class="text-2xl text-center mb-4">{{name}}</header>
-            <slot
-              name="modal"
-            />
-          </div>
-          <core-button
-            :color="dirty ? 'yellow' : 'white'"
-            submit
-          >Confirm</core-button>
-          <core-button color="text" @click="cancel()">Cancel</core-button>
-        </div>
-      </div>
-    </form>
-  </div>
+	<div class="flex flex-col">
+		<label v-if="name" class="inline-block pb-1 text-xs">{{name}}</label>
+		<form
+			class="bg-grey-dark flex flex-1"
+			@submit.prevent="confirm()"
+		>
+			<button
+				type="button"
+				class="py-6 px-4 flex flex-col justify-between items-stretch w-full text-inherit text-left shadow hover:shadow-lg"
+				@click="toggleModal()"
+			>
+				<div
+					class="flex justify-between w-full"
+				>
+					<slot />
+				</div>
+			</button>
+			<div v-if="showModal" class="fixed pin bg-overlay flex flex-col justify-center items-center" @click.self="cancel()">
+				<div class="max-w-xs w-full flex flex-col">
+					<div class="bg-grey-darkest p-4">
+						<header class="text-2xl text-center mb-4">{{name}}</header>
+						<slot
+							name="modal"
+						/>
+					</div>
+					<core-button
+						:color="dirty ? 'yellow' : 'white'"
+						submit
+					>Confirm</core-button>
+					<core-button color="text" @click="cancel()">Cancel</core-button>
+				</div>
+			</div>
+		</form>
+	</div>
 </template>
 
 <script>

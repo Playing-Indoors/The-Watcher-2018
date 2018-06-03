@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <form @submit.prevent="login()">
-      <input v-model="email" placeholder="email" type="email" >
-      <input v-model="password" placeholder="password" type="password" >
-      <br >
-      <button type="button" @click="register">Register</button>
-      <button type="submit">Login</button>
-      <button type="button" @click="logout">logout</button>
-      <button type="button" @click="getUser">user</button>
-    </form>
+	<div>
+		<form @submit.prevent="login()">
+			<input v-model="email" placeholder="email" type="email" >
+			<input v-model="password" placeholder="password" type="password" >
+			<br >
+			<button type="button" @click="register">Register</button>
+			<button type="submit">Login</button>
+			<button type="button" @click="logout">logout</button>
+			<button type="button" @click="getUser">user</button>
+		</form>
 
-  </div>
+	</div>
 </template>
 
 <script>

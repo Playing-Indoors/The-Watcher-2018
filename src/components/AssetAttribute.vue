@@ -1,21 +1,21 @@
 <template>
-  <box-widget
-    :name="name"
-    :dirty="dirty"
-    @confirm="handleConfirm()"
-    @cancel="handleCancel()"
-  >
-    <asset-render
-      :list="value"
-    />
-    <asset-adjust
-      slot="modal"
-      :max="max"
-      :attribute="attribute"
-      v-model="tempValue"
-    />
+	<box-widget
+		:name="name"
+		:dirty="dirty"
+		@confirm="handleConfirm()"
+		@cancel="handleCancel()"
+	>
+		<asset-render
+			:list="value"
+		/>
+		<asset-adjust
+			slot="modal"
+			:max="max"
+			:attribute="attribute"
+			v-model="tempValue"
+		/>
 
-  </box-widget>
+	</box-widget>
 </template>
 
 <script>
