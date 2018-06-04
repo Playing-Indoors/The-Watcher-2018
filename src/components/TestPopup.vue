@@ -9,3 +9,6 @@ export default {
 	props: {}
 };
 </script>
+
+<style lang="scss" module>
+</style>
