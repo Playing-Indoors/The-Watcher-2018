@@ -18,6 +18,8 @@ module.exports = {
 	},
 
 	pwa: {
-		name: 'The Watcher'
-	}
+      name: 'The Watcher',
+      themeColor: '#000000',
+      msTileColor: '#1E1D1E'
+    }
 };

@@ -1,6 +1,8 @@
 <template>
-	<div class="absolute bg-grey-darkest pin-x min-h-screen">
-		test
+	<div class="fixed bg-overlay pin-x min-h-screen">
+		<div class="absolute pin m-4 bg-grey-darkest overflow-y-scroll">
+			inner
+		</div>
 	</div>
 </template>
 
