@@ -6,6 +6,7 @@ import VueFire from 'vuefire';
 import firebase from 'firebase';
 import './registerServiceWorker';
 import './firebase';
+import './pwa';
 
 // const settings = { /* your settings... */ timestampsInSnapshots: true };
 // firestore.settings(settings);
