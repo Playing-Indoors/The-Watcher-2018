@@ -1,11 +1,9 @@
 <template>
 	<div
-		:class="horizontal ? 'flex justify-between items-end' : ''"
-		class="text-center w-full"
+		class="w-full relative text-center"
 	>
-		<div v-if="horizontal">[]</div>
 		<div class="text-5xl font-bold">{{number}}</div>
-		<div v-if="name" class="text-xxs text-grey-lightest">{{name}}</div>
+		<div v-if="name" class="absolute w-full text-xxs text-grey-lightest">{{name}}</div>
 	</div>
 </template>
 
@@ -18,11 +16,7 @@ export default {
 		},
 		number: {
 			type: Number,
-			required: true
-		},
-		horizontal: {
-			type: Boolean,
-			default: false
+			default: 0
 		}
 	}
 };

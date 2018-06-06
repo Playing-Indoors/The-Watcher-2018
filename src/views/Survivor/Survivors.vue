@@ -33,6 +33,7 @@
 				</div>
 			</template>
 		</top-bar>
+
 		<div class="flex">
 			<survivor
 				:survivor-id="survivorId"

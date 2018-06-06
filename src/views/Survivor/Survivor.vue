@@ -23,29 +23,32 @@
 				@click="handleTab('info')"
 			>Additional Information</button>
 		</div>
-		<survivor-sheet
-			v-if="tab === 'sheet'"
-			:save-attributes="saveAttributes"
-			:survivor="survivor"
-		/>
-		<survivor-injuries
-			v-else-if="tab === 'injuries'"
-			:save-attributes="saveAttributes"
-			:survivor="survivor"
-			:settlement-id="settlementId"
-			:injuries="survivor['severe-injuries']"
-		/>
-		<survivor-info
-			v-else-if="tab === 'info'"
-			:save-attributes="saveAttributes"
-			:survivor="survivor"
-		/>
+		<layout-content :top="122">
+			<survivor-sheet
+				v-if="tab === 'sheet'"
+				:save-attributes="saveAttributes"
+				:survivor="survivor"
+			/>
+			<survivor-injuries
+				v-else-if="tab === 'injuries'"
+				:save-attributes="saveAttributes"
+				:survivor="survivor"
+				:settlement-id="settlementId"
+				:injuries="survivor['severe-injuries']"
+			/>
+			<survivor-info
+				v-else-if="tab === 'info'"
+				:save-attributes="saveAttributes"
+				:survivor="survivor"
+			/>
+		</layout-content>
 	</div>
 </template>
 
 <script>
 import db from '@/firebase';
 import TopBar from '@/components/TopBar/TopBar';
+import LayoutContent from '@/components/LayoutContent/LayoutContent';
 import SurvivorSheet from '@/views/Survivor/Survivor-Sheet';
 import SurvivorInjuries from '@/views/Survivor/Survivor-Injuries';
 import SurvivorInfo from '@/views/Survivor/Survivor-Info';
@@ -53,6 +56,7 @@ import SurvivorInfo from '@/views/Survivor/Survivor-Info';
 export default {
 	components: {
 		TopBar,
+		LayoutContent,
 		SurvivorSheet,
 		SurvivorInfo,
 		SurvivorInjuries

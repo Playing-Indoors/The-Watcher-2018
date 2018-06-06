@@ -60,7 +60,36 @@
       <stat-number :number="survivor.waist" name="Waist" />
       <stat-number :number="survivor.legs" name="Legs" />
     </box-widget> -->
-		<test-popup />
+		<!-- <test-popup /> -->
+		<test-popup
+			title="Courage"
+			class="span-2"
+		>
+			<div slot="display">
+				<stat-number :number="0" />
+			</div>
+		</test-popup>
+		<test-popup
+			title="Courage"
+			class="span-6"
+		>
+			<template slot="display">
+				<stat-number :number="survivor.movement" name="Mov" />
+				<stat-number :number="survivor.accuracy" name="Acc" />
+				<stat-number :number="survivor.strength" name="Str" />
+				<stat-number :number="survivor.evasion" name="Eva" />
+				<stat-number :number="survivor.luck" name="Luck" />
+				<stat-number :number="survivor.speed" name="Spd" />
+			</template>
+			<div slot="popup">
+				Mov
+				Acc
+				Str
+				Eva
+				Luck
+				Spd
+			</div>
+		</test-popup>
 		<asset-attribute
 			v-model="survivor.fightingArts"
 			:max="3"
