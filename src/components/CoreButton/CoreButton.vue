@@ -4,6 +4,7 @@
 		:type="type"
 		:class="[baseClass, colorClass]"
 		:to="to"
+		:href="href"
 		@click="$emit('click')"
 		@blur="$emit('blur')"
 	>
@@ -32,11 +33,15 @@ export default {
 		to: {
 			type: [String, Object],
 			default: null
+		},
+		href: {
+			type: String,
+			default: null
 		}
 	},
 	data() {
 		return {
-			baseClass: 'block py-3 px-4 no-outline text-center'
+			baseClass: 'block py-3 px-4 no-outline text-center no-underline'
 		};
 	},
 	computed: {
@@ -54,6 +59,9 @@ export default {
 		element() {
 			if (this.to) {
 				return 'router-link';
+			}
+			if (this.href) {
+				return 'a';
 			}
 			return 'button';
 		},

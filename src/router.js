@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import firebase from 'firebase';
+import Home from '@/views/Home';
 import SettlementsList from '@/views/Settlement/Settlement-List';
 import SettlementsNew from '@/views/Settlement/Settlement-New';
 import Settlement from '@/views/Settlement/Settlement';
@@ -37,6 +38,14 @@ const router = new Router({
 		},
 		{
 			path: '/',
+			name: 'Home',
+			component: Home,
+			meta: {
+				requiresNoAuth: true
+			}
+		},
+		{
+			path: '/login',
 			name: 'Login',
 			component: Login,
 			meta: {
