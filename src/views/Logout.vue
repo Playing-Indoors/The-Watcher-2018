@@ -11,7 +11,9 @@ export default {
 			.auth()
 			.signOut()
 			.then(() => {
-				this.$router.push('/');
+				this.$router.push({
+					name: 'Login'
+				});
 			});
 	}
 };
