@@ -8,6 +8,7 @@
 - [`src`](#src)
   - [`assets`](#assets)
   - [`components`](#components)
+  - [`views`](#views)
   - [`app.vue`](#appvue)
   - [`main.js`](#mainjs)
 - [`tests`](#tests)
@@ -38,7 +39,11 @@ This project manages assets via Vue CLI. Learn more about [its asset handling he
 
 ### `components`
 
-Where most of the components in our app will live, including our [global base components](development.md#base-components).
+Where the reusable components in our app will live.
+
+### `views`
+
+Where most of our standalone, non reusable components live. If a component is a "page" or "view" or does one specific thing it belings here. It's better to start components here and then migrate them over to the components folder as they become more universal.
 
 ### `app.vue`
 
