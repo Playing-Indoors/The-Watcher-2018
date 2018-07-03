@@ -88,7 +88,6 @@ For our styles, we're using SCSS and CSS modules, which you can activate by addi
 </style>
 ```
 
-
 ### SCSS
 
 SCSS is a superset of CSS, meaning any valid CSS is _also_ valid SCSS. This allows you to easily copy properties from other sources, without having to reformat it. It also means you can stick to writing the CSS you're still comfortable with while you're learning to use more advanced SCSS features.
@@ -101,14 +100,13 @@ I specifically recommend reading about:
 
 Just those features cover at least 95% of use cases.
 
-
 ### Tailwind
 
 We use [tailwindcss](https://tailwindcss.com) as a utility framework. This allows us to share some global utilities as well as do fast prototyping. Don't feel you have to use tailwind but when writing css and we might phase this out as we move from a prototype to production.
 
 ### PurgeCSS
 
-Do to tailwind adding a lot of good utility classes, we use purgecss to strip out all unused css classes on build. _TODO: improve the docs and explain purge's issues and gotchas_
+Do to tailwind adding a lot of good utility classes, we use purgecss (_temporarily disabled_) to strip out all unused css classes on build. _TODO: improve the docs and explain purge's issues and gotchas_
 
 ### Design variables and tooling
 

@@ -30,7 +30,7 @@ This project includes a `docs` folder with more details on:
 
 1.  [Setup and development](docs/development.md)
 2.  [Architecture](docs/architecture.md)
-3.  [Languages and technologies](docs/tech.md)
-4.  [Tests](docs/tests.md)
-5.  [Linting and formatting](docs/linting.md)
-6.  [Editor integration](docs/editors.md)
+3.  [Firebase: Firestore and Cloud Functions](docs/firebase.md)
+4.  [Languages and technologies](docs/tech.md)
+5.  [Tests](docs/tests.md)
+6.  [Linting and formatting](docs/linting.md)
