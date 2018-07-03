@@ -35,16 +35,13 @@
 				active-class="text-yellow border-yellow"
 			>The Hunt</router-link>
 		</div>
-		<layout-content>
-			<router-view />
-		</layout-content>
+		<router-view />
 	</div>
 </template>
 
 <script>
 import db from '@/firebase';
 import TopBar from '@/components/TopBar/TopBar';
-import LayoutContent from '@/components/LayoutContent/LayoutContent';
 import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
 import CoreSelect from '@/components/CoreSelect/CoreSelect';
 import CoreButton from '@/components/CoreButton/CoreButton';
@@ -54,7 +51,6 @@ export default {
 	components: {
 		TopBar,
 		LayoutGrid,
-		LayoutContent,
 		CoreSelect,
 		CoreButton,
 		SurvivorCard

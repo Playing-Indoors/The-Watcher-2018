@@ -1,9 +1,8 @@
 <template>
 	<div class="flex flex-col">
 		<label v-if="name" class="inline-block pb-1 text-xs">{{name}}</label>
-		<form
+		<div
 			class="bg-grey-dark flex flex-1"
-			@submit.prevent="confirm()"
 		>
 			<button
 				type="button"
@@ -16,8 +15,15 @@
 					<slot />
 				</div>
 			</button>
-			<div v-if="showModal" class="fixed pin bg-overlay flex flex-col justify-center items-center" @click.self="cancel()">
-				<div class="max-w-xs w-full flex flex-col">
+			<div
+				v-if="showModal"
+				class="fixed pin bg-overlay flex flex-col justify-center items-center z-30"
+				@click.self="cancel()"
+			>
+				<form
+					class="max-w-xs w-full flex flex-col"
+					@submit.prevent="confirm()"
+				>
 					<div class="bg-grey-darkest p-4">
 						<header class="text-2xl text-center mb-4">{{name}}</header>
 						<slot
@@ -29,9 +35,9 @@
 						submit
 					>Confirm</core-button>
 					<core-button color="text" @click="cancel()">Cancel</core-button>
-				</div>
+				</form>
 			</div>
-		</form>
+		</div>
 	</div>
 </template>
 

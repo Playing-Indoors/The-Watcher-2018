@@ -46,50 +46,6 @@
 			name="Weapon Proficiency"
 			class="span-2"
 		/>
-		<!-- <custom-attribute
-      :attributes="stats"
-      :save-attributes="saveAttributes"
-      name="Stats"
-      class="span-6"
-    /> -->
-		<!-- <box-widget name="Armor" class="span-6">
-      <stat-number :number="survivor.insanity" name="Insanity" />
-      <stat-number :number="survivor.head" name="Head" />
-      <stat-number :number="survivor.arms" name="Arms" />
-      <stat-number :number="survivor.body" name="Body" />
-      <stat-number :number="survivor.waist" name="Waist" />
-      <stat-number :number="survivor.legs" name="Legs" />
-    </box-widget> -->
-		<!-- <test-popup /> -->
-		<test-popup
-			title="Courage"
-			class="span-2"
-		>
-			<div slot="display">
-				<stat-number :number="0" />
-			</div>
-		</test-popup>
-		<test-popup
-			title="Courage"
-			class="span-6"
-		>
-			<template slot="display">
-				<stat-number :number="survivor.movement" name="Mov" />
-				<stat-number :number="survivor.accuracy" name="Acc" />
-				<stat-number :number="survivor.strength" name="Str" />
-				<stat-number :number="survivor.evasion" name="Eva" />
-				<stat-number :number="survivor.luck" name="Luck" />
-				<stat-number :number="survivor.speed" name="Spd" />
-			</template>
-			<div slot="popup">
-				Mov
-				Acc
-				Str
-				Eva
-				Luck
-				Spd
-			</div>
-		</test-popup>
 		<asset-attribute
 			v-model="survivor.fightingArts"
 			:max="3"
@@ -137,7 +93,6 @@ import CustomAttribute from '@/components/CustomAttribute';
 import StatNumber from '@/components/StatNumber';
 import StatAdjust from '@/components/StatAdjust';
 import StatAdjust2 from '@/components/StatAdjust2';
-import TestPopup from '@/components/TestPopup';
 
 export default {
 	components: {
@@ -148,8 +103,7 @@ export default {
 		CustomAttribute,
 		StatNumber,
 		StatAdjust,
-		StatAdjust2,
-		TestPopup
+		StatAdjust2
 	},
 	props: {
 		survivor: {

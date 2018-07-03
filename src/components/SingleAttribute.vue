@@ -33,7 +33,7 @@ export default {
 		},
 		max: {
 			type: Number,
-			default: 0
+			default: 999
 		},
 		attribute: {
 			type: String,
