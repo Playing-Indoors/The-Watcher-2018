@@ -2,8 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import firebase from 'firebase';
 import Home from '@/views/Home';
-import SettlementsList from '@/views/Settlement/Settlement-List';
-import SettlementsNew from '@/views/Settlement/Settlement-New';
+import Settlements from '@/views/Settlements/Settlements';
+import SettlementsNew from '@/views/Settlements/Settlements-New';
 import Settlement from '@/views/Settlement/Settlement';
 import SettlementDead from '@/views/Settlement/Settlement-Dead';
 import SettlementAlive from '@/views/Settlement/Settlement-Alive';
@@ -21,8 +21,7 @@ import SurvivorsDetail from '@/views/Survivors-Detail';
 import SurvivorsGroup from '@/views/Survivors-Group';
 
 // Admin
-import AdminInjuries from '@/views/Admin/AdminInjuries';
-import AdminFightingArts from '@/views/Admin/AdminFightingArts';
+import AdminRebuild from '@/views/Admin/AdminRebuild';
 
 Vue.use(Router);
 
@@ -62,19 +61,11 @@ const router = new Router({
 		},
 
 		// #region Admin
+		// TODO only admins see this
 		{
-			path: '/admin/injuries',
-			name: 'AdminInjuries',
-			component: AdminInjuries,
-			meta: {
-				requiresAdmin: true,
-				requiresAuth: true
-			}
-		},
-		{
-			path: '/admin/fighting-arts',
-			name: 'AdminFightingArts',
-			component: AdminFightingArts,
+			path: '/admin/rebuild',
+			name: 'AdminRebuild',
+			component: AdminRebuild,
 			meta: {
 				requiresAdmin: true,
 				requiresAuth: true
@@ -86,7 +77,7 @@ const router = new Router({
 		{
 			path: '/settlements',
 			name: 'Settlements',
-			component: SettlementsList,
+			component: Settlements,
 			meta: {
 				requiresAuth: true
 			}
@@ -103,9 +94,6 @@ const router = new Router({
 			path: '/settlements/:settlementId',
 			component: Settlement,
 			props: true,
-			// props: route => ({
-			// 	settlement: Math.trunc(route.params.settlement),
-			// }),
 			meta: {
 				requiresAuth: true
 			},

@@ -4,6 +4,8 @@
 
 > These docs are a work in progress. Questions, feedback, and for now, even bikeshedding are welcome. If you would like to contribute please join our development channel in our [Discord](https://discordapp.com/invite/jBPFyBG).
 
+_A web-based tracker app for Kingdom Death. Built for the community, by the community._
+
 ## Getting started
 
 Read our [contribution](docs/contributing.md) guide.
@@ -34,3 +36,4 @@ This project includes a `docs` folder with more details on:
 4.  [Languages and technologies](docs/tech.md)
 5.  [Tests](docs/tests.md)
 6.  [Linting and formatting](docs/linting.md)
+7.  [Devices](docs/devices.md)
