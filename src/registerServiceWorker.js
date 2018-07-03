@@ -14,7 +14,8 @@ if (process.env.NODE_ENV === 'production') {
 			console.log('Content has been cached for offline use.');
 		},
 		updated() {
-			console.log('New content is available; please refresh.');
+			// For development turning this to alert. While annoying it's not as annoying as asking people to clear cache!
+			alert('New content is available; please refresh.');
 		},
 		offline() {
 			console.log(
