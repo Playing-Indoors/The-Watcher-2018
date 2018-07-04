@@ -23,7 +23,6 @@
 import db from '@/firebase';
 import TopBar from '@/components/TopBar/TopBar';
 import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
-import CoreInput from '@/components/CoreInput/CoreInput';
 import CoreButton from '@/components/CoreButton/CoreButton';
 
 import severeInjuries from '@/assets/game/severeInjuries.js';
@@ -36,7 +35,6 @@ export default {
 	components: {
 		TopBar,
 		LayoutGrid,
-		CoreInput,
 		CoreButton
 	},
 	data() {

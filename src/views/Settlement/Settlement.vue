@@ -43,17 +43,11 @@
 import db from '@/firebase';
 import TopBar from '@/components/TopBar/TopBar';
 import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
-import CoreSelect from '@/components/CoreSelect/CoreSelect';
-import CoreButton from '@/components/CoreButton/CoreButton';
-import SurvivorCard from '@/components/SurvivorCard';
 
 export default {
 	components: {
 		TopBar,
-		LayoutGrid,
-		CoreSelect,
-		CoreButton,
-		SurvivorCard
+		LayoutGrid
 	},
 	props: {
 		settlementId: {
@@ -64,61 +58,14 @@ export default {
 	data() {
 		return {
 			settlement: null,
-			huntSelect: null,
-			hunting: [],
 			survivors: []
 		};
 	},
 	firestore() {
 		return {
 			settlement: db.collection('settlements').doc(this.settlementId),
-			survivors: db.collection(`settlements/${this.settlementId}/survivors`),
-			hunting: db.collection(`settlements/${this.settlementId}/hunting`)
+			survivors: db.collection(`settlements/${this.settlementId}/survivors`)
 		};
-	},
-	methods: {
-		addToHunt(id) {
-			if (id && !this.hunting.find(survivor => survivor.survivorId === id)) {
-				db
-					.collection(`settlements/${this.settlementId}/hunting`)
-					.add({ survivorId: id });
-			}
-		},
-		removeHunted(id) {
-			db.doc(`settlements/${this.settlementId}/hunting/${id}`).delete();
-		},
-		huntedLookup(id) {
-			return this.survivors.find(survivor => survivor.id === id);
-		},
-		handleSave() {
-			db
-				.collection('settlements')
-				.doc(this.settlementId)
-				.update({
-					name: this.settlement.name
-				})
-				.then(res => {
-					console.log('UPDATED', res);
-					// this.$router.push({
-					// 	name: 'SettlementsEdit',
-					// 	params: { settlementId: res.id },
-					// });
-				})
-				.catch(err => console.error(err));
-		}
 	}
 };
 </script>
-
-<style lang="scss" module>
-.layout {
-	display: grid;
-	grid-column-gap: 1rem;
-	grid-row-gap: 1rem;
-	grid-template-columns: repeat(6, 1fr);
-
-	> * {
-		grid-column-end: span 2;
-	}
-}
-</style>

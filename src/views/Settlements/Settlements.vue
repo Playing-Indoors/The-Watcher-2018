@@ -59,7 +59,6 @@ export default {
 	firestore() {
 		return {
 			settlements: db.collection('settlements').orderBy('dateModified', 'desc')
-			// settlements: db.collection('settlements'),
 		};
 	}
 };

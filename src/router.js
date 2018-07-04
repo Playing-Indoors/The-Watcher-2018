@@ -14,7 +14,6 @@ import SurvivorManage from '@/views/Survivor/Survivor';
 import SurvivorsManage from '@/views/Survivor/Survivors';
 import Login from '@/views/Login.vue';
 import Logout from '@/views/Logout.vue';
-import About from '@/views/About.vue';
 import Survivors from '@/views/Survivors';
 // import SurvivorsNew from '@/views/Survivors-New';
 import SurvivorsDetail from '@/views/Survivors-Detail';
@@ -73,7 +72,7 @@ const router = new Router({
 		},
 		// #endregion
 
-		// #region Settlement
+		// #region Settlements
 		{
 			path: '/settlements',
 			name: 'Settlements',
@@ -90,6 +89,9 @@ const router = new Router({
 				requiresAuth: true
 			}
 		},
+		// #endregion
+
+		// #region Settlement
 		{
 			path: '/settlements/:settlementId',
 			component: Settlement,
@@ -154,14 +156,6 @@ const router = new Router({
 			name: 'Survivor',
 			component: SurvivorManage,
 			props: true,
-			meta: {
-				requiresAuth: true
-			}
-		},
-		{
-			path: '/about',
-			name: 'about',
-			component: About,
 			meta: {
 				requiresAuth: true
 			}
