@@ -86,24 +86,14 @@
 <script>
 import fightingArts from '@/assets/game/fightingArts';
 import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
-import BoxWidget from '@/components/BoxWidget';
-import SingleAttribute from '@/components/SingleAttribute';
-import AssetAttribute from '@/components/AssetAttribute';
-import CustomAttribute from '@/components/CustomAttribute';
-import StatNumber from '@/components/StatNumber';
-import StatAdjust from '@/components/StatAdjust';
-import StatAdjust2 from '@/components/StatAdjust2';
+import SingleAttribute from '@/components/SingleAttribute/SingleAttribute';
+import AssetAttribute from '@/components/AssetAttribute/AssetAttribute';
 
 export default {
 	components: {
 		LayoutGrid,
-		BoxWidget,
 		AssetAttribute,
-		SingleAttribute,
-		CustomAttribute,
-		StatNumber,
-		StatAdjust,
-		StatAdjust2
+		SingleAttribute
 	},
 	props: {
 		survivor: {

@@ -5,42 +5,42 @@
 		@confirm="handleConfirm()"
 		@cancel="handleCancel()"
 	>
-		<stat-number
-			v-for="attr in attributes"
-			:key="attr.name"
-			:name="attr.name"
-			:number="attr.value"
+		<asset-render
+			:list="value"
 		/>
-		<!-- <stat-adjust
+		<asset-adjust
 			slot="modal"
+			:max="max"
+			:attribute="attribute"
 			v-model="tempValue"
-		/> -->
-		<div slot="modal">
-			<stat-adjust
-				v-for="attr in attributes"
-				:key="attr.name"
-				:name="attr.name"
-				v-model="attr.value"
-			/>
-		</div>
+		/>
+
 	</box-widget>
 </template>
 
 <script>
-import BoxWidget from '@/components/BoxWidget2';
-import StatAdjust from '@/components/StatAdjust2';
-import StatNumber from '@/components/StatNumber';
+import BoxWidget from '@/components/BoxWidget/BoxWidget';
+import AssetAdjust from '@/components/AssetAdjust/AssetAdjust';
+import AssetRender from '@/components/AssetRender/AssetRender';
 
 export default {
-	components: { BoxWidget, StatAdjust, StatNumber },
+	components: { BoxWidget, AssetAdjust, AssetRender },
 	props: {
 		name: {
 			type: String,
 			default: ''
 		},
-		attributes: {
-			type: Array,
-			default: () => []
+		value: {
+			type: Object,
+			default: () => ({})
+		},
+		max: {
+			type: Number,
+			default: 0
+		},
+		attribute: {
+			type: String,
+			required: true
 		},
 		saveAttributes: {
 			type: Function,
@@ -49,7 +49,7 @@ export default {
 	},
 	data() {
 		return {
-			tempValue: []
+			tempValue: this.value
 		};
 	},
 	computed: {
@@ -59,16 +59,10 @@ export default {
 	},
 	watch: {
 		value(newVal) {
-			this.cloneAttr(newVal);
+			this.tempValue = newVal;
 		}
 	},
-	mounted() {
-		this.cloneAttr(this.value);
-	},
 	methods: {
-		cloneAttr(value = []) {
-			this.tempValue = [...value];
-		},
 		handleConfirm() {
 			this.$emit('input', this.tempValue);
 			const obj = {};

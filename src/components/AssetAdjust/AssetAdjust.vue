@@ -35,7 +35,7 @@
 import { SlideYUpTransition } from 'vue2-transitions';
 import db from '@/firebase';
 import CoreButton from '@/components/CoreButton/CoreButton';
-import ListItem from '@/components/ListItem';
+import ListItem from '@/components/ListItem/ListItem';
 
 export default {
 	components: { CoreButton, ListItem, SlideYUpTransition },

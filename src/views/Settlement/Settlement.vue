@@ -57,14 +57,12 @@ export default {
 	},
 	data() {
 		return {
-			settlement: null,
-			survivors: []
+			settlement: null
 		};
 	},
 	firestore() {
 		return {
-			settlement: db.collection('settlements').doc(this.settlementId),
-			survivors: db.collection(`settlements/${this.settlementId}/survivors`)
+			settlement: db.collection('settlements').doc(this.settlementId)
 		};
 	}
 };

@@ -5,7 +5,7 @@
 <script>
 import db from '@/firebase';
 import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
-import SurvivorCard from '@/components/SurvivorCard';
+import SurvivorCard from '@/components/SurvivorCard/SurvivorCard';
 
 export default {
 	components: {

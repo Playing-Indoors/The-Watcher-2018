@@ -105,33 +105,7 @@ export default {
 					});
 				})
 				.catch(err => console.error(err));
-
-			/* ATTEMPT TRANSACTION */
-			// const refSettlement = db.collection('settlements').doc(this.settlementId);
-			// const newSurRef = db
-			// 	.collection('settlements')
-			// 	.doc(this.settlementId)
-			// 	.collection('survivors')
-			// 	.doc();
-			// return db
-			// 	.runTransaction(transaction =>
-			// 		transaction.get(refSettlement).then(settlementDoc => {
-			// 			const newPopulation = settlementDoc.data().population + 1;
-			// 			transaction.update(refSettlement, {
-			// 				population: newPopulation,
-			// 				dateModified: dateNow,
-			// 			});
-			// 			return transaction.set(newSurRef, newSurvivor);
-			// 		}),
-			// 	)
-			// 	.then(res => {
-			// 		console.log('CREATED', res);
-			// 		this.$router.push({
-			// 			name: 'Survivor-Manage',
-			// 			params: { survivorId: res.id },
-			// 		});
-			// 	})
-			// 	.catch(err => console.error(err));
+			// There is a cloud function that gets run at this point to update the settlements survivor count
 		}
 	}
 };

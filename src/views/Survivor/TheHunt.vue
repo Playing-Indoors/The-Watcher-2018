@@ -75,7 +75,7 @@
 <script>
 import db from '@/firebase';
 import LayoutGrid from '@/components/LayoutGrid/LayoutGrid';
-import SurvivorCard from '@/components/SurvivorCard';
+import SurvivorCard from '@/components/SurvivorCard/SurvivorCard';
 import CoreButton from '@/components/CoreButton/CoreButton';
 import CoreSelect from '@/components/CoreSelect/CoreSelect';
 

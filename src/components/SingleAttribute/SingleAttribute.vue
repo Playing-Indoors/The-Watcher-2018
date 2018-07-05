@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import BoxWidget from '@/components/BoxWidget2';
-import StatAdjust from '@/components/StatAdjust2';
-import StatNumber from '@/components/StatNumber';
+import BoxWidget from '@/components/BoxWidget/BoxWidget';
+import StatAdjust from '@/components/StatAdjust/StatAdjust';
+import StatNumber from '@/components/StatNumber/StatNumber';
 
 export default {
 	components: { BoxWidget, StatAdjust, StatNumber },

@@ -1,7 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import firebase from 'firebase';
+
 import Home from '@/views/Home';
+import Login from '@/views/Login.vue';
+import Logout from '@/views/Logout.vue';
 import Settlements from '@/views/Settlements/Settlements';
 import SettlementsNew from '@/views/Settlements/Settlements-New';
 import Settlement from '@/views/Settlement/Settlement';
@@ -10,14 +13,7 @@ import SettlementAlive from '@/views/Settlement/Settlement-Alive';
 import SettlementHunt from '@/views/Settlement/Settlement-Hunt';
 
 import SurvivorNew from '@/views/Survivor/Survivor-New';
-import SurvivorManage from '@/views/Survivor/Survivor';
 import SurvivorsManage from '@/views/Survivor/Survivors';
-import Login from '@/views/Login.vue';
-import Logout from '@/views/Logout.vue';
-import Survivors from '@/views/Survivors';
-// import SurvivorsNew from '@/views/Survivors-New';
-import SurvivorsDetail from '@/views/Survivors-Detail';
-import SurvivorsGroup from '@/views/Survivors-Group';
 
 // Admin
 import AdminRebuild from '@/views/Admin/AdminRebuild';
@@ -133,61 +129,6 @@ const router = new Router({
 			path: '/settlements/:settlementId/survivors/:survivorId',
 			name: 'Survivors',
 			component: SurvivorsManage,
-			props: true,
-			meta: {
-				requiresAuth: true
-			}
-		},
-		// {
-		// 	path: '/settlements/:settlementId/survivors/:survivorId',
-		// 	name: 'Survivors',
-		// 	component: SurvivorsManage,
-		// 	props: route => ({
-		// 		survivorId: route.params.survivorId,
-		// 		settlementId: route.params.settlementId,
-		// 		survivors: !route.query.s || route.query.s.split(',')
-		// 	}),
-		// 	meta: {
-		// 		requiresAuth: true
-		// 	}
-		// },
-		{
-			path: '/settlements/:settlementId/survivor/:survivorId',
-			name: 'Survivor',
-			component: SurvivorManage,
-			props: true,
-			meta: {
-				requiresAuth: true
-			}
-		},
-		{
-			path: '/survivors',
-			name: 'survivors',
-			component: Survivors,
-			meta: {
-				requiresAuth: true
-			}
-		},
-		// {
-		// 	path: '/survivors/new',
-		// 	name: 'survivors-new',
-		// 	component: SurvivorsNew,
-		// 	meta: {
-		// 		requiresAuth: true,
-		// 	},
-		// },
-		{
-			path: '/survivors/group',
-			name: 'survivors-group',
-			component: SurvivorsGroup,
-			meta: {
-				requiresAuth: true
-			}
-		},
-		{
-			path: '/survivors/:id',
-			name: 'survivors-detail',
-			component: SurvivorsDetail,
 			props: true,
 			meta: {
 				requiresAuth: true
