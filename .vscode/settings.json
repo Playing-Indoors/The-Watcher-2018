@@ -1,0 +1,7 @@
+{
+	"editor.formatOnSave": true,
+	"html-css-class-completion.includeGlobPattern": "**/*.{scss,css,html}",
+	"files.exclude": {
+		"node_modules": true
+	}
+}
