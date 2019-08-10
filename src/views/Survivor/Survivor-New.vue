@@ -66,10 +66,15 @@ export default {
 	},
 	methods: {
 		handleCreate(name, gender) {
-			const dateNow = new Date();
 			const newSurvivor = {
-				dateCreated: dateNow,
-				dateModified: dateNow,
+				dateCreated:
+					new Date().toLocaleDateString() +
+					' ' +
+					new Date().toLocaleTimeString(),
+				dateModified:
+					new Date().toLocaleDateString() +
+					' ' +
+					new Date().toLocaleTimeString(),
 				name,
 				gender,
 				survival: 0,
@@ -93,7 +98,6 @@ export default {
 				notes: '',
 				'severe-injuries': this.injuries
 			};
-
 			db
 				.collection(`settlements/${this.settlementId}/survivors`)
 				.add(newSurvivor)

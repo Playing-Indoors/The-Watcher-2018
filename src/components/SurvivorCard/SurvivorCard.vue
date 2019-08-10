@@ -12,7 +12,7 @@
 	>
 		<div class="flex-1">
 			<div>{{survivor.name}}</div>
-			<div class="text-grey text-xs">Last Accessed*: {{survivor.dateModified}}</div>
+			<div class="text-grey text-xs">Last Accessed*: {{dateHandled}}</div>
 			<div class="text-grey text-xs">Created On: {{survivor.dateCreated}}</div>
 		</div>
 		<div class="text-grey text-xs">
@@ -28,6 +28,14 @@ export default {
 			type: Object,
 			default: () => ({}),
 			required: true
+		}
+	},
+	computed: {
+		dateHandled: () => {
+			return (
+				new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
+			);
+			//console.log(survivor.$route.params.settlementId)
 		}
 	}
 };
