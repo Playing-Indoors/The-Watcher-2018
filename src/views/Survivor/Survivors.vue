@@ -6,9 +6,7 @@
 				slot="left"
 				:to="{ name: 'Settlement' }"
 				class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"
-			>
-				&lt;
-			</router-link>
+			/>
 			<template slot="right">
 				<button
 					class="inline-block text-yellow no-underline font-bold border border-yellow px-1 hover:bg-yellow hover:text-black"

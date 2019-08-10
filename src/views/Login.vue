@@ -2,7 +2,6 @@ Improvement
 - Allow anonymous
 - Allow Email Link auth
 - https://console.firebase.google.com/u/0/project/the-watcher-b3ddf/authentication/providers
-
 <template>
 	<layout-grid :columns="1" contents>
 		<form @submit.prevent="login()">

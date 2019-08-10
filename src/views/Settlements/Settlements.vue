@@ -25,7 +25,7 @@
 				>
 					<div class="flex-1">
 						<div>{{settlement.name}}</div>
-						<div class="text-grey text-xs">Last Accessed*: {{settlement.dateModified}}</div>
+						<div class="text-grey text-xs">Last Accessed: {{settlement.dateModified = lastModified}}</div>
 						<div class="text-grey text-xs">Created On: {{settlement.dateCreated}}</div>
 					</div>
 					<div class="text-grey text-xs">
@@ -55,6 +55,14 @@ export default {
 		return {
 			settlements: []
 		};
+	},
+	computed: {
+		lastModified: () => {
+			const day = new Date().toLocaleDateString();
+			const hours = new Date().toLocaleTimeString();
+			const date = day + ' ' + hours;
+			return date;
+		}
 	},
 	firestore() {
 		return {

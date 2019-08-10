@@ -65,15 +65,20 @@ export default {
 			// },
 		};
 	},
+	computed: () => {},
 	methods: {
 		handleCreate(name) {
-			const dateCreated = new Date();
+			const day = new Date().toLocaleDateString();
+			const hours = new Date().toLocaleTimeString();
+			const date = day + ' ' + hours;
+			console.log(date);
+
 			db
 				.collection('settlements')
 				.add({
 					name,
-					dateCreated,
-					dateModified: dateCreated,
+					dateCreated: date,
+					dateModified: date,
 					population: 0
 				})
 				.then(res => {
