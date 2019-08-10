@@ -65,14 +65,11 @@ export default {
 			// },
 		};
 	},
-	computed: () => {},
 	methods: {
 		handleCreate(name) {
 			const day = new Date().toLocaleDateString();
 			const hours = new Date().toLocaleTimeString();
 			const date = day + ' ' + hours;
-			console.log(date);
-
 			db
 				.collection('settlements')
 				.add({
